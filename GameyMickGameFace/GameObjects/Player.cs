@@ -45,10 +45,14 @@ namespace GameyMickGameFace.GameObjects
                 AnimationState = PlayerAnimationState.Walking;
                 PhysicsBody.AddVelocity( new Vector2(100, 0));
             }
-            else if (currentPadState.DPad.Left == ButtonState.Pressed || (currentState.IsKeyDown(Keys.Left)))
+            else if (currentPadState.DPad.Left == ButtonState.Pressed || (currentState.IsKeyDown(Keys.Left)) || (currentState.IsKeyDown(Keys.A)))
             {
                 AnimationState = PlayerAnimationState.Walking;
                 PhysicsBody.AddVelocity(new Vector2( - 100, 0));
+            }
+            else
+            {
+                AnimationState = PlayerAnimationState.Standing;
             }
 
             if (currentPadState.DPad.Down == ButtonState.Pressed || (currentState.IsKeyDown(Keys.Down)) || (currentState.IsKeyDown(Keys.S)))
@@ -56,7 +60,7 @@ namespace GameyMickGameFace.GameObjects
                 AnimationState = PlayerAnimationState.Standing;
                 PhysicsBody.AddVelocity( new Vector2(0,  100));
             }
-            else if (currentPadState.DPad.Up == ButtonState.Pressed || (currentState.IsKeyDown(Keys.Up)))
+            else if (currentPadState.DPad.Up == ButtonState.Pressed || (currentState.IsKeyDown(Keys.Up)) || (currentState.IsKeyDown(Keys.W)))
             {
                 AnimationState = PlayerAnimationState.Standing;
                 PhysicsBody.AddVelocity(new Vector2(0, - 100));
@@ -68,7 +72,16 @@ namespace GameyMickGameFace.GameObjects
 
         public void Draw(GameTime time, SpriteBatch batch)
         {
-            batch.Draw(Media.Animations.PlayerWalk.Frame, PhysicsBody.Position, Color.White);
+            if (AnimationState == PlayerAnimationState.Walking)
+            {
+                Media.Animations.PlayerWalk.NextFrame(time);
+                batch.Draw(Media.Animations.PlayerWalk.Frame, PhysicsBody.Position, Color.White);
+            }
+            else
+            {
+                Media.Animations.PlayerWalk.NextFrame(time);
+                batch.Draw(Media.Animations.PlayerIdel.Frame, PhysicsBody.Position, Color.White);
+            }
         }
     }
 }
