@@ -50,6 +50,10 @@ namespace GameyMickGameFace.GameObjects
                 AnimationState = PlayerAnimationState.Walking;
                 PhysicsBody.AddVelocity(new Vector2( - 100, 0));
             }
+            else
+            {
+                AnimationState = PlayerAnimationState.Standing;
+            }
 
             if (currentPadState.DPad.Down == ButtonState.Pressed || (currentState.IsKeyDown(Keys.Down)) || (currentState.IsKeyDown(Keys.S)))
             {
@@ -68,7 +72,16 @@ namespace GameyMickGameFace.GameObjects
 
         public void Draw(GameTime time, SpriteBatch batch)
         {
-            batch.Draw(Media.Animations.PlayerWalk.Frame, PhysicsBody.Position, Color.White);
+            if (AnimationState == PlayerAnimationState.Walking)
+            {
+                Media.Animations.PlayerWalk.NextFrame(time);
+                batch.Draw(Media.Animations.PlayerWalk.Frame, PhysicsBody.Position, Color.White);
+            }
+            else
+            {
+                Media.Animations.PlayerWalk.NextFrame(time);
+                batch.Draw(Media.Animations.PlayerIdel.Frame, PhysicsBody.Position, Color.White);
+            }
         }
     }
 }
