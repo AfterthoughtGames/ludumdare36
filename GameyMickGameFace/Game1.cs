@@ -23,13 +23,14 @@ namespace GameyMickGameFace
         Texture2D Platform1Texture;
         Texture2D Platform2Texture;
         Texture2D Platform3Texture;
+        Texture2D PhysicsBox;
         Tile Floor;
         Tile Platform1;
         Tile Platform2;
         Tile Platform3;
 
         PowerUp Health;
-        
+
 
         public Game1()
         {
@@ -40,7 +41,7 @@ namespace GameyMickGameFace
 
             Health = new PowerUp();
             Health.Name = "Health";
-            
+
         }
 
         /// <summary>
@@ -96,6 +97,8 @@ namespace GameyMickGameFace
             physicsManager.AddBody(Health.PhysicsBody);
 
             Media.Audio.damage = Content.Load<SoundEffect>("Sounds/Generic_Cowboy_Hurt");
+
+            PhysicsBox = Content.Load<Texture2D>("Images/blacksquare");
         }
 
         /// <summary>
@@ -140,9 +143,15 @@ namespace GameyMickGameFace
             spriteBatch.Draw(Platform2Texture, new Vector2(50, 400), Color.White);
             spriteBatch.Draw(Platform3Texture, new Vector2(750, 400), Color.White);
             spriteBatch.DrawString(Media.Fonts.GUI, "Welcome to LD 36", new Vector2(100, 100), Color.White, 0f, Vector2.Zero, 2f, SpriteEffects.None, 0);
+
             TempPlayer.Draw(gameTime, spriteBatch);
 
             Health.Draw(gameTime, spriteBatch);
+
+            foreach (Body Body in physicsManager.GetBodies())
+            {
+                spriteBatch.Draw(PhysicsBox, new Rectangle((int)Body.Position.X, (int)Body.Position.Y, Body.width, Body.height), Color.White);
+            }
 
             spriteBatch.End();
 

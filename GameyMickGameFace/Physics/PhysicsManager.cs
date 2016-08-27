@@ -16,17 +16,22 @@ namespace GameyMickGameFace.Physics
             Bodies.Add(body);
         }
 
+        public List<Body> GetBodies()
+        {
+            return Bodies;
+        }
+
         public void UpdatePhysics(GameTime gameTime)
         {
 
 
             //detect collisions
-            foreach(Body body in Bodies)
+            foreach (Body body in Bodies)
             {
                 body.Update(gameTime);
-                foreach(Body body2 in Bodies)
+                foreach (Body body2 in Bodies)
                 {
-                    if(body != body2 && body.PhysicsBody.Intersects(body2.PhysicsBody))
+                    if (body != body2 && body.PhysicsBody.Intersects(body2.PhysicsBody))
                     {
                         ResolveCollision(body, body2);
                     }

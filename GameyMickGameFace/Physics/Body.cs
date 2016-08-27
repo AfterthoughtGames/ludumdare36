@@ -9,8 +9,8 @@ namespace GameyMickGameFace.Physics
     public class Body
     {
         public Vector2 Position;
-        int width;
-        int height;
+        public int width;
+        public int height;
         public Rectangle PhysicsBody;
         public Vector2 Velocity;
         public float Restitution;
@@ -56,7 +56,7 @@ namespace GameyMickGameFace.Physics
         {
             Position += Velocity * (gameTime.ElapsedGameTime.Milliseconds / 1000f);
 
-            Velocity *= LinearDampening * (gameTime.ElapsedGameTime.Milliseconds/1000f);
+            Velocity *= LinearDampening * (gameTime.ElapsedGameTime.Milliseconds / 1000f);
 
             UpdatePosition();
         }
