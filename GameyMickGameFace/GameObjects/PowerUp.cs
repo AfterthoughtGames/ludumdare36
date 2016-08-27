@@ -26,7 +26,7 @@ namespace GameyMickGameFace.GameObjects
         public void OnPickup(Player effectedPlayer)
         {
             //do something
-            Media.Audio.damage.Play();
+            Media.Audio.Damage.Play();
         }
 
         public void Draw(GameTime time, SpriteBatch batch)

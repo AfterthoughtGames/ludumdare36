@@ -78,71 +78,10 @@ namespace GameyMickGameFace
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            Media.Animations.PlayerWalk = new Animation(50);
-            Media.Animations.PlayerIdel = new Animation(10);
-
-            Media.Fonts.GUI = Content.Load<SpriteFont>("GUIFont");
-            Media.Animations.PlayerWalk.AddTexture(Content.Load<Texture2D>("Otter_Otter_Walking_000"));
-            Media.Animations.PlayerWalk.AddTexture(Content.Load<Texture2D>("Otter_Otter_Walking_001"));
-            Media.Animations.PlayerWalk.AddTexture(Content.Load<Texture2D>("Otter_Otter_Walking_002"));
-            Media.Animations.PlayerWalk.AddTexture(Content.Load<Texture2D>("Otter_Otter_Walking_003"));
-            Media.Animations.PlayerWalk.AddTexture(Content.Load<Texture2D>("Otter_Otter_Walking_004"));
-            Media.Animations.PlayerWalk.AddTexture(Content.Load<Texture2D>("Otter_Otter_Walking_005"));
-            Media.Animations.PlayerWalk.AddTexture(Content.Load<Texture2D>("Otter_Otter_Walking_006"));
-            Media.Animations.PlayerWalk.AddTexture(Content.Load<Texture2D>("Otter_Otter_Walking_007"));
-            Media.Animations.PlayerWalk.AddTexture(Content.Load<Texture2D>("Otter_Otter_Walking_008"));
-            Media.Animations.PlayerWalk.AddTexture(Content.Load<Texture2D>("Otter_Otter_Walking_009"));
-            Media.Animations.PlayerWalk.AddTexture(Content.Load<Texture2D>("Otter_Otter_Walking_010"));
-            Media.Animations.PlayerWalk.AddTexture(Content.Load<Texture2D>("Otter_Otter_Walking_011"));
-            Media.Animations.PlayerWalk.AddTexture(Content.Load<Texture2D>("Otter_Otter_Walking_012"));
-            Media.Animations.PlayerWalk.AddTexture(Content.Load<Texture2D>("Otter_Otter_Walking_013"));
-            Media.Animations.PlayerWalk.AddTexture(Content.Load<Texture2D>("Otter_Otter_Walking_014"));
-            Media.Animations.PlayerWalk.AddTexture(Content.Load<Texture2D>("Otter_Otter_Walking_015"));
-            Media.Animations.PlayerWalk.AddTexture(Content.Load<Texture2D>("Otter_Otter_Walking_016"));
-            Media.Animations.PlayerWalk.AddTexture(Content.Load<Texture2D>("Otter_Otter_Walking_017"));
-            Media.Animations.PlayerWalk.AddTexture(Content.Load<Texture2D>("Otter_Otter_Walking_018"));
-            Media.Animations.PlayerWalk.AddTexture(Content.Load<Texture2D>("Otter_Otter_Walking_019"));
-            Media.Animations.PlayerWalk.AddTexture(Content.Load<Texture2D>("Otter_Otter_Walking_020"));
-            Media.Animations.PlayerWalk.AddTexture(Content.Load<Texture2D>("Otter_Otter_Walking_021"));
-            Media.Animations.PlayerWalk.AddTexture(Content.Load<Texture2D>("Otter_Otter_Walking_022"));
-            Media.Animations.PlayerWalk.AddTexture(Content.Load<Texture2D>("Otter_Otter_Walking_023"));
-            Media.Animations.PlayerWalk.AddTexture(Content.Load<Texture2D>("Otter_Otter_Walking_024"));
-            Media.Animations.PlayerWalk.AddTexture(Content.Load<Texture2D>("Otter_Otter_Walking_025"));
-            Media.Animations.PlayerWalk.AddTexture(Content.Load<Texture2D>("Otter_Otter_Walking_026"));
-            Media.Animations.PlayerWalk.AddTexture(Content.Load<Texture2D>("Otter_Otter_Walking_027"));
-            Media.Animations.PlayerWalk.AddTexture(Content.Load<Texture2D>("Otter_Otter_Walking_028"));
-            Media.Animations.PlayerWalk.AddTexture(Content.Load<Texture2D>("Otter_Otter_Walking_029"));
-
-            Media.Animations.PlayerIdel.AddTexture(Content.Load<Texture2D>("Otter_Otter_Idle_000"));
-            Media.Animations.PlayerIdel.AddTexture(Content.Load<Texture2D>("Otter_Otter_Idle_001"));
-            Media.Animations.PlayerIdel.AddTexture(Content.Load<Texture2D>("Otter_Otter_Idle_002"));
-            Media.Animations.PlayerIdel.AddTexture(Content.Load<Texture2D>("Otter_Otter_Idle_003"));
-            Media.Animations.PlayerIdel.AddTexture(Content.Load<Texture2D>("Otter_Otter_Idle_004"));
-            Media.Animations.PlayerIdel.AddTexture(Content.Load<Texture2D>("Otter_Otter_Idle_005"));
-            Media.Animations.PlayerIdel.AddTexture(Content.Load<Texture2D>("Otter_Otter_Idle_006"));
-            Media.Animations.PlayerIdel.AddTexture(Content.Load<Texture2D>("Otter_Otter_Idle_007"));
-            Media.Animations.PlayerIdel.AddTexture(Content.Load<Texture2D>("Otter_Otter_Idle_008"));
-            Media.Animations.PlayerIdel.AddTexture(Content.Load<Texture2D>("Otter_Otter_Idle_009"));
-            Media.Animations.PlayerIdel.AddTexture(Content.Load<Texture2D>("Otter_Otter_Idle_010"));
-            Media.Animations.PlayerIdel.AddTexture(Content.Load<Texture2D>("Otter_Otter_Idle_011"));
-            Media.Animations.PlayerIdel.AddTexture(Content.Load<Texture2D>("Otter_Otter_Idle_012"));
-            Media.Animations.PlayerIdel.AddTexture(Content.Load<Texture2D>("Otter_Otter_Idle_013"));
-            Media.Animations.PlayerIdel.AddTexture(Content.Load<Texture2D>("Otter_Otter_Idle_014"));
-            Media.Animations.PlayerIdel.AddTexture(Content.Load<Texture2D>("Otter_Otter_Idle_015"));
-            Media.Animations.PlayerIdel.AddTexture(Content.Load<Texture2D>("Otter_Otter_Idle_016"));
-            Media.Animations.PlayerIdel.AddTexture(Content.Load<Texture2D>("Otter_Otter_Idle_017"));
-            Media.Animations.PlayerIdel.AddTexture(Content.Load<Texture2D>("Otter_Otter_Idle_018"));
-            Media.Animations.PlayerIdel.AddTexture(Content.Load<Texture2D>("Otter_Otter_Idle_019"));
-            Media.Animations.PlayerIdel.AddTexture(Content.Load<Texture2D>("Otter_Otter_Idle_020"));
-            Media.Animations.PlayerIdel.AddTexture(Content.Load<Texture2D>("Otter_Otter_Idle_021"));
-            Media.Animations.PlayerIdel.AddTexture(Content.Load<Texture2D>("Otter_Otter_Idle_022"));
-            Media.Animations.PlayerIdel.AddTexture(Content.Load<Texture2D>("Otter_Otter_Idle_023"));
-            Media.Animations.PlayerIdel.AddTexture(Content.Load<Texture2D>("Otter_Otter_Idle_024"));
-            Media.Animations.PlayerIdel.AddTexture(Content.Load<Texture2D>("Otter_Otter_Idle_025"));
-            Media.Animations.PlayerIdel.AddTexture(Content.Load<Texture2D>("Otter_Otter_Idle_026"));
-            Media.Animations.PlayerIdel.AddTexture(Content.Load<Texture2D>("Otter_Otter_Idle_027"));
-            Media.Animations.PlayerIdel.AddTexture(Content.Load<Texture2D>("Otter_Otter_Idle_028"));
-            Media.Animations.PlayerIdel.AddTexture(Content.Load<Texture2D>("Otter_Otter_Idle_029"));
+            Media.Fonts.Load(Content);
+            Media.Animations.Load(Content);
+            Media.Audio.Load(Content);
+            Media.Textures.Load(Content);
 
             TempPlayer = new Player();
             physicsManager.AddBody(TempPlayer.PhysicsBody);
@@ -153,7 +92,6 @@ namespace GameyMickGameFace
             BackGround = Content.Load<Texture2D>("Images/woodenwallwithfloor");
 
             TitleScreen = new Title();
-            Media.Textures.TitleScreen = Content.Load<Texture2D>("Images/Title");
 
             Platform1Texture = Content.Load<Texture2D>("Images/longshelf");
             Platform1 = new Tile(new Point(150, 200), Platform1Texture.Width, Platform1Texture.Height, 0, 0);
@@ -169,8 +107,6 @@ namespace GameyMickGameFace
 
             Health.Image = Content.Load<Texture2D>("Images/healthUp");
             physicsManager.AddBody(Health.PhysicsBody);
-
-            Media.Audio.damage = Content.Load<SoundEffect>("Sounds/Generic_Cowboy_Hurt");
 
             PhysicsBox = Content.Load<Texture2D>("Images/blacksquare");
         }
