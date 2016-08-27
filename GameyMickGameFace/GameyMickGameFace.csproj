@@ -80,6 +80,7 @@
     <Content Include="Content\Images\mediumShelf.png" />
     <Content Include="Content\Images\playersqaure.png" />
     <Content Include="Content\Images\playersqaure2.png" />
+    <Content Include="Content\Images\potionSmall.png" />
     <Content Include="Content\Images\shortshelf.png" />
     <Content Include="Content\Images\sword.png" />
     <Content Include="Content\Images\trebuchet.png" />
@@ -107,6 +108,7 @@
     <None Include="Content\Images\mediumShelf.xnb" />
     <None Include="Content\Images\playersqaure.xnb" />
     <None Include="Content\Images\playersqaure2.xnb" />
+    <None Include="Content\Images\potionSmall.xnb" />
     <None Include="Content\Images\shortshelf.xnb" />
     <None Include="Content\Images\sword.xnb" />
     <None Include="Content\Images\Title.xnb">
