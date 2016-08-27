@@ -42,6 +42,7 @@
     <ApplicationIcon>Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Animation.cs" />
     <Compile Include="Game1.cs" />
     <Compile Include="GameObjects\Weapon.cs" />
     <Compile Include="Level.cs" />
