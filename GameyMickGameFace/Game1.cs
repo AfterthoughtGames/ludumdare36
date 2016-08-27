@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using GameyMickGameFace.GameObjects;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
@@ -11,6 +12,9 @@ namespace GameyMickGameFace
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+
+        // Temp Code
+        Player INeedHappy;
 
         public Game1()
         {
@@ -41,7 +45,11 @@ namespace GameyMickGameFace
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             Media.Fonts.GUI = Content.Load<SpriteFont>("GUIFont");
+            Media.Textures.PlayerTemp = Content.Load<Texture2D>("playersqaure");
             // TODO: use this.Content to load your game content here
+
+            //Temp Code
+            INeedHappy = new Player();
         }
 
         /// <summary>
@@ -77,6 +85,7 @@ namespace GameyMickGameFace
             GraphicsDevice.Clear(Color.Black);
             spriteBatch.Begin();
             spriteBatch.DrawString(Media.Fonts.GUI, "Welcome to LD 36", new Vector2(100, 100), Color.White, 0f, Vector2.Zero, 2f, SpriteEffects.None, 0);
+            INeedHappy.Draw(gameTime, spriteBatch);
             spriteBatch.End();
 
             // TODO: Add your drawing code here
