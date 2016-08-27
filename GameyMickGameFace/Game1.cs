@@ -54,13 +54,13 @@ namespace GameyMickGameFace
             Media.Animations.PlayerWalk = new Animation();
 
             Media.Fonts.GUI = Content.Load<SpriteFont>("GUIFont");
-            Media.Animations.PlayerWalk.AddTexture(Content.Load<Texture2D>("playersqaure"));
-            Media.Animations.PlayerWalk.AddTexture(Content.Load<Texture2D>("playersqaure2"));
+            Media.Animations.PlayerWalk.AddTexture(Content.Load<Texture2D>("Images/playersqaure"));
+            Media.Animations.PlayerWalk.AddTexture(Content.Load<Texture2D>("Images/playersqaure2"));
             TempPlayer = new Player();
             physicsManager.AddBody(TempPlayer.PhysicsBody);
             BlockerTest = new Tile(new Point(250, 250), 95, 86, 0, 0);
             physicsManager.AddBody(BlockerTest.Body);
-            BackGround = Content.Load<Texture2D>("Images\\WoodenWall");
+            BackGround = Content.Load<Texture2D>("Images/woodenwallwithfloor");
             // TODO: use this.Content to load your game content here
 
             //Temp Code
