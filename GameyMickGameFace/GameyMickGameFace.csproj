@@ -114,6 +114,22 @@
     <Content Include="Content\GUIFont.xnb">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="Content\Animations\Smoke_15\0000.xnb" />
+    <None Include="Content\Animations\Smoke_15\0006.xnb" />
+    <None Include="Content\Animations\Smoke_15\0012.xnb" />
+    <None Include="Content\Animations\Smoke_15\0018.xnb" />
+    <None Include="Content\Animations\Smoke_15\0024.xnb" />
+    <None Include="Content\Animations\Smoke_15\0030.xnb" />
+    <None Include="Content\Animations\Smoke_15\0036.xnb" />
+    <None Include="Content\Animations\Smoke_15\0042.xnb" />
+    <None Include="Content\Animations\Smoke_15\0048.xnb" />
+    <None Include="Content\Animations\Smoke_15\0054.xnb" />
+    <None Include="Content\Animations\Smoke_15\0060.xnb" />
+    <None Include="Content\Animations\Smoke_15\0066.xnb" />
+    <None Include="Content\Animations\Smoke_15\0072.xnb" />
+    <None Include="Content\Animations\Smoke_15\0078.xnb" />
+    <None Include="Content\Animations\Smoke_15\0084.xnb" />
+    <None Include="Content\Animations\Smoke_15\0090.xnb" />
     <None Include="Content\Images\Background.xnb" />
     <None Include="Content\Images\blacksquare.xnb" />
     <None Include="Content\Images\Bow.xnb" />
