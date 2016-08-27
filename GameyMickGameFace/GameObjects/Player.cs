@@ -32,7 +32,7 @@ namespace GameyMickGameFace.GameObjects
         public Player()
         {
             AnimationState = PlayerAnimationState.Standing;
-            PhysicsBody = new Body(new Point(100, 100), 95, 86, 0, 100);
+            PhysicsBody = new Body(new Point(100, 100), 95, 86, 0, 100,.85f);
         }
 
         public void Update(GameTime time)
@@ -42,24 +42,24 @@ namespace GameyMickGameFace.GameObjects
 
             if(currentPadState.DPad.Right == ButtonState.Pressed || (currentState.IsKeyDown(Keys.Right)) || (currentState.IsKeyDown(Keys.D)))
             {
-                PhysicsBody.AddVelocity( new Vector2(1, 0));
                 AnimationState = PlayerAnimationState.Walking;
+                PhysicsBody.AddVelocity( new Vector2(100, 0));
             }
             else if (currentPadState.DPad.Left == ButtonState.Pressed || (currentState.IsKeyDown(Keys.Left)))
             {
-                PhysicsBody.AddVelocity(new Vector2( - 1, 0));
                 AnimationState = PlayerAnimationState.Walking;
+                PhysicsBody.AddVelocity(new Vector2( - 100, 0));
             }
 
             if (currentPadState.DPad.Down == ButtonState.Pressed || (currentState.IsKeyDown(Keys.Down)) || (currentState.IsKeyDown(Keys.S)))
             {
-                PhysicsBody.AddVelocity( new Vector2(0,  1));
                 AnimationState = PlayerAnimationState.Standing;
+                PhysicsBody.AddVelocity( new Vector2(0,  100));
             }
             else if (currentPadState.DPad.Up == ButtonState.Pressed || (currentState.IsKeyDown(Keys.Up)))
             {
-                PhysicsBody.AddVelocity(new Vector2(0, - 1));
                 AnimationState = PlayerAnimationState.Standing;
+                PhysicsBody.AddVelocity(new Vector2(0, - 100));
             }
 
             PreviousPadState = currentPadState;
