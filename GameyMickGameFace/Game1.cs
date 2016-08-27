@@ -1,6 +1,7 @@
 ﻿using GameyMickGameFace.GameObjects;
 using GameyMickGameFace.Physics;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
@@ -27,12 +28,19 @@ namespace GameyMickGameFace
         Tile Platform2;
         Tile Platform3;
 
+        PowerUp Health;
+        
+
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
             graphics.PreferredBackBufferWidth = 1280;
             graphics.PreferredBackBufferHeight = 720;
             Content.RootDirectory = "Content";
+
+            Health = new PowerUp();
+            Health.Name = "Health";
+            
         }
 
         /// <summary>
@@ -83,6 +91,11 @@ namespace GameyMickGameFace
             Platform3Texture = Content.Load<Texture2D>("Images/shortshelf");
             Platform3 = new Tile(new Point(750, 400), Platform3Texture.Width, Platform3Texture.Height, 0, 0);
             physicsManager.AddBody(Platform3.Body);
+
+            Health.Image = Content.Load<Texture2D>("Images/healthUp");
+            physicsManager.AddBody(Health.PhysicsBody);
+
+            Media.Audio.damage = Content.Load<SoundEffect>("Sounds/Generic_Cowboy_Hurt");
         }
 
         /// <summary>
@@ -108,6 +121,8 @@ namespace GameyMickGameFace
 
             TempPlayer.Update(gameTime);
 
+            Health.Update(gameTime);
+
             base.Update(gameTime);
         }
 
@@ -126,6 +141,8 @@ namespace GameyMickGameFace
             spriteBatch.Draw(Platform3Texture, new Vector2(750, 400), Color.White);
             spriteBatch.DrawString(Media.Fonts.GUI, "Welcome to LD 36", new Vector2(100, 100), Color.White, 0f, Vector2.Zero, 2f, SpriteEffects.None, 0);
             TempPlayer.Draw(gameTime, spriteBatch);
+
+            Health.Draw(gameTime, spriteBatch);
 
             spriteBatch.End();
 

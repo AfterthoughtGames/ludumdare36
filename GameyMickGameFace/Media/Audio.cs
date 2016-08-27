@@ -1,11 +1,15 @@
-﻿using System;
+﻿using Microsoft.Xna.Framework.Audio;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
 namespace GameyMickGameFace.Media
 {
-    class Audio
+    public class Audio
     {
+        public static SoundEffect damage;
+
+
     }
 }

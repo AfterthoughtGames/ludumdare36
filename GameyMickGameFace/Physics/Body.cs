@@ -18,7 +18,9 @@ namespace GameyMickGameFace.Physics
         public float InverseMass;
         public float LinearDampening;
 
-        public Body(Point position, int width, int height, float restitution, int mass, float linearDampening)
+        public object objRef;
+
+        public Body(Point position, int width, int height, float restitution, int mass, float linearDampening, object objRef)
         {
             this.width = width;
             this.height = height;
@@ -41,6 +43,8 @@ namespace GameyMickGameFace.Physics
             {
                 InverseMass = 1 / (float)Mass;
             }
+
+            this.objRef = objRef;
         }
 
         public void AddVelocity(Vector2 vector)
