@@ -87,6 +87,7 @@
     <Content Include="Content\Animations\Smoke_15\0078.png" />
     <Content Include="Content\Animations\Smoke_15\0084.png" />
     <Content Include="Content\Animations\Smoke_15\0090.png" />
+    <Content Include="Content\Images\arrow.png" />
     <Content Include="Content\Images\Background.png" />
     <Content Include="Content\Images\blacksquare.png" />
     <Content Include="Content\Images\Bow.png" />
@@ -131,6 +132,7 @@
     <None Include="Content\Animations\Smoke_15\0078.xnb" />
     <None Include="Content\Animations\Smoke_15\0084.xnb" />
     <None Include="Content\Animations\Smoke_15\0090.xnb" />
+    <None Include="Content\Images\arrow.xnb" />
     <None Include="Content\Images\Background.xnb" />
     <None Include="Content\Images\blacksquare.xnb" />
     <None Include="Content\Images\Bow.xnb" />
