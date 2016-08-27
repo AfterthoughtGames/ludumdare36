@@ -18,7 +18,7 @@ namespace GameyMickGameFace.GameObjects
     {
         public int Health { get; set; }
         public string Name { get; set; }
-       // public Vector2 Position { get; set; }
+        // public Vector2 Position { get; set; }
 
         public Body PhysicsBody { get; set; }
 
@@ -30,11 +30,10 @@ namespace GameyMickGameFace.GameObjects
         public PlayerAnimationState AnimationState { get; set; }
         public List<Body> DetectionPhysicsBodies;
 
-
         public Player()
         {
             AnimationState = PlayerAnimationState.Standing;
-            PhysicsBody = new Body(new Point(100, 100), 95, 86, 0, 100,.85f, this);
+            PhysicsBody = new Body(new Point(100, 100), 95, 86, 0, 100, .85f, this);
             PhysicsBody.reactsToCollision = false;
 
             DetectionPhysicsBodies = new List<Body>();
@@ -58,36 +57,73 @@ namespace GameyMickGameFace.GameObjects
 
         public void Update(GameTime time, PhysicsManager manager)
         {
-            GamePadState currentPadState = GamePad.GetState(PlayerNumber);
+            GamePadState currentPadState = GamePad.GetState(PlayerNumber - 1);
             KeyboardState currentState = Keyboard.GetState();
 
-            
+            bool keyboardControlled = false;
 
-            if(currentPadState.DPad.Right == ButtonState.Pressed || (currentState.IsKeyDown(Keys.Right)) || (currentState.IsKeyDown(Keys.D)))
+            if (PlayerNumber == 1)
             {
-                AnimationState = PlayerAnimationState.Walking;
-                PhysicsBody.AddVelocity( new Vector2(100, 0));
-            }
-            else if (currentPadState.DPad.Left == ButtonState.Pressed || (currentState.IsKeyDown(Keys.Left)) || (currentState.IsKeyDown(Keys.A)))
-            {
-                AnimationState = PlayerAnimationState.Walking;
-                PhysicsBody.AddVelocity(new Vector2( - 100, 0));
-            }
-            else
-            {
-                AnimationState = PlayerAnimationState.Standing;
+                if (currentState.IsKeyDown(Keys.Right) || currentState.IsKeyDown(Keys.D))
+                {
+                    AnimationState = PlayerAnimationState.Walking;
+                    PhysicsBody.AddVelocity(new Vector2(100, 0));
+                    keyboardControlled = true;
+                }
+                else if (currentState.IsKeyDown(Keys.Left) || currentState.IsKeyDown(Keys.A))
+                {
+                    AnimationState = PlayerAnimationState.Walking;
+                    PhysicsBody.AddVelocity(new Vector2(-100, 0));
+                    keyboardControlled = true;
+                }
+                else
+                {
+                    AnimationState = PlayerAnimationState.Standing;
+                }
+
+                if (currentState.IsKeyDown(Keys.Down) || currentState.IsKeyDown(Keys.S))
+                {
+                    AnimationState = PlayerAnimationState.Standing;
+                    PhysicsBody.AddVelocity(new Vector2(0, 100));
+                    keyboardControlled = true;
+                }
+                else if (currentState.IsKeyDown(Keys.Up) || currentState.IsKeyDown(Keys.W))
+                {
+                    AnimationState = PlayerAnimationState.Standing;
+                    PhysicsBody.AddVelocity(new Vector2(0, -100));
+                    keyboardControlled = true;
+                }
             }
 
-            if (currentPadState.DPad.Down == ButtonState.Pressed || (currentState.IsKeyDown(Keys.Down)) || (currentState.IsKeyDown(Keys.S)))
+            if (!keyboardControlled)
             {
-                AnimationState = PlayerAnimationState.Standing;
-                PhysicsBody.AddVelocity( new Vector2(0,  100));
+                if (currentPadState.DPad.Right == ButtonState.Pressed)
+                {
+                    AnimationState = PlayerAnimationState.Walking;
+                    PhysicsBody.AddVelocity(new Vector2(100, 0));
+                }
+                else if (currentPadState.DPad.Left == ButtonState.Pressed)
+                {
+                    AnimationState = PlayerAnimationState.Walking;
+                    PhysicsBody.AddVelocity(new Vector2(-100, 0));
+                }
+                else if (currentPadState.ThumbSticks.Left.X > 0.0f)
+                {
+                    AnimationState = PlayerAnimationState.Walking;
+                    PhysicsBody.AddVelocity(new Vector2(100, 0));
+                }
+                else if (currentPadState.ThumbSticks.Left.X < 0.0f)
+                {
+                    AnimationState = PlayerAnimationState.Walking;
+                    PhysicsBody.AddVelocity(new Vector2(-100, 0));
+                }
+                else
+                {
+                    AnimationState = PlayerAnimationState.Standing;
+                }
             }
-            else if (currentPadState.DPad.Up == ButtonState.Pressed || (currentState.IsKeyDown(Keys.Up)) || (currentState.IsKeyDown(Keys.W)))
-            {
-                AnimationState = PlayerAnimationState.Standing;
-                PhysicsBody.AddVelocity(new Vector2(0, - 100));
-            }
+
+            keyboardControlled = false;
 
             PreviousPadState = currentPadState;
             PreviousKeyState = currentState;
@@ -112,9 +148,9 @@ namespace GameyMickGameFace.GameObjects
 
         public void UpdateBodyPhysicsDetection()
         {
-            foreach(Body body in DetectionPhysicsBodies)
+            foreach (Body body in DetectionPhysicsBodies)
             {
-                body.MotionPhysicsBody = new Rectangle((int)(PhysicsBody.Position.X + body.parentOffset.X), 
+                body.MotionPhysicsBody = new Rectangle((int)(PhysicsBody.Position.X + body.parentOffset.X),
                     (int)(PhysicsBody.Position.Y + body.parentOffset.Y), body.width, body.height);
             }
         }
@@ -129,11 +165,11 @@ namespace GameyMickGameFace.GameObjects
                     if (body != body2 && body.MotionPhysicsBody.Intersects(body2.MotionPhysicsBody)
                         && (body.reactsToCollision && body2.reactsToCollision))
                     {
-                       switch(body.bodyType)
+                        switch (body.bodyType)
                         {
                             case BodyDetectionType.Left:
                                 {
-                                    if(PhysicsBody.Velocity. X < 0)
+                                    if (PhysicsBody.Velocity.X < 0)
                                     {
                                         PhysicsBody.Velocity.X = 0;
                                     }

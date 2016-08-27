@@ -84,16 +84,16 @@ namespace GameyMickGameFace
             Media.Textures.Load(Content);
 
             Player1 = new Player();
-            Player1.PlayerNumber = 0;
+            Player1.PlayerNumber = 1;
             physicsManager.AddBody(Player1.PhysicsBody);
             Player2 = new Player();
-            Player2.PlayerNumber = 1;
+            Player2.PlayerNumber = 2;
             physicsManager.AddBody(Player2.PhysicsBody);
             Player3 = new Player();
-            Player3.PlayerNumber = 2;
+            Player3.PlayerNumber = 3;
             physicsManager.AddBody(Player3.PhysicsBody);
             Player4 = new Player();
-            Player4.PlayerNumber = 3;
+            Player4.PlayerNumber = 4;
             physicsManager.AddBody(Player4.PhysicsBody);
 
             Floor = new Tile(new Point(-100, 650), 1800, 30, 0, 0);
