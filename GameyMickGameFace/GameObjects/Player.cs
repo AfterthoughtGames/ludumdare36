@@ -45,7 +45,7 @@ namespace GameyMickGameFace.GameObjects
                 AnimationState = PlayerAnimationState.Walking;
                 PhysicsBody.AddVelocity( new Vector2(100, 0));
             }
-            else if (currentPadState.DPad.Left == ButtonState.Pressed || (currentState.IsKeyDown(Keys.Left)))
+            else if (currentPadState.DPad.Left == ButtonState.Pressed || (currentState.IsKeyDown(Keys.Left)) || (currentState.IsKeyDown(Keys.A)))
             {
                 AnimationState = PlayerAnimationState.Walking;
                 PhysicsBody.AddVelocity(new Vector2( - 100, 0));
@@ -56,7 +56,7 @@ namespace GameyMickGameFace.GameObjects
                 AnimationState = PlayerAnimationState.Standing;
                 PhysicsBody.AddVelocity( new Vector2(0,  100));
             }
-            else if (currentPadState.DPad.Up == ButtonState.Pressed || (currentState.IsKeyDown(Keys.Up)))
+            else if (currentPadState.DPad.Up == ButtonState.Pressed || (currentState.IsKeyDown(Keys.Up)) || (currentState.IsKeyDown(Keys.W)))
             {
                 AnimationState = PlayerAnimationState.Standing;
                 PhysicsBody.AddVelocity(new Vector2(0, - 100));
