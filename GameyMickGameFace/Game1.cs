@@ -1,8 +1,8 @@
 ﻿using GameyMickGameFace.GameObjects;
 using GameyMickGameFace.Menus;
 using GameyMickGameFace.Physics;
+using GameyMickGameFace.PowerUps;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
@@ -29,7 +29,10 @@ namespace GameyMickGameFace
         private bool PhysicsDrawn = false;
 
         // Temp Code
-        Player TempPlayer;
+        Player Player1;
+        Player Player2;
+        Player Player3;
+        Player Player4;
         Texture2D BackGround;
         Texture2D Platform1Texture;
         Texture2D Platform2Texture;
@@ -40,7 +43,7 @@ namespace GameyMickGameFace
         Tile Platform2;
         Tile Platform3;
 
-        PowerUp Health;
+        healthPowerUp Health;
 
         Title TitleScreen;
 
@@ -51,10 +54,8 @@ namespace GameyMickGameFace
             graphics.PreferredBackBufferHeight = 720;
             Content.RootDirectory = "Content";
 
-            Health = new PowerUp();
-            Health.Name = "Health";
-            GameState = GameStates.Title;
 
+            GameState = GameStates.Title;
         }
 
         /// <summary>
@@ -84,10 +85,22 @@ namespace GameyMickGameFace
             Media.Textures.Load(Content);
             Media.Music.Load(Content);
 
-            TempPlayer = new Player();
-            physicsManager.AddBody(TempPlayer.PhysicsBody);
+            Health = new healthPowerUp(Media.Textures.healthTexture);
 
-            Floor = new Tile(new Point(0, 650), 1280, 30, 0, 0);
+            Player1 = new Player();
+            Player1.PlayerNumber = 1;
+            physicsManager.AddBody(Player1.PhysicsBody);
+            Player2 = new Player();
+            Player2.PlayerNumber = 2;
+            physicsManager.AddBody(Player2.PhysicsBody);
+            Player3 = new Player();
+            Player3.PlayerNumber = 3;
+            physicsManager.AddBody(Player3.PhysicsBody);
+            Player4 = new Player();
+            Player4.PlayerNumber = 4;
+            physicsManager.AddBody(Player4.PhysicsBody);
+
+            Floor = new Tile(new Point(-100, 650), 1800, 30, 0, 0);
             physicsManager.AddBody(Floor.Body);
 
             BackGround = Content.Load<Texture2D>("Images/woodenwallwithfloor");
@@ -95,18 +108,18 @@ namespace GameyMickGameFace
             TitleScreen = new Title();
 
             Platform1Texture = Content.Load<Texture2D>("Images/longshelf");
-            Platform1 = new Tile(new Point(150, 200), Platform1Texture.Width, Platform1Texture.Height, 0, 0);
+            Platform1 = new Tile(new Point(150, 200), Platform1Texture.Width, Platform1Texture.Height - 30, 0, 0);
             physicsManager.AddBody(Platform1.Body);
 
             Platform2Texture = Content.Load<Texture2D>("Images/mediumshelf");
-            Platform2 = new Tile(new Point(50, 400), Platform2Texture.Width, Platform2Texture.Height, 0, 0);
+            Platform2 = new Tile(new Point(50, 400), Platform2Texture.Width, Platform2Texture.Height - 30, 0, 0);
             physicsManager.AddBody(Platform2.Body);
 
             Platform3Texture = Content.Load<Texture2D>("Images/shortshelf");
-            Platform3 = new Tile(new Point(750, 400), Platform3Texture.Width, Platform3Texture.Height, 0, 0);
+            Platform3 = new Tile(new Point(750, 400), Platform3Texture.Width, Platform3Texture.Height - 30, 0, 0);
             physicsManager.AddBody(Platform3.Body);
 
-            Health.Image = Content.Load<Texture2D>("Images/healthUp");
+            
             physicsManager.AddBody(Health.PhysicsBody);
 
             PhysicsBox = Content.Load<Texture2D>("Images/blacksquare");
@@ -165,7 +178,11 @@ namespace GameyMickGameFace
             {
                 physicsManager.UpdatePhysics(gameTime);
 
-                TempPlayer.Update(gameTime);
+                Player1.Update(gameTime, physicsManager);
+                Player2.Update(gameTime, physicsManager);
+                Player3.Update(gameTime, physicsManager);
+                Player4.Update(gameTime, physicsManager);
+
             }
 
             Health.Update(gameTime);
@@ -199,10 +216,24 @@ namespace GameyMickGameFace
                 Vector2 strSize = Media.Fonts.GUI.MeasureString(str);
                 spriteBatch.DrawString(Media.Fonts.GUI, str, new Vector2(((GraphicsDevice.Viewport.Width / 2) - strSize.X), GraphicsDevice.Viewport.Height - 50), Color.White, 0f, Vector2.Zero, 2f, SpriteEffects.None, 0);
 
-                str = "Player 1: " + TempPlayer.Health.ToString();
-                spriteBatch.DrawString(Media.Fonts.GUI, str, new Vector2(10, 10), Color.White, 0f, Vector2.Zero, 2f, SpriteEffects.None, 0);
+                str = "Player 1: " + Player1.Health.ToString();
+                spriteBatch.DrawString(Media.Fonts.GUI, str, new Vector2(20, 10), Color.White, 0f, Vector2.Zero, 2f, SpriteEffects.None, 0);
 
-                TempPlayer.Draw(gameTime, spriteBatch);
+                str = "Player 2: " + Player2.Health.ToString();
+                strSize = Media.Fonts.GUI.MeasureString(str);
+                spriteBatch.DrawString(Media.Fonts.GUI, str, new Vector2(GraphicsDevice.Viewport.Width - strSize.X * 2.5f, 10), Color.White, 0f, Vector2.Zero, 2f, SpriteEffects.None, 0);
+
+                str = "Player 3: " + Player3.Health.ToString();
+                spriteBatch.DrawString(Media.Fonts.GUI, str, new Vector2(20, GraphicsDevice.Viewport.Height - 40), Color.White, 0f, Vector2.Zero, 2f, SpriteEffects.None, 0);
+
+                str = "Player 4: " + Player4.Health.ToString();
+                strSize = Media.Fonts.GUI.MeasureString(str);
+                spriteBatch.DrawString(Media.Fonts.GUI, str, new Vector2(GraphicsDevice.Viewport.Width - strSize.X * 2.5f, GraphicsDevice.Viewport.Height - 40), Color.White, 0f, Vector2.Zero, 2f, SpriteEffects.None, 0);
+
+                Player1.Draw(gameTime, spriteBatch);
+                Player2.Draw(gameTime, spriteBatch);
+                Player3.Draw(gameTime, spriteBatch);
+                Player4.Draw(gameTime, spriteBatch);
             }
             Health.Draw(gameTime, spriteBatch);
 
@@ -212,11 +243,30 @@ namespace GameyMickGameFace
                 {
                     spriteBatch.Draw(PhysicsBox, new Rectangle((int)Body.Position.X, (int)Body.Position.Y, Body.width, Body.height), Color.White);
                 }
+
+                foreach (Body body in Player1.DetectionPhysicsBodies)
+                {
+                    spriteBatch.Draw(PhysicsBox, new Rectangle((int)(Player1.PhysicsBody.Position.X + body.parentOffset.X), (int)(Player1.PhysicsBody.Position.Y + body.parentOffset.Y), body.width, body.height), Color.White);
+                }
+
+                foreach (Body body in Player2.DetectionPhysicsBodies)
+                {
+                    spriteBatch.Draw(PhysicsBox, new Rectangle((int)(Player2.PhysicsBody.Position.X + body.parentOffset.X), (int)(Player2.PhysicsBody.Position.Y + body.parentOffset.Y), body.width, body.height), Color.White);
+                }
+
+                foreach (Body body in Player3.DetectionPhysicsBodies)
+                {
+                    spriteBatch.Draw(PhysicsBox, new Rectangle((int)(Player3.PhysicsBody.Position.X + body.parentOffset.X), (int)(Player3.PhysicsBody.Position.Y + body.parentOffset.Y), body.width, body.height), Color.White);
+                }
+
+                foreach (Body body in Player4.DetectionPhysicsBodies)
+                {
+                    spriteBatch.Draw(PhysicsBox, new Rectangle((int)(Player4.PhysicsBody.Position.X + body.parentOffset.X), (int)(Player4.PhysicsBody.Position.Y + body.parentOffset.Y), body.width, body.height), Color.White);
+                }
             }
 
             spriteBatch.End();
 
-            // TODO: Add your drawing code here
 
             base.Draw(gameTime);
         }

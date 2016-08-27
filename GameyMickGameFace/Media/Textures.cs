@@ -12,9 +12,11 @@ namespace GameyMickGameFace.Media
         public static void Load(ContentManager cm)
         {
             TitleScreen = cm.Load<Texture2D>("Images/Title");
+            healthTexture = cm.Load<Texture2D>("Images/potionSmall");
         }
 
         public static Texture2D PlayerTemp { get; set; }
         public static Texture2D TitleScreen { get; set; }
+        public static Texture2D healthTexture { get; set; }
     }
 }

@@ -15,7 +15,7 @@ namespace GameyMickGameFace.GameObjects
 
         public void Draw(GameTime time, SpriteBatch batch)
         {
-            batch.Draw(Media.Animations.PlayerWalk.Frame, Body.PhysicsBody.Location.ToVector2(), Color.White);
+            batch.Draw(Media.Animations.PlayerWalk.Frame, Body.MotionPhysicsBody.Location.ToVector2(), Color.White);
         }
     }
 }
