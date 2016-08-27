@@ -41,7 +41,6 @@ namespace GameyMickGameFace
 
         PowerUp Health;
 
-
         Title TitleScreen;
 
         public Game1()
@@ -161,8 +160,6 @@ namespace GameyMickGameFace
                 TempPlayer.Update(gameTime);
             }
 
-
-
             Health.Update(gameTime);
 
             PreviousKeyState = currentState;
@@ -189,7 +186,13 @@ namespace GameyMickGameFace
                 spriteBatch.Draw(Platform1Texture, new Vector2(150, 200), Color.White);
                 spriteBatch.Draw(Platform2Texture, new Vector2(50, 400), Color.White);
                 spriteBatch.Draw(Platform3Texture, new Vector2(750, 400), Color.White);
-                spriteBatch.DrawString(Media.Fonts.GUI, "Welcome to LD 36", new Vector2(100, 100), Color.White, 0f, Vector2.Zero, 2f, SpriteEffects.None, 0);
+
+                string str = "OST Games: Ludum Dare 36";
+                Vector2 strSize = Media.Fonts.GUI.MeasureString(str);
+                spriteBatch.DrawString(Media.Fonts.GUI, str, new Vector2(((GraphicsDevice.Viewport.Width / 2) - strSize.X), GraphicsDevice.Viewport.Height - 50), Color.White, 0f, Vector2.Zero, 2f, SpriteEffects.None, 0);
+
+                str = "Player 1: " + TempPlayer.Health.ToString();
+                spriteBatch.DrawString(Media.Fonts.GUI, str, new Vector2(10, 10), Color.White, 0f, Vector2.Zero, 2f, SpriteEffects.None, 0);
 
                 TempPlayer.Draw(gameTime, spriteBatch);
             }
