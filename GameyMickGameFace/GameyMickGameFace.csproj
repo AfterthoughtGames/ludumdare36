@@ -58,6 +58,7 @@
     <Compile Include="Menus\Title.cs" />
     <Compile Include="Physics\Body.cs" />
     <Compile Include="Physics\PhysicsManager.cs" />
+    <Compile Include="PowerUps\healthPowerUp.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
