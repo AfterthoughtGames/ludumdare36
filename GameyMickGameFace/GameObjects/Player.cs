@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using GameyMickGameFace.Physics;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
@@ -12,11 +13,20 @@ namespace GameyMickGameFace.GameObjects
     {
         public int Heath { get; set; }
         public string Name { get; set; }
-        public Vector2 Position { get; set; }
+       // public Vector2 Position { get; set; }
 
-        public PlayerIndex PlayerNumber { get; set; }
+        public Body PhysicsBody { get; set; }
+
+        public int PlayerNumber { get; set; }
+        public GamePadState PreviousState { get; set; }
         public GamePadState PreviousPadState { get; set; }
         public KeyboardState PreviousKeyState { get; set; }
+
+
+        public Player()
+        {
+            PhysicsBody = new Body(new Point(100, 100), 95, 86, 0, 100);
+        }
 
         public void Update(GameTime time)
         {
@@ -25,22 +35,22 @@ namespace GameyMickGameFace.GameObjects
 
             if(currentPadState.DPad.Right == ButtonState.Pressed || (currentState.IsKeyDown(Keys.Right)))
             {
-                Position = new Vector2(Position.X + 1, Position.Y);
+                PhysicsBody.AddVelocity( new Vector2(1, 0));
             }
 
             if (currentPadState.DPad.Left == ButtonState.Pressed || (currentState.IsKeyDown(Keys.Left)))
             {
-                Position = new Vector2(Position.X - 1, Position.Y);
+                PhysicsBody.AddVelocity(new Vector2( - 1, 0));
             }
 
             if (currentPadState.DPad.Down == ButtonState.Pressed || (currentState.IsKeyDown(Keys.Down)))
             {
-                Position = new Vector2(Position.X, Position.Y + 1);
+                PhysicsBody.AddVelocity( new Vector2(0,  1));
             }
 
             if (currentPadState.DPad.Up == ButtonState.Pressed || (currentState.IsKeyDown(Keys.Up)))
             {
-                Position = new Vector2(Position.X, Position.Y - 1);
+                PhysicsBody.AddVelocity(new Vector2(0, - 1));
             }
 
             PreviousPadState = currentPadState;
@@ -49,7 +59,7 @@ namespace GameyMickGameFace.GameObjects
 
         public void Draw(GameTime time, SpriteBatch batch)
         {
-            batch.Draw(Media.Textures.PlayerTemp, Position, Color.White);
+            batch.Draw(Media.Textures.PlayerTemp, PhysicsBody.Position, Color.White);
         }
     }
 }
