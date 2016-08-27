@@ -1,4 +1,5 @@
 ﻿using GameyMickGameFace.GameObjects;
+using GameyMickGameFace.Menus;
 using GameyMickGameFace.Physics;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -6,11 +7,18 @@ using Microsoft.Xna.Framework.Input;
 
 namespace GameyMickGameFace
 {
+    public enum GameStates
+    {
+        Title, InGame
+    }
+
     /// <summary>
     /// This is the main type for your game.
     /// </summary>
     public class Game1 : Game
     {
+        public static GameStates GameState;
+
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
@@ -25,12 +33,16 @@ namespace GameyMickGameFace
         Tile Platform3;
         Tile Platform4;
 
+        Title TitleScreen;
+
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
             graphics.PreferredBackBufferWidth = 1280;
             graphics.PreferredBackBufferHeight = 720;
             Content.RootDirectory = "Content";
+
+            GameState = GameStates.Title;
         }
 
         /// <summary>
@@ -69,6 +81,9 @@ namespace GameyMickGameFace
             physicsManager.AddBody(Floor.Body);
 
             BackGround = Content.Load<Texture2D>("Images/woodenwallwithfloor");
+
+            TitleScreen = new Title();
+            Media.Textures.TitleScreen = Content.Load<Texture2D>("Images/Title");
         }
 
         /// <summary>
@@ -90,9 +105,18 @@ namespace GameyMickGameFace
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
-            physicsManager.UpdatePhysics(gameTime);
+            if (GameState == GameStates.Title)
+            {
+                TitleScreen.Update(gameTime);
+            }
+            else
+            {
+                physicsManager.UpdatePhysics(gameTime);
 
-            TempPlayer.Update(gameTime);
+                TempPlayer.Update(gameTime);
+            }
+
+            
 
             base.Update(gameTime);
         }
@@ -106,9 +130,16 @@ namespace GameyMickGameFace
             GraphicsDevice.Clear(Color.Black);
             spriteBatch.Begin();
 
-            spriteBatch.Draw(BackGround, Vector2.Zero, Color.White);
-            spriteBatch.DrawString(Media.Fonts.GUI, "Welcome to LD 36", new Vector2(100, 100), Color.White, 0f, Vector2.Zero, 2f, SpriteEffects.None, 0);
-            TempPlayer.Draw(gameTime, spriteBatch);
+            if (GameState == GameStates.Title)
+            {
+                TitleScreen.Draw(gameTime, spriteBatch);
+            }
+            else
+            {
+                spriteBatch.Draw(BackGround, Vector2.Zero, Color.White);
+                spriteBatch.DrawString(Media.Fonts.GUI, "Welcome to LD 36", new Vector2(100, 100), Color.White, 0f, Vector2.Zero, 2f, SpriteEffects.None, 0);
+                TempPlayer.Draw(gameTime, spriteBatch);
+            }
 
             spriteBatch.End();
 
