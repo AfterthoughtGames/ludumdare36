@@ -16,7 +16,7 @@ namespace GameyMickGameFace.GameObjects
 
     public class Player
     {
-        public int Heath { get; set; }
+        public int Health { get; set; }
         public string Name { get; set; }
        // public Vector2 Position { get; set; }
 
