@@ -48,7 +48,8 @@ namespace GameyMickGameFace
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             Media.Fonts.GUI = Content.Load<SpriteFont>("GUIFont");
-            Media.Textures.PlayerTemp = Content.Load<Texture2D>("playersqaure");
+            Media.Animations.PlayerWalk.AddTexture(Content.Load<Texture2D>("playersqaure"));
+            Media.Animations.PlayerWalk.AddTexture(Content.Load<Texture2D>("playersqaure2"));
             // TODO: use this.Content to load your game content here
 
             //Temp Code
