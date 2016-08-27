@@ -27,12 +27,19 @@ namespace GameyMickGameFace
         Tile Platform2;
         Tile Platform3;
 
+        PowerUp Health;
+        
+
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
             graphics.PreferredBackBufferWidth = 1280;
             graphics.PreferredBackBufferHeight = 720;
             Content.RootDirectory = "Content";
+
+            Health = new PowerUp();
+            Health.Name = "Health";
+            
         }
 
         /// <summary>
@@ -83,6 +90,9 @@ namespace GameyMickGameFace
             Platform3Texture = Content.Load<Texture2D>("Images/shortshelf");
             Platform3 = new Tile(new Point(750, 400), Platform3Texture.Width, Platform3Texture.Height, 0, 0);
             physicsManager.AddBody(Platform3.Body);
+
+            Health.Image = Content.Load<Texture2D>("Images/healthUp");
+            physicsManager.AddBody(Health.PhysicsBody);
         }
 
         /// <summary>
@@ -107,6 +117,8 @@ namespace GameyMickGameFace
             physicsManager.UpdatePhysics(gameTime);
 
             TempPlayer.Update(gameTime);
+
+            Health.update(gameTime);
 
             base.Update(gameTime);
         }
