@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,9 +14,32 @@ namespace GameyMickGameFace.GameObjects
         public string Name { get; set; }
         public Vector2 Position { get; set; }
 
+        public int PlayerNumber { get; set; }
+        public GamePadState PreviousState { get; set; }
+
         public void Update(GameTime time)
         {
+            GamePadState currentPadState = GamePad.GetState(PlayerIndex.One);
 
+            if(currentPadState.DPad.Right == ButtonState.Pressed)
+            {
+                Position = new Vector2(Position.X + 1, Position.Y);
+            }
+
+            if (currentPadState.DPad.Left == ButtonState.Pressed)
+            {
+                Position = new Vector2(Position.X - 1, Position.Y);
+            }
+
+            if (currentPadState.DPad.Down == ButtonState.Pressed)
+            {
+                Position = new Vector2(Position.X, Position.Y + 1);
+            }
+
+            if (currentPadState.DPad.Up == ButtonState.Pressed)
+            {
+                Position = new Vector2(Position.X, Position.Y - 1);
+            }
         }
 
         public void Draw(GameTime time, SpriteBatch batch)
