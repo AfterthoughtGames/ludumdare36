@@ -1,3 +1,3 @@
 # ludumdare36
 
-[Fonts](http://opengameart.org/content/kenney-fonts)
+[Font](http://opengameart.org/content/yanderefont)
