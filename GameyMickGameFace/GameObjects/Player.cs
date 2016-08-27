@@ -33,22 +33,22 @@ namespace GameyMickGameFace.GameObjects
             GamePadState currentPadState = GamePad.GetState(PlayerNumber);
             KeyboardState currentState = Keyboard.GetState();
 
-            if(currentPadState.DPad.Right == ButtonState.Pressed || (currentState.IsKeyDown(Keys.Right)))
+            if(currentPadState.DPad.Right == ButtonState.Pressed || (currentState.IsKeyDown(Keys.Right)) || (currentState.IsKeyDown(Keys.D)))
             {
                 PhysicsBody.AddVelocity( new Vector2(1, 0));
             }
 
-            if (currentPadState.DPad.Left == ButtonState.Pressed || (currentState.IsKeyDown(Keys.Left)))
+            if (currentPadState.DPad.Left == ButtonState.Pressed || (currentState.IsKeyDown(Keys.Left)) || (currentState.IsKeyDown(Keys.A)))
             {
                 PhysicsBody.AddVelocity(new Vector2( - 1, 0));
             }
 
-            if (currentPadState.DPad.Down == ButtonState.Pressed || (currentState.IsKeyDown(Keys.Down)))
+            if (currentPadState.DPad.Down == ButtonState.Pressed || (currentState.IsKeyDown(Keys.Down)) || (currentState.IsKeyDown(Keys.S)))
             {
                 PhysicsBody.AddVelocity( new Vector2(0,  1));
             }
 
-            if (currentPadState.DPad.Up == ButtonState.Pressed || (currentState.IsKeyDown(Keys.Up)))
+            if (currentPadState.DPad.Up == ButtonState.Pressed || (currentState.IsKeyDown(Keys.Up)) || (currentState.IsKeyDown(Keys.W)))
             {
                 PhysicsBody.AddVelocity(new Vector2(0, - 1));
             }
