@@ -78,6 +78,7 @@
     <Content Include="Content\Images\longshelf.png" />
     <Content Include="Content\Images\playersqaure.png" />
     <Content Include="Content\Images\playersqaure2.png" />
+    <Content Include="Content\Images\shortshelf.png" />
     <Content Include="Content\Images\sword.png" />
     <Content Include="Content\Images\trebuchet.png" />
     <Content Include="Content\Images\Trident.png" />
