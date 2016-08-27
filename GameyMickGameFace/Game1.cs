@@ -19,7 +19,11 @@ namespace GameyMickGameFace
         // Temp Code
         Player TempPlayer;
         Texture2D BackGround;
-        Tile BlockerTest;
+        Tile Floor;
+        Tile Platform1;
+        Tile Platform2;
+        Tile Platform3;
+        Tile Platform4;
 
         public Game1()
         {
@@ -48,22 +52,20 @@ namespace GameyMickGameFace
         /// </summary>
         protected override void LoadContent()
         {
-            // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             Media.Animations.PlayerWalk = new Animation();
 
             Media.Fonts.GUI = Content.Load<SpriteFont>("GUIFont");
             Media.Animations.PlayerWalk.AddTexture(Content.Load<Texture2D>("Images/playersqaure"));
-            Media.Animations.PlayerWalk.AddTexture(Content.Load<Texture2D>("Images/playersqaure2"));
+
             TempPlayer = new Player();
             physicsManager.AddBody(TempPlayer.PhysicsBody);
-            BlockerTest = new Tile(new Point(250, 250), 95, 86, 0, 0);
-            physicsManager.AddBody(BlockerTest.Body);
-            BackGround = Content.Load<Texture2D>("Images/woodenwallwithfloor");
-            // TODO: use this.Content to load your game content here
 
-            //Temp Code
+            Floor = new Tile(new Point(0, 650), 30000, 30, 0, 0);
+            physicsManager.AddBody(Floor.Body);
+
+            BackGround = Content.Load<Texture2D>("Images/woodenwallwithfloor");
         }
 
         /// <summary>
@@ -104,7 +106,6 @@ namespace GameyMickGameFace
             spriteBatch.Draw(BackGround, Vector2.Zero, Color.White);
             spriteBatch.DrawString(Media.Fonts.GUI, "Welcome to LD 36", new Vector2(100, 100), Color.White, 0f, Vector2.Zero, 2f, SpriteEffects.None, 0);
             TempPlayer.Draw(gameTime, spriteBatch);
-            BlockerTest.Draw(gameTime, spriteBatch);
 
             spriteBatch.End();
 
