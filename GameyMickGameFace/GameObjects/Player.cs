@@ -50,10 +50,12 @@ namespace GameyMickGameFace.GameObjects
 
             Body topDetectionBody = new Body(new Point(0, 0), 50, 20, 0, 100, .85f, this);
             topDetectionBody.parentOffset = new Vector2(145, 0);
+            topDetectionBody.bodyType = BodyDetectionType.Top;
             DetectionPhysicsBodies.Add(topDetectionBody);
 
             Body bottomDetectionBody = new Body(new Point(0, 0), 50, 20, 0, 100, .85f, this);
             bottomDetectionBody.parentOffset = new Vector2(145, 215);
+            bottomDetectionBody.bodyType = BodyDetectionType.Bottom;
             DetectionPhysicsBodies.Add(bottomDetectionBody);
         }
 
@@ -185,6 +187,23 @@ namespace GameyMickGameFace.GameObjects
                                     }
                                     break;
                                 }
+                            case BodyDetectionType.Top:
+                                {
+                                    if (PhysicsBody.Velocity.Y < 0)
+                                    {
+                                        PhysicsBody.Velocity.Y = 0;
+                                    }
+                                    break;
+                                }
+                            case BodyDetectionType.Bottom:
+                                {
+                                    if (PhysicsBody.Velocity.Y > 0)
+                                    {
+                                        PhysicsBody.Velocity.Y = 0;
+                                    }
+                                    break;
+                                }
+
                         }
                     }
                 }
