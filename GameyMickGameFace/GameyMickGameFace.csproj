@@ -44,10 +44,12 @@
   <ItemGroup>
     <Compile Include="Animation.cs" />
     <Compile Include="Game1.cs" />
+    <Compile Include="GameObjects\Tile.cs" />
     <Compile Include="GameObjects\Weapon.cs" />
     <Compile Include="Level.cs" />
     <Compile Include="GameObjects\Player.cs" />
     <Compile Include="GameObjects\PowerUp.cs" />
+    <Compile Include="Media\Animations.cs" />
     <Compile Include="Media\Audio.cs" />
     <Compile Include="Media\Fonts.cs" />
     <Compile Include="Media\Music.cs" />
@@ -68,6 +70,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\Images\Background.png" />
+    <Content Include="Content\Images\Bow.png" />
+    <Content Include="Content\Images\playersqaure.png" />
+    <Content Include="Content\Images\sword.png" />
+    <Content Include="Content\Images\trebuchet.png" />
+    <Content Include="Content\Images\Trident.png" />
+    <Content Include="Content\Sounds\Generic_Cowboy_Hurt.wav" />
     <Content Include="Icon.ico" />
   </ItemGroup>
   <ItemGroup>
@@ -81,19 +90,17 @@
     <None Include="Content\Background.xnb">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Content\Bow.xnb">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
+    <None Include="Content\Images\Background.xnb" />
+    <None Include="Content\Images\Bow.xnb" />
+    <None Include="Content\Images\playersqaure.xnb" />
+    <None Include="Content\Images\sword.xnb" />
+    <None Include="Content\Images\trebuchet.xnb" />
+    <None Include="Content\Images\Trident.xnb" />
     <None Include="Content\playersqaure.xnb">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="Content\Sounds\Generic_Cowboy_Hurt.xnb" />
     <None Include="Content\playersqaure2.xnb">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Content\sword.xnb">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Content\Trident.xnb">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="packages.config" />

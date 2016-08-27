@@ -27,12 +27,18 @@ namespace GameyMickGameFace.GameObjects
         public GamePadState PreviousPadState { get; set; }
         public KeyboardState PreviousKeyState { get; set; }
 
+<<<<<<< HEAD
         public PlayerAnimationState AnimationState { get; set; }
 
         public Player()
         {
             AnimationState = PlayerAnimationState.Standing;
+=======
+
+        public Player()
+        {
             PhysicsBody = new Body(new Point(100, 100), 95, 86, 0, 100);
+>>>>>>> e30582a8133b669aa5f1f541b4312b3485960813
         }
 
         public void Update(GameTime time)
@@ -42,24 +48,42 @@ namespace GameyMickGameFace.GameObjects
 
             if(currentPadState.DPad.Right == ButtonState.Pressed || (currentState.IsKeyDown(Keys.Right)) || (currentState.IsKeyDown(Keys.D)))
             {
-                PhysicsBody.AddVelocity( new Vector2(1, 0));
+<<<<<<< HEAD
+                Position = new Vector2(Position.X + 1, Position.Y);
                 AnimationState = PlayerAnimationState.Walking;
             }
             else if (currentPadState.DPad.Left == ButtonState.Pressed || (currentState.IsKeyDown(Keys.Left)))
             {
-                PhysicsBody.AddVelocity(new Vector2( - 1, 0));
+                Position = new Vector2(Position.X - 1, Position.Y);
                 AnimationState = PlayerAnimationState.Walking;
+=======
+                PhysicsBody.AddVelocity( new Vector2(1, 0));
+            }
+
+            if (currentPadState.DPad.Left == ButtonState.Pressed || (currentState.IsKeyDown(Keys.Left)) || (currentState.IsKeyDown(Keys.A)))
+            {
+                PhysicsBody.AddVelocity(new Vector2( - 1, 0));
+>>>>>>> e30582a8133b669aa5f1f541b4312b3485960813
             }
 
             if (currentPadState.DPad.Down == ButtonState.Pressed || (currentState.IsKeyDown(Keys.Down)) || (currentState.IsKeyDown(Keys.S)))
             {
-                PhysicsBody.AddVelocity( new Vector2(0,  1));
+<<<<<<< HEAD
+                Position = new Vector2(Position.X, Position.Y + 1);
                 AnimationState = PlayerAnimationState.Standing;
             }
             else if (currentPadState.DPad.Up == ButtonState.Pressed || (currentState.IsKeyDown(Keys.Up)))
             {
-                PhysicsBody.AddVelocity(new Vector2(0, - 1));
+                Position = new Vector2(Position.X, Position.Y - 1);
                 AnimationState = PlayerAnimationState.Standing;
+=======
+                PhysicsBody.AddVelocity( new Vector2(0,  1));
+            }
+
+            if (currentPadState.DPad.Up == ButtonState.Pressed || (currentState.IsKeyDown(Keys.Up)) || (currentState.IsKeyDown(Keys.W)))
+            {
+                PhysicsBody.AddVelocity(new Vector2(0, - 1));
+>>>>>>> e30582a8133b669aa5f1f541b4312b3485960813
             }
 
             PreviousPadState = currentPadState;
@@ -68,7 +92,7 @@ namespace GameyMickGameFace.GameObjects
 
         public void Draw(GameTime time, SpriteBatch batch)
         {
-            batch.Draw(Media.Animations.PlayerWalk.Frame, PhysicsBody.Position, Color.White);
+            batch.Draw(Media.Textures.PlayerTemp, PhysicsBody.Position, Color.White);
         }
     }
 }
