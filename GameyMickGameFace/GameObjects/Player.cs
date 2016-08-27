@@ -40,11 +40,13 @@ namespace GameyMickGameFace.GameObjects
 
             Body leftDetectionBody = new Body(new Point(0, 0), 25, 235, 0, 100, .85f, this);
             leftDetectionBody.parentOffset = new Vector2(145, 0);
+            leftDetectionBody.bodyType = BodyDetectionType.Left;
             DetectionPhysicsBodies.Add(leftDetectionBody);
 
             Body rightDetectionBody = new Body(new Point(0, 0), 25, 235, 0, 100, .85f, this);
             rightDetectionBody.parentOffset = new Vector2(170, 0);
             DetectionPhysicsBodies.Add(rightDetectionBody);
+            rightDetectionBody.bodyType = BodyDetectionType.Right;
 
             Body topDetectionBody = new Body(new Point(0, 0), 50, 20, 0, 100, .85f, this);
             topDetectionBody.parentOffset = new Vector2(145, 0);
