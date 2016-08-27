@@ -16,13 +16,16 @@ namespace GameyMickGameFace.Physics
         public float Restitution;
         public int Mass;
         public float InverseMass;
+        public float LinearDampening;
 
-        public Body(Point position, int width, int height, float restitution, int mass)
+        public Body(Point position, int width, int height, float restitution, int mass, float linearDampening)
         {
             this.width = width;
             this.height = height;
 
             Position = position.ToVector2();
+
+            LinearDampening = linearDampening;
 
             PhysicsBody = new Rectangle(position.X, position.Y, width, height);
             Velocity = new Vector2(0, 0);  //init to no veleocity
@@ -48,6 +51,9 @@ namespace GameyMickGameFace.Physics
         public void Update(GameTime gameTime)
         {
             Position += Velocity * (gameTime.ElapsedGameTime.Milliseconds / 1000f);
+
+            Velocity *= LinearDampening * (gameTime.ElapsedGameTime.Milliseconds/1000f);
+
             UpdatePosition();
         }
 
