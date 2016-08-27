@@ -8,6 +8,31 @@ namespace GameyMickGameFace.Physics
 {
     public class PhysicsManager
     {
+        List<Body> Bodies = new List<Body>();
+
+        public void AddBody(Body body)
+        {
+            Bodies.Add(body);
+        }
+
+        public void UpdatePhysics(GameTime gameTime)
+        {
+
+
+            //detect collisions
+            foreach(Body body in Bodies)
+            {
+                body.Update(gameTime);
+                foreach(Body body2 in Bodies)
+                {
+                    if(body != body2 && body.PhysicsBody.Intersects(body2.PhysicsBody))
+                    {
+                        ResolveCollision(body, body2);
+                    }
+                }
+            }
+        }
+
         public void ResolveCollision(Body a, Body b)
         {
             //find the collision normal (aka the direction of the collision
@@ -30,7 +55,15 @@ namespace GameyMickGameFace.Physics
 
             // Calculate impulse scalar
             float impulseScalar = -(1 + restitution) * velAlongNormal;
-            impulseScalar /= a.InverseMass + b.InverseMass;
+            float InverseMassTotal = a.InverseMass + b.InverseMass;
+            if (InverseMassTotal > 0)
+            {
+                impulseScalar /= InverseMassTotal;
+            }
+            else
+            {
+                impulseScalar = 0;
+            }
 
             // Apply impulse
             Vector2 impulse = impulseScalar * collisionNormal;
