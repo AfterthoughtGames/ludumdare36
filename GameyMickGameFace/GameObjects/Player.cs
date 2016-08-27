@@ -32,7 +32,7 @@ namespace GameyMickGameFace.GameObjects
         public Player()
         {
             AnimationState = PlayerAnimationState.Standing;
-            PhysicsBody = new Body(new Point(100, 100), 95, 86, 0, 100,.85f);
+            PhysicsBody = new Body(new Point(100, 100), 95, 86, 0, 100,.85f, this);
         }
 
         public void Update(GameTime time)
@@ -79,7 +79,7 @@ namespace GameyMickGameFace.GameObjects
             }
             else
             {
-                Media.Animations.PlayerWalk.NextFrame(time);
+                Media.Animations.PlayerIdel.NextFrame(time);
                 batch.Draw(Media.Animations.PlayerIdel.Frame, PhysicsBody.Position, Color.White);
             }
         }
