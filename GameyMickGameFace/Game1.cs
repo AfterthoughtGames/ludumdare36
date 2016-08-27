@@ -19,6 +19,7 @@ namespace GameyMickGameFace
         // Temp Code
         Player TempPlayer;
         Texture2D BackGround;
+        Texture2D ShortShelf;
         Tile Floor;
         Tile Platform1;
         Tile Platform2;
@@ -61,6 +62,8 @@ namespace GameyMickGameFace
             Media.Animations.PlayerWalk.AddTexture(Content.Load<Texture2D>("Images/playersqaure"));
             Media.Animations.PlayerWalk.AddTexture(Content.Load<Texture2D>("Images/playersqaure2"));
             Media.Animations.PlayerIdel.AddTexture(Content.Load<Texture2D>("Images/playersqaure"));
+
+            ShortShelf = Content.Load<Texture2D>( "Images/shortshelf" );
 
             TempPlayer = new Player();
             physicsManager.AddBody(TempPlayer.PhysicsBody);
@@ -107,6 +110,7 @@ namespace GameyMickGameFace
             spriteBatch.Begin();
 
             spriteBatch.Draw(BackGround, Vector2.Zero, Color.White);
+            spriteBatch.Draw( ShortShelf, new Vector2(400,50), Color.White );
             spriteBatch.DrawString(Media.Fonts.GUI, "Welcome to LD 36", new Vector2(100, 100), Color.White, 0f, Vector2.Zero, 2f, SpriteEffects.None, 0);
             TempPlayer.Draw(gameTime, spriteBatch);
 
