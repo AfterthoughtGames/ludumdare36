@@ -56,16 +56,11 @@ namespace GameyMickGameFace
             // TODO: use this.Content to load your game content here
 
             //Temp Code
-<<<<<<< HEAD
-            INeedHappy = new Player();
             BackGround = Content.Load<Texture2D>("Images/Background");
-=======
             TempPlayer = new Player();
             physicsManager.AddBody(TempPlayer.PhysicsBody);
             BlockerTest = new Tile(new Point(250, 250), 95, 86, 0, 0);
             physicsManager.AddBody(BlockerTest.Body);
-            BackGround = Content.Load<Texture2D>("Background");
->>>>>>> 74e8574113aa11e205fbac148814f43c3c6e27fb
         }
 
         /// <summary>
