@@ -72,10 +72,16 @@
   <ItemGroup>
     <Content Include="Content\Images\Background.png" />
     <Content Include="Content\Images\Bow.png" />
+    <Content Include="Content\Images\Flame.png" />
+    <Content Include="Content\Images\flyingshoe.png" />
+    <Content Include="Content\Images\healthUp.png" />
     <Content Include="Content\Images\playersqaure.png" />
+    <Content Include="Content\Images\playersqaure2.png" />
     <Content Include="Content\Images\sword.png" />
     <Content Include="Content\Images\trebuchet.png" />
     <Content Include="Content\Images\Trident.png" />
+    <Content Include="Content\Images\woodenwall.png" />
+    <Content Include="Content\Images\woodenwallwithfloor.png" />
     <Content Include="Content\Sounds\Generic_Cowboy_Hurt.wav" />
     <Content Include="Icon.ico" />
   </ItemGroup>
@@ -87,23 +93,21 @@
     <Content Include="Content\GUIFont.xnb">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <None Include="Content\Background.xnb" />
     <None Include="Content\Images\Background.xnb" />
     <None Include="Content\Images\Bow.xnb" />
+    <None Include="Content\Images\Flame.xnb" />
+    <None Include="Content\Images\flyingshoe.xnb" />
+    <None Include="Content\Images\healthUp.xnb" />
     <None Include="Content\Images\playersqaure.xnb" />
+    <None Include="Content\Images\playersqaure2.xnb" />
     <None Include="Content\Images\sword.xnb" />
     <None Include="Content\Images\trebuchet.xnb" />
     <None Include="Content\Images\Trident.xnb" />
     <None Include="Content\Images\woodenwall.xnb">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Content\playersqaure.xnb">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
+    <None Include="Content\Images\woodenwallwithfloor.xnb" />
     <None Include="Content\Sounds\Generic_Cowboy_Hurt.xnb" />
-    <None Include="Content\playersqaure2.xnb">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
