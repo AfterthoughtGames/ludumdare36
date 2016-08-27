@@ -5,11 +5,22 @@ namespace GameyMickGameFace.GameObjects.PowerUps
 {
     public class HealthPowerUp : PowerUp
     {
+        public int healthAmount { get; set; }
         private readonly Animation _animation;
 
-        public HealthPowerUp( Animation animation )
+        public HealthPowerUp( Texture2D healthTexture, Animation animation )
+            : base( healthTexture )
         {
+            healthAmount = 3;
+            Name = "Health";
             _animation = animation;
+            scale = .75f;
+        }
+
+        public override void OnPickup( Player effectedPlayer )
+        {
+            base.OnPickup( effectedPlayer );
+            effectedPlayer.Health += healthAmount;
         }
 
         public override void Draw( GameTime time, SpriteBatch batch, GameStates gameState )
@@ -22,10 +33,9 @@ namespace GameyMickGameFace.GameObjects.PowerUps
             if( _animation == null )
                 return;
 
-            var position = PhysicsBody.Position;
-            var newPosition = new Vector2( position.X - 80, position.Y - 100 );
-
-            batch.Draw( _animation.Frame, newPosition, Color.White );
+            var animationScale = new Vector2(.20f);
+            var pos = new Vector2( position.X + 7, position.Y - 28 );
+            batch.Draw( _animation.Frame, pos, null, null, null, default(float), animationScale );
         }
 
         public override void Update( GameTime time, GameStates gameState )

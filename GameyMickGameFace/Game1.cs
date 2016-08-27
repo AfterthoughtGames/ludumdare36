@@ -2,7 +2,6 @@
 using GameyMickGameFace.GameObjects.PowerUps;
 using GameyMickGameFace.Menus;
 using GameyMickGameFace.Physics;
-using GameyMickGameFace.PowerUps;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -43,10 +42,9 @@ namespace GameyMickGameFace
         Tile Platform1;
         Tile Platform2;
         Tile Platform3;
-
-        healthPowerUp Health;
-
         Title TitleScreen;
+
+        HealthPowerUp Health;
 
         public Game1()
         {
@@ -86,8 +84,6 @@ namespace GameyMickGameFace
             Media.Textures.Load(Content);
             Media.Music.Load(Content);
 
-            Health = new healthPowerUp(Media.Textures.healthTexture);
-
             Player1 = new Player();
             Player1.PlayerNumber = 1;
             physicsManager.AddBody(Player1.PhysicsBody);
@@ -120,9 +116,7 @@ namespace GameyMickGameFace
             Platform3 = new Tile(new Point(750, 400), Platform3Texture.Width, Platform3Texture.Height - 30, 0, 0);
             physicsManager.AddBody(Platform3.Body);
 
-            Health = new HealthPowerUp( Media.Animations.PotionSmoke );
-            
-            Health.Name = "Health";
+            Health = new HealthPowerUp( Media.Textures.healthTexture, Media.Animations.PotionSmoke );
             physicsManager.AddBody(Health.PhysicsBody);
 
             PhysicsBox = Content.Load<Texture2D>("Images/blacksquare");
