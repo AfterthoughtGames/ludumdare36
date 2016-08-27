@@ -1,4 +1,5 @@
 ﻿using GameyMickGameFace.GameObjects;
+using GameyMickGameFace.GameObjects.PowerUps;
 using GameyMickGameFace.Menus;
 using GameyMickGameFace.Physics;
 using Microsoft.Xna.Framework;
@@ -52,8 +53,6 @@ namespace GameyMickGameFace
             graphics.PreferredBackBufferHeight = 720;
             Content.RootDirectory = "Content";
 
-            Health = new PowerUp();
-            Health.Name = "Health";
             GameState = GameStates.Title;
         }
 
@@ -115,6 +114,8 @@ namespace GameyMickGameFace
             Platform3 = new Tile(new Point(750, 400), Platform3Texture.Width, Platform3Texture.Height - 30, 0, 0);
             physicsManager.AddBody(Platform3.Body);
 
+            Health = new HealthPowerUp( Media.Animations.PotionSmoke );
+            Health.Name = "Health";
             Health.Image = Content.Load<Texture2D>("Images/potionSmall");
             physicsManager.AddBody(Health.PhysicsBody);
 
@@ -174,7 +175,7 @@ namespace GameyMickGameFace
                 Player4.Update(gameTime);
             }
 
-            Health.Update(gameTime);
+            Health.Update(gameTime, GameState);
 
             PreviousKeyState = currentState;
 
@@ -223,8 +224,10 @@ namespace GameyMickGameFace
                 Player2.Draw(gameTime, spriteBatch);
                 Player3.Draw(gameTime, spriteBatch);
                 Player4.Draw(gameTime, spriteBatch);
+
             }
-            Health.Draw(gameTime, spriteBatch);
+            Health.Draw(gameTime, spriteBatch, GameState );
+
 
             if (PhysicsDrawn)
             {

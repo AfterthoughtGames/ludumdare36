@@ -44,11 +44,12 @@
   <ItemGroup>
     <Compile Include="Animation.cs" />
     <Compile Include="Game1.cs" />
+    <Compile Include="GameObjects\PowerUps\HealthPowerUp.cs" />
     <Compile Include="GameObjects\Tile.cs" />
     <Compile Include="GameObjects\Weapon.cs" />
     <Compile Include="Level.cs" />
     <Compile Include="GameObjects\Player.cs" />
-    <Compile Include="GameObjects\PowerUp.cs" />
+    <Compile Include="GameObjects\PowerUps\PowerUp.cs" />
     <Compile Include="Media\Animations.cs" />
     <Compile Include="Media\Audio.cs" />
     <Compile Include="Media\Fonts.cs" />
