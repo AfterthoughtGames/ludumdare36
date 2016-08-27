@@ -48,12 +48,12 @@ namespace GameyMickGameFace
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             Media.Fonts.GUI = Content.Load<SpriteFont>("GUIFont");
-            Media.Textures.PlayerTemp = Content.Load<Texture2D>("playersqaure");
+            Media.Textures.PlayerTemp = Content.Load<Texture2D>("Images/playersqaure");
             // TODO: use this.Content to load your game content here
 
             //Temp Code
             INeedHappy = new Player();
-            BackGround = Content.Load<Texture2D>("Background");
+            BackGround = Content.Load<Texture2D>("Images/Background");
         }
 
         /// <summary>
