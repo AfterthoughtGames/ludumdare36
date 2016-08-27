@@ -2,16 +2,13 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace GameyMickGameFace.GameObjects
 {
     public enum PlayerAnimationState
     {
-        Walking, Standing, Jummping, Falling
+        Standing, Jummping, Falling, WalkingLeft, WalkingRight, StandingLeft
     }
 
     public class Player
@@ -28,11 +25,13 @@ namespace GameyMickGameFace.GameObjects
         public KeyboardState PreviousKeyState { get; set; }
 
         public PlayerAnimationState AnimationState { get; set; }
+        public PlayerAnimationState PreviousAnimationState { get; set; }
         public List<Body> DetectionPhysicsBodies;
 
         public Player()
         {
             AnimationState = PlayerAnimationState.Standing;
+            PreviousAnimationState = PlayerAnimationState.Standing;
             PhysicsBody = new Body(new Point(100, 100), 95, 86, 0, 100, .85f, this);
             PhysicsBody.reactsToCollision = false;
 
@@ -70,13 +69,13 @@ namespace GameyMickGameFace.GameObjects
             {
                 if (currentState.IsKeyDown(Keys.Right) || currentState.IsKeyDown(Keys.D))
                 {
-                    AnimationState = PlayerAnimationState.Walking;
+                    AnimationState = PlayerAnimationState.WalkingRight;
                     PhysicsBody.AddVelocity(new Vector2(100, 0));
                     keyboardControlled = true;
                 }
                 else if (currentState.IsKeyDown(Keys.Left) || currentState.IsKeyDown(Keys.A))
                 {
-                    AnimationState = PlayerAnimationState.Walking;
+                    AnimationState = PlayerAnimationState.WalkingLeft;
                     PhysicsBody.AddVelocity(new Vector2(-100, 0));
                     keyboardControlled = true;
                 }
@@ -103,22 +102,22 @@ namespace GameyMickGameFace.GameObjects
             {
                 if (currentPadState.DPad.Right == ButtonState.Pressed)
                 {
-                    AnimationState = PlayerAnimationState.Walking;
+                    AnimationState = PlayerAnimationState.WalkingRight;
                     PhysicsBody.AddVelocity(new Vector2(100, 0));
                 }
                 else if (currentPadState.DPad.Left == ButtonState.Pressed)
                 {
-                    AnimationState = PlayerAnimationState.Walking;
+                    AnimationState = PlayerAnimationState.WalkingLeft;
                     PhysicsBody.AddVelocity(new Vector2(-100, 0));
                 }
                 else if (currentPadState.ThumbSticks.Left.X > 0.0f)
                 {
-                    AnimationState = PlayerAnimationState.Walking;
+                    AnimationState = PlayerAnimationState.WalkingRight;
                     PhysicsBody.AddVelocity(new Vector2(100, 0));
                 }
                 else if (currentPadState.ThumbSticks.Left.X < 0.0f)
                 {
-                    AnimationState = PlayerAnimationState.Walking;
+                    AnimationState = PlayerAnimationState.WalkingLeft;
                     PhysicsBody.AddVelocity(new Vector2(-100, 0));
                 }
                 else
@@ -138,16 +137,29 @@ namespace GameyMickGameFace.GameObjects
 
         public void Draw(GameTime time, SpriteBatch batch)
         {
-            if (AnimationState == PlayerAnimationState.Walking)
+            if (AnimationState == PlayerAnimationState.WalkingRight)
             {
                 Media.Animations.PlayerWalk.NextFrame(time);
-                batch.Draw(Media.Animations.PlayerWalk.Frame, PhysicsBody.Position, Color.White);
+                batch.Draw(Media.Animations.PlayerWalk.Frame, PhysicsBody.Position, null, Color.White, 0.0f, PhysicsBody.Position, 0.5f, SpriteEffects.None, 0);
+            }
+            else if (AnimationState == PlayerAnimationState.WalkingLeft)
+            {
+                Media.Animations.PlayerWalk.NextFrame(time);
+                batch.Draw(Media.Animations.PlayerWalk.Frame, PhysicsBody.Position, null, Color.White, 0.0f, PhysicsBody.Position, 0.5f, SpriteEffects.FlipHorizontally, 0);
+            }
+            else if (PreviousAnimationState == PlayerAnimationState.WalkingLeft || PreviousAnimationState == PlayerAnimationState.StandingLeft)
+            {
+                Media.Animations.PlayerIdel.NextFrame(time);
+                batch.Draw(Media.Animations.PlayerIdel.Frame, PhysicsBody.Position, null, Color.White, 0.0f, PhysicsBody.Position, 0.5f, SpriteEffects.FlipHorizontally, 0);
+                AnimationState = PlayerAnimationState.StandingLeft;
             }
             else
             {
                 Media.Animations.PlayerIdel.NextFrame(time);
-                batch.Draw(Media.Animations.PlayerIdel.Frame, PhysicsBody.Position, Color.White);
+                batch.Draw(Media.Animations.PlayerIdel.Frame, PhysicsBody.Position, null, Color.White, 0.0f, PhysicsBody.Position, 0.5f, SpriteEffects.None, 0);
             }
+
+            PreviousAnimationState = AnimationState;
         }
 
         public void UpdateBodyPhysicsDetection()

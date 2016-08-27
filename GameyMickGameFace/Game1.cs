@@ -86,15 +86,19 @@ namespace GameyMickGameFace
 
             Player1 = new Player();
             Player1.PlayerNumber = 1;
+            Player1.Health = 100;
             physicsManager.AddBody(Player1.PhysicsBody);
             Player2 = new Player();
             Player2.PlayerNumber = 2;
+            Player2.Health = 100;
             physicsManager.AddBody(Player2.PhysicsBody);
             Player3 = new Player();
             Player3.PlayerNumber = 3;
+            Player3.Health = 100;
             physicsManager.AddBody(Player3.PhysicsBody);
             Player4 = new Player();
             Player4.PlayerNumber = 4;
+            Player4.Health = 100;
             physicsManager.AddBody(Player4.PhysicsBody);
 
             Floor = new Tile(new Point(-100, 650), 1800, 30, 0, 0);
@@ -116,7 +120,7 @@ namespace GameyMickGameFace
             Platform3 = new Tile(new Point(750, 400), Platform3Texture.Width, Platform3Texture.Height - 30, 0, 0);
             physicsManager.AddBody(Platform3.Body);
 
-            Health = new HealthPowerUp( Media.Textures.healthTexture, Media.Animations.PotionSmoke );
+            Health = new HealthPowerUp(Media.Textures.healthTexture, Media.Animations.PotionSmoke);
             physicsManager.AddBody(Health.PhysicsBody);
 
             PhysicsBox = Content.Load<Texture2D>("Images/blacksquare");
@@ -124,8 +128,8 @@ namespace GameyMickGameFace
             //TODO: Should be moved
             MediaPlayer.IsRepeating = true;
             MediaPlayer.Play(Media.Music.Music1);
-            
-            
+
+
         }
 
         /// <summary>
@@ -233,7 +237,7 @@ namespace GameyMickGameFace
                 Player4.Draw(gameTime, spriteBatch);
 
             }
-            Health.Draw(gameTime, spriteBatch, GameState );
+            Health.Draw(gameTime, spriteBatch, GameState);
 
 
             if (PhysicsDrawn)
