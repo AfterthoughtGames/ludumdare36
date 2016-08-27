@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Media;
 
 namespace GameyMickGameFace
 {
@@ -81,6 +82,7 @@ namespace GameyMickGameFace
             Media.Animations.Load(Content);
             Media.Audio.Load(Content);
             Media.Textures.Load(Content);
+            Media.Music.Load(Content);
 
             TempPlayer = new Player();
             physicsManager.AddBody(TempPlayer.PhysicsBody);
@@ -108,6 +110,12 @@ namespace GameyMickGameFace
             physicsManager.AddBody(Health.PhysicsBody);
 
             PhysicsBox = Content.Load<Texture2D>("Images/blacksquare");
+
+            //TODO: Should be moved
+            MediaPlayer.IsRepeating = true;
+            MediaPlayer.Play(Media.Music.Music1);
+            
+            
         }
 
         /// <summary>
