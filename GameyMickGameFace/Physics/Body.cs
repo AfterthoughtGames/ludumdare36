@@ -8,6 +8,9 @@ namespace GameyMickGameFace.Physics
 {
     public class Body
     {
+        public Vector2 Position;
+        int width;
+        int height;
         public Rectangle PhysicsBody;
         public Vector2 Velocity;
         public float Restitution;
@@ -16,6 +19,11 @@ namespace GameyMickGameFace.Physics
 
         public Body(Point position, int width, int height, float restitution, int mass)
         {
+            this.width = width;
+            this.height = height;
+
+            Position = position.ToVector2();
+
             PhysicsBody = new Rectangle(position.X, position.Y, width, height);
             Velocity = new Vector2(0, 0);  //init to no veleocity
             Restitution = restitution;
@@ -28,8 +36,24 @@ namespace GameyMickGameFace.Physics
             }
             else
             {
-                InverseMass = 1 / Mass;
+                InverseMass = 1 / (float)Mass;
             }
+        }
+
+        public void AddVelocity(Vector2 vector)
+        {
+            Velocity += vector;
+        }
+
+        public void Update(GameTime gameTime)
+        {
+            Position += Velocity * (gameTime.ElapsedGameTime.Milliseconds / 1000f);
+            UpdatePosition();
+        }
+
+        public void UpdatePosition()
+        {
+            PhysicsBody = new Rectangle((int)Position.X, (int)Position.Y, width, height);
         }
     }
 }

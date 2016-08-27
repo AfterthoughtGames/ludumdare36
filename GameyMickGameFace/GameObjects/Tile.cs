@@ -6,7 +6,7 @@ namespace GameyMickGameFace.GameObjects
 {
     public class Tile
     {
-        Body Body;
+        public Body Body;
 
         public Tile(Point position, int width, int height, float restitution, int mass)
         {

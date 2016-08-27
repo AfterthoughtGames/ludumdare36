@@ -1,4 +1,5 @@
 ﻿using GameyMickGameFace.GameObjects;
+using GameyMickGameFace.Physics;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -13,9 +14,12 @@ namespace GameyMickGameFace
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
+        PhysicsManager physicsManager = new PhysicsManager();
+
         // Temp Code
-        Player INeedHappy;
+        Player TempPlayer;
         Texture2D BackGround;
+        Tile BlockerTest;
 
         public Game1()
         {
@@ -50,7 +54,10 @@ namespace GameyMickGameFace
             // TODO: use this.Content to load your game content here
 
             //Temp Code
-            INeedHappy = new Player();
+            TempPlayer = new Player();
+            physicsManager.AddBody(TempPlayer.PhysicsBody);
+            BlockerTest = new Tile(new Point(250, 250), 95, 86, 0, 0);
+            physicsManager.AddBody(BlockerTest.Body);
             BackGround = Content.Load<Texture2D>("Background");
         }
 
@@ -73,7 +80,9 @@ namespace GameyMickGameFace
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
-            INeedHappy.Update(gameTime);
+            physicsManager.UpdatePhysics(gameTime);
+
+            TempPlayer.Update(gameTime);
 
             base.Update(gameTime);
         }
@@ -86,9 +95,12 @@ namespace GameyMickGameFace
         {
             GraphicsDevice.Clear(Color.Black);
             spriteBatch.Begin();
+
             spriteBatch.Draw(BackGround, Vector2.Zero, Color.White);
             spriteBatch.DrawString(Media.Fonts.GUI, "Welcome to LD 36", new Vector2(100, 100), Color.White, 0f, Vector2.Zero, 2f, SpriteEffects.None, 0);
-            INeedHappy.Draw(gameTime, spriteBatch);
+            TempPlayer.Draw(gameTime, spriteBatch);
+            BlockerTest.Draw(gameTime, spriteBatch);
+
             spriteBatch.End();
 
             // TODO: Add your drawing code here
