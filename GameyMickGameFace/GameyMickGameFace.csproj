@@ -59,6 +59,7 @@
     <Compile Include="Menus\Title.cs" />
     <Compile Include="Physics\Body.cs" />
     <Compile Include="Physics\PhysicsManager.cs" />
+    <Compile Include="PowerUps\healthPowerUp.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -333,6 +334,9 @@
     <Content Include="Content\Otter_Otter_Walking_029.xnb">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="Content\Music\AncientAnimals.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Content\Sounds\Generic_Cowboy_Hurt.xnb" />
     <None Include="packages.config" />
   </ItemGroup>
