@@ -204,6 +204,11 @@ namespace GameyMickGameFace
                 {
                     spriteBatch.Draw(PhysicsBox, new Rectangle((int)Body.Position.X, (int)Body.Position.Y, Body.width, Body.height), Color.White);
                 }
+
+                foreach(Body body in TempPlayer.DetectionPhysicsBodies)
+                {
+                    spriteBatch.Draw(PhysicsBox, new Rectangle((int)(TempPlayer.PhysicsBody.Position.X + body.parentOffset.X), (int)(TempPlayer.PhysicsBody.Position.Y + body.parentOffset.X), body.width, body.height), Color.White);
+                }
             }
 
             spriteBatch.End();
