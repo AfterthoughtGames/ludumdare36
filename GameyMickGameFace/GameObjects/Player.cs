@@ -38,15 +38,22 @@ namespace GameyMickGameFace.GameObjects
             PhysicsBody.reactsToCollision = false;
 
             DetectionPhysicsBodies = new List<Body>();
-            Body leftDetectionBody = new Body(new Point(0, 0), 95, 86, 0, 100, .85f, this);
-            leftDetectionBody.parentOffset = new Vector2(100, 100);
-            leftDetectionBody.bodyType = BodyDetectionType.Left;
 
+            Body leftDetectionBody = new Body(new Point(0, 0), 25, 235, 0, 100, .85f, this);
+            leftDetectionBody.parentOffset = new Vector2(145, 0);
             DetectionPhysicsBodies.Add(leftDetectionBody);
-            Body rightDetectionBody = new Body(new Point(0, 0), 95, 86, 0, 100, .85f, this);
-            rightDetectionBody.parentOffset = new Vector2(200, 200);
-            rightDetectionBody.bodyType = BodyDetectionType.Right;
+
+            Body rightDetectionBody = new Body(new Point(0, 0), 25, 235, 0, 100, .85f, this);
+            rightDetectionBody.parentOffset = new Vector2(170, 0);
             DetectionPhysicsBodies.Add(rightDetectionBody);
+
+            Body topDetectionBody = new Body(new Point(0, 0), 50, 20, 0, 100, .85f, this);
+            topDetectionBody.parentOffset = new Vector2(145, 0);
+            DetectionPhysicsBodies.Add(topDetectionBody);
+
+            Body bottomDetectionBody = new Body(new Point(0, 0), 50, 20, 0, 100, .85f, this);
+            bottomDetectionBody.parentOffset = new Vector2(145, 215);
+            DetectionPhysicsBodies.Add(bottomDetectionBody);
         }
 
         public void Update(GameTime time, PhysicsManager manager)
