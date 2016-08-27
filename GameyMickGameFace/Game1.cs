@@ -40,6 +40,7 @@ namespace GameyMickGameFace
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
+            Media.Fonts.GUI = Content.Load<SpriteFont>("GUIFont");
             // TODO: use this.Content to load your game content here
         }
 
@@ -73,7 +74,10 @@ namespace GameyMickGameFace
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
+            GraphicsDevice.Clear(Color.Black);
+            spriteBatch.Begin();
+            spriteBatch.DrawString(Media.Fonts.GUI, "Welcome to LD 36", new Vector2(100, 100), Color.White, 0f, Vector2.Zero, 2f, SpriteEffects.None, 0);
+            spriteBatch.End();
 
             // TODO: Add your drawing code here
 
