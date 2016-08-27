@@ -37,21 +37,24 @@ namespace GameyMickGameFace.GameObjects
             PhysicsBody = new Body(new Point(100, 100), 95, 86, 0, 100,.85f, this);
             PhysicsBody.reactsToCollision = false;
 
-            // TODO Fix realtive positioning
-            // TODO Draw these boxes
             DetectionPhysicsBodies = new List<Body>();
             Body leftDetectionBody = new Body(new Point(0, 0), 95, 86, 0, 100, .85f, this);
             leftDetectionBody.parentOffset = new Vector2(100, 100);
+            leftDetectionBody.bodyType = BodyDetectionType.Left;
+
             DetectionPhysicsBodies.Add(leftDetectionBody);
             Body rightDetectionBody = new Body(new Point(0, 0), 95, 86, 0, 100, .85f, this);
             rightDetectionBody.parentOffset = new Vector2(200, 200);
+            rightDetectionBody.bodyType = BodyDetectionType.Right;
             DetectionPhysicsBodies.Add(rightDetectionBody);
         }
 
-        public void Update(GameTime time)
+        public void Update(GameTime time, PhysicsManager manager)
         {
             GamePadState currentPadState = GamePad.GetState(PlayerNumber);
             KeyboardState currentState = Keyboard.GetState();
+
+            
 
             if(currentPadState.DPad.Right == ButtonState.Pressed || (currentState.IsKeyDown(Keys.Right)) || (currentState.IsKeyDown(Keys.D)))
             {
@@ -83,6 +86,7 @@ namespace GameyMickGameFace.GameObjects
             PreviousKeyState = currentState;
 
             UpdateBodyPhysicsDetection();
+            collisionDetection(manager);
         }
 
         public void Draw(GameTime time, SpriteBatch batch)
@@ -105,6 +109,40 @@ namespace GameyMickGameFace.GameObjects
             {
                 body.MotionPhysicsBody = new Rectangle((int)(PhysicsBody.Position.X + body.parentOffset.X), 
                     (int)(PhysicsBody.Position.Y + body.parentOffset.Y), body.width, body.height);
+            }
+        }
+
+        private void collisionDetection(PhysicsManager manager)
+        {
+            //detect collisions
+            foreach (Body body in DetectionPhysicsBodies)
+            {
+                foreach (Body body2 in manager.GetBodies())
+                {
+                    if (body != body2 && body.MotionPhysicsBody.Intersects(body2.MotionPhysicsBody)
+                        && (body.reactsToCollision && body2.reactsToCollision))
+                    {
+                       switch(body.bodyType)
+                        {
+                            case BodyDetectionType.Left:
+                                {
+                                    if(PhysicsBody.Velocity. X < 0)
+                                    {
+                                        PhysicsBody.Velocity.X = 0;
+                                    }
+                                    break;
+                                }
+                            case BodyDetectionType.Right:
+                                {
+                                    if (PhysicsBody.Velocity.X > 0)
+                                    {
+                                        PhysicsBody.Velocity.X = 0;
+                                    }
+                                    break;
+                                }
+                        }
+                    }
+                }
             }
         }
     }
