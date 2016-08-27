@@ -75,6 +75,7 @@
     <Content Include="Content\Images\Flame.png" />
     <Content Include="Content\Images\flyingshoe.png" />
     <Content Include="Content\Images\healthUp.png" />
+    <Content Include="Content\Images\longshelf.png" />
     <Content Include="Content\Images\playersqaure.png" />
     <Content Include="Content\Images\playersqaure2.png" />
     <Content Include="Content\Images\sword.png" />
