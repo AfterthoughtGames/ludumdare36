@@ -74,12 +74,15 @@ namespace GameyMickGameFace
 
             Platform1Texture = Content.Load<Texture2D>("Images/longshelf");
             Platform1 = new Tile(new Point(150, 200), Platform1Texture.Width, Platform1Texture.Height, 0, 0);
+            physicsManager.AddBody(Platform1.Body);
 
             Platform2Texture = Content.Load<Texture2D>("Images/mediumshelf");
             Platform2 = new Tile(new Point(50, 400), Platform2Texture.Width, Platform2Texture.Height, 0, 0);
+            physicsManager.AddBody(Platform2.Body);
 
             Platform3Texture = Content.Load<Texture2D>("Images/shortshelf");
             Platform3 = new Tile(new Point(750, 400), Platform3Texture.Width, Platform3Texture.Height, 0, 0);
+            physicsManager.AddBody(Platform3.Body);
         }
 
         /// <summary>
