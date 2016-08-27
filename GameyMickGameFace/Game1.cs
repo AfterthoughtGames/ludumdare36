@@ -15,6 +15,7 @@ namespace GameyMickGameFace
 
         // Temp Code
         Player INeedHappy;
+        Texture2D BackGround;
 
         public Game1()
         {
@@ -50,6 +51,7 @@ namespace GameyMickGameFace
 
             //Temp Code
             INeedHappy = new Player();
+            BackGround = Content.Load<Texture2D>("Background");
         }
 
         /// <summary>
@@ -84,6 +86,7 @@ namespace GameyMickGameFace
         {
             GraphicsDevice.Clear(Color.Black);
             spriteBatch.Begin();
+            spriteBatch.Draw(BackGround, Vector2.Zero, Color.White);
             spriteBatch.DrawString(Media.Fonts.GUI, "Welcome to LD 36", new Vector2(100, 100), Color.White, 0f, Vector2.Zero, 2f, SpriteEffects.None, 0);
             INeedHappy.Draw(gameTime, spriteBatch);
             spriteBatch.End();
