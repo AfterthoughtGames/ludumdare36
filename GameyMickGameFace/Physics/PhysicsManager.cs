@@ -36,11 +36,12 @@ namespace GameyMickGameFace.Physics
         public void ResolveCollision(Body a, Body b)
         {
             //find the collision normal (aka the direction of the collision
-            Vector2 collisionNormal = (b.PhysicsBody.Location - a.PhysicsBody.Location).ToVector2();
+            Vector2 collisionNormal = b.Position - a.Position;
 
             // Calculate relative velocity
             Vector2 relativeVelocity = b.Velocity - a.Velocity;
 
+            collisionNormal.Normalize();
             // Calculate relative velocity in terms of the normal direction
             float velAlongNormal = Vector2.Dot(relativeVelocity, collisionNormal);
 
