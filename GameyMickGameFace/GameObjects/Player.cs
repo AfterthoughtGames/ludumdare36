@@ -79,7 +79,7 @@ namespace GameyMickGameFace.GameObjects
             }
             else
             {
-                Media.Animations.PlayerWalk.NextFrame(time);
+                Media.Animations.PlayerIdel.NextFrame(time);
                 batch.Draw(Media.Animations.PlayerIdel.Frame, PhysicsBody.Position, Color.White);
             }
         }
