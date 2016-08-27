@@ -91,11 +91,7 @@
 /processorParam:TextureFormat=Color
 /build:Images/trebuchet.png
 
-<<<<<<< HEAD
-#begin playersqaure2.png
-=======
 #begin Images/Flame.png
->>>>>>> bdd241fb0988b8b423e4832654d9e5fc5b302a74
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -104,9 +100,6 @@
 /processorParam:PremultiplyAlpha=True
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:TextureFormat=Color
-<<<<<<< HEAD
-/build:playersqaure2.png
-=======
 /build:Images/Flame.png
 
 #begin Images/flyingshoe.png
@@ -130,5 +123,23 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:TextureFormat=Color
 /build:Images/healthUp.png
->>>>>>> bdd241fb0988b8b423e4832654d9e5fc5b302a74
 
+<<<<<<< HEAD
+#begin playersqaure2.png
+=======
+#begin Images/woodenwall.png
+>>>>>>> 0b7e6e127e0b67aec79cfe9125e53087aaa24775
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:TextureFormat=Color
+<<<<<<< HEAD
+/build:playersqaure2.png
+=======
+/build:Images/woodenwall.png
+
+>>>>>>> 0b7e6e127e0b67aec79cfe9125e53087aaa24775

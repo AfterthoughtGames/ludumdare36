@@ -59,19 +59,16 @@ namespace GameyMickGameFace
             Media.Animations.PlayerWalk.AddTexture(Content.Load<Texture2D>("playersqaure2"));
 =======
             //Temp Code
-            BackGround = Content.Load<Texture2D>("Images/Background");
->>>>>>> bdd241fb0988b8b423e4832654d9e5fc5b302a74
+            BackGround = Content.Load<Texture2D>("Images/woodenwall");
+>>>>>>> 0b7e6e127e0b67aec79cfe9125e53087aaa24775
             TempPlayer = new Player();
             physicsManager.AddBody(TempPlayer.PhysicsBody);
             BlockerTest = new Tile(new Point(250, 250), 95, 86, 0, 0);
             physicsManager.AddBody(BlockerTest.Body);
-<<<<<<< HEAD
-            BackGround = Content.Load<Texture2D>("Background");
+            BackGround = Content.Load<Texture2D>("Images\\Background");
             // TODO: use this.Content to load your game content here
 
             //Temp Code
-=======
->>>>>>> bdd241fb0988b8b423e4832654d9e5fc5b302a74
         }
 
         /// <summary>
