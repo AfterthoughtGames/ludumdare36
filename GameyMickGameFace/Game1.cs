@@ -16,6 +16,8 @@ namespace GameyMickGameFace
         SpriteBatch spriteBatch;
 
         PhysicsManager physicsManager = new PhysicsManager();
+        public KeyboardState PreviousKeyState { get; set; }
+        private bool PhysicsDrawn = false;
 
         // Temp Code
         Player TempPlayer;
@@ -76,7 +78,7 @@ namespace GameyMickGameFace
             TempPlayer = new Player();
             physicsManager.AddBody(TempPlayer.PhysicsBody);
 
-            Floor = new Tile(new Point(0, 650), 30000, 30, 0, 0);
+            Floor = new Tile(new Point(0, 650), 1280, 30, 0, 0);
             physicsManager.AddBody(Floor.Body);
 
             BackGround = Content.Load<Texture2D>("Images/woodenwallwithfloor");
@@ -117,14 +119,36 @@ namespace GameyMickGameFace
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
+            KeyboardState currentState = Keyboard.GetState();
+            if (PreviousKeyState == null)
+            {
+                PreviousKeyState = currentState;
+            }
+
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
+            {
                 Exit();
+            }
+
+            if (currentState.IsKeyDown(Keys.F1) && !PreviousKeyState.IsKeyDown(Keys.F1))
+            {
+                if (PhysicsDrawn)
+                {
+                    PhysicsDrawn = false;
+                }
+                else
+                {
+                    PhysicsDrawn = true;
+                }
+            }
 
             physicsManager.UpdatePhysics(gameTime);
 
             TempPlayer.Update(gameTime);
 
             Health.Update(gameTime);
+
+            PreviousKeyState = currentState;
 
             base.Update(gameTime);
         }
@@ -148,9 +172,12 @@ namespace GameyMickGameFace
 
             Health.Draw(gameTime, spriteBatch);
 
-            foreach (Body Body in physicsManager.GetBodies())
+            if (PhysicsDrawn)
             {
-                spriteBatch.Draw(PhysicsBox, new Rectangle((int)Body.Position.X, (int)Body.Position.Y, Body.width, Body.height), Color.White);
+                foreach (Body Body in physicsManager.GetBodies())
+                {
+                    spriteBatch.Draw(PhysicsBox, new Rectangle((int)Body.Position.X, (int)Body.Position.Y, Body.width, Body.height), Color.White);
+                }
             }
 
             spriteBatch.End();
