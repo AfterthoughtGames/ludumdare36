@@ -1,6 +1,7 @@
 ﻿using GameyMickGameFace.GameObjects;
 using GameyMickGameFace.Physics;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
@@ -93,6 +94,8 @@ namespace GameyMickGameFace
 
             Health.Image = Content.Load<Texture2D>("Images/healthUp");
             physicsManager.AddBody(Health.PhysicsBody);
+
+            Media.Audio.damage = Content.Load<SoundEffect>("Sounds/Generic_Cowboy_Hurt");
         }
 
         /// <summary>
@@ -118,7 +121,7 @@ namespace GameyMickGameFace
 
             TempPlayer.Update(gameTime);
 
-            Health.update(gameTime);
+            Health.Update(gameTime);
 
             base.Update(gameTime);
         }
@@ -138,6 +141,8 @@ namespace GameyMickGameFace
             spriteBatch.Draw(Platform3Texture, new Vector2(750, 400), Color.White);
             spriteBatch.DrawString(Media.Fonts.GUI, "Welcome to LD 36", new Vector2(100, 100), Color.White, 0f, Vector2.Zero, 2f, SpriteEffects.None, 0);
             TempPlayer.Draw(gameTime, spriteBatch);
+
+            Health.Draw(gameTime, spriteBatch);
 
             spriteBatch.End();
 
