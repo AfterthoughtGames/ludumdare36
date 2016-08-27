@@ -8,15 +8,17 @@ namespace GameyMickGameFace.Physics
 {
     public class Body
     {
+        public Vector2 parentOffset;
         public Vector2 Position;
         public int width;
         public int height;
-        public Rectangle PhysicsBody;
+        public Rectangle MotionPhysicsBody;
         public Vector2 Velocity;
         public float Restitution;
         public int Mass;
         public float InverseMass;
         public float LinearDampening;
+        public bool reactsToCollision = true;
 
         public object objRef;
 
@@ -29,7 +31,7 @@ namespace GameyMickGameFace.Physics
 
             LinearDampening = linearDampening;
 
-            PhysicsBody = new Rectangle(position.X, position.Y, width, height);
+            MotionPhysicsBody = new Rectangle(position.X, position.Y, width, height);
             Velocity = new Vector2(0, 0);  //init to no veleocity
             Restitution = restitution;
             Mass = mass;
@@ -63,7 +65,7 @@ namespace GameyMickGameFace.Physics
 
         public void UpdatePosition()
         {
-            PhysicsBody = new Rectangle((int)Position.X, (int)Position.Y, width, height);
+            MotionPhysicsBody = new Rectangle((int)Position.X, (int)Position.Y, width, height);
         }
     }
 }

@@ -16,7 +16,7 @@ namespace GameyMickGameFace.GameObjects
 
     public class Player
     {
-        public int Heath { get; set; }
+        public int Health { get; set; }
         public string Name { get; set; }
        // public Vector2 Position { get; set; }
 
@@ -28,11 +28,24 @@ namespace GameyMickGameFace.GameObjects
         public KeyboardState PreviousKeyState { get; set; }
 
         public PlayerAnimationState AnimationState { get; set; }
+        public List<Body> DetectionPhysicsBodies;
+
 
         public Player()
         {
             AnimationState = PlayerAnimationState.Standing;
             PhysicsBody = new Body(new Point(100, 100), 95, 86, 0, 100,.85f, this);
+            PhysicsBody.reactsToCollision = false;
+
+            // TODO Fix realtive positioning
+            // TODO Draw these boxes
+            DetectionPhysicsBodies = new List<Body>();
+            Body leftDetectionBody = new Body(new Point(0, 0), 95, 86, 0, 100, .85f, this);
+            leftDetectionBody.parentOffset = new Vector2(100, 100);
+            DetectionPhysicsBodies.Add(leftDetectionBody);
+            Body rightDetectionBody = new Body(new Point(0, 0), 95, 86, 0, 100, .85f, this);
+            rightDetectionBody.parentOffset = new Vector2(200, 200);
+            DetectionPhysicsBodies.Add(rightDetectionBody);
         }
 
         public void Update(GameTime time)
@@ -68,6 +81,8 @@ namespace GameyMickGameFace.GameObjects
 
             PreviousPadState = currentPadState;
             PreviousKeyState = currentState;
+
+            UpdateBodyPhysicsDetection();
         }
 
         public void Draw(GameTime time, SpriteBatch batch)
@@ -81,6 +96,15 @@ namespace GameyMickGameFace.GameObjects
             {
                 Media.Animations.PlayerIdel.NextFrame(time);
                 batch.Draw(Media.Animations.PlayerIdel.Frame, PhysicsBody.Position, Color.White);
+            }
+        }
+
+        public void UpdateBodyPhysicsDetection()
+        {
+            foreach(Body body in DetectionPhysicsBodies)
+            {
+                body.MotionPhysicsBody = new Rectangle((int)(PhysicsBody.Position.X + body.parentOffset.X), 
+                    (int)(PhysicsBody.Position.Y + body.parentOffset.Y), body.width, body.height);
             }
         }
     }
