@@ -70,6 +70,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\Animations\Smoke_15\0000.png" />
+    <Content Include="Content\Animations\Smoke_15\0006.png" />
+    <Content Include="Content\Animations\Smoke_15\0012.png" />
+    <Content Include="Content\Animations\Smoke_15\0018.png" />
+    <Content Include="Content\Animations\Smoke_15\0024.png" />
+    <Content Include="Content\Animations\Smoke_15\0030.png" />
+    <Content Include="Content\Animations\Smoke_15\0036.png" />
+    <Content Include="Content\Animations\Smoke_15\0042.png" />
+    <Content Include="Content\Animations\Smoke_15\0048.png" />
+    <Content Include="Content\Animations\Smoke_15\0054.png" />
+    <Content Include="Content\Animations\Smoke_15\0060.png" />
+    <Content Include="Content\Animations\Smoke_15\0066.png" />
+    <Content Include="Content\Animations\Smoke_15\0072.png" />
+    <Content Include="Content\Animations\Smoke_15\0078.png" />
+    <Content Include="Content\Animations\Smoke_15\0084.png" />
+    <Content Include="Content\Animations\Smoke_15\0090.png" />
     <Content Include="Content\Images\Background.png" />
     <Content Include="Content\Images\blacksquare.png" />
     <Content Include="Content\Images\Bow.png" />
@@ -303,6 +319,7 @@
     <None Include="Content\Sounds\Generic_Cowboy_Hurt.xnb" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Content.Builder.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
