@@ -71,6 +71,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\Images\Background.png" />
+    <Content Include="Content\Images\blacksquare.png" />
     <Content Include="Content\Images\Bow.png" />
     <Content Include="Content\Images\Flame.png" />
     <Content Include="Content\Images\flyingshoe.png" />
@@ -97,6 +98,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="Content\Images\Background.xnb" />
+    <None Include="Content\Images\blacksquare.xnb" />
     <None Include="Content\Images\Bow.xnb" />
     <None Include="Content\Images\Flame.xnb" />
     <None Include="Content\Images\flyingshoe.xnb" />
