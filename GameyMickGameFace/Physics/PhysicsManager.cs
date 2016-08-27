@@ -31,7 +31,8 @@ namespace GameyMickGameFace.Physics
                 body.Update(gameTime);
                 foreach (Body body2 in Bodies)
                 {
-                    if (body != body2 && body.PhysicsBody.Intersects(body2.PhysicsBody))
+                    if (body != body2 && body.MotionPhysicsBody.Intersects(body2.MotionPhysicsBody) 
+                        && (body.reactsToCollision && body2.reactsToCollision))
                     {
                         ResolveCollision(body, body2);
                     }
@@ -103,10 +104,10 @@ namespace GameyMickGameFace.Physics
         {
             float penetration = 0;
             // Vector from A to B
-            Vector2 n = (bodyB.PhysicsBody.Location - bodyA.PhysicsBody.Location).ToVector2();
+            Vector2 n = (bodyB.MotionPhysicsBody.Location - bodyA.MotionPhysicsBody.Location).ToVector2();
 
-            Rectangle abox = bodyA.PhysicsBody;
-            Rectangle bbox = bodyB.PhysicsBody;
+            Rectangle abox = bodyA.MotionPhysicsBody;
+            Rectangle bbox = bodyB.MotionPhysicsBody;
 
             // Calculate half extents along x axis for each object
             float a_extent = (abox.Right - abox.Left) / 2;
