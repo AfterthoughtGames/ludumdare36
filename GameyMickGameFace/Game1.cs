@@ -19,12 +19,13 @@ namespace GameyMickGameFace
         // Temp Code
         Player TempPlayer;
         Texture2D BackGround;
-        Texture2D ShortShelf;
+        Texture2D Platform1Texture;
+        Texture2D Platform2Texture;
+        Texture2D Platform3Texture;
         Tile Floor;
         Tile Platform1;
         Tile Platform2;
         Tile Platform3;
-        Tile Platform4;
 
         public Game1()
         {
@@ -63,8 +64,6 @@ namespace GameyMickGameFace
             Media.Animations.PlayerWalk.AddTexture(Content.Load<Texture2D>("Images/playersqaure2"));
             Media.Animations.PlayerIdel.AddTexture(Content.Load<Texture2D>("Images/playersqaure"));
 
-            ShortShelf = Content.Load<Texture2D>( "Images/shortshelf" );
-
             TempPlayer = new Player();
             physicsManager.AddBody(TempPlayer.PhysicsBody);
 
@@ -72,6 +71,15 @@ namespace GameyMickGameFace
             physicsManager.AddBody(Floor.Body);
 
             BackGround = Content.Load<Texture2D>("Images/woodenwallwithfloor");
+
+            Platform1Texture = Content.Load<Texture2D>("Images/longshelf");
+            Platform1 = new Tile(new Point(150, 200), Platform1Texture.Width, Platform1Texture.Height, 0, 0);
+
+            Platform2Texture = Content.Load<Texture2D>("Images/mediumshelf");
+            Platform2 = new Tile(new Point(50, 400), Platform2Texture.Width, Platform2Texture.Height, 0, 0);
+
+            Platform3Texture = Content.Load<Texture2D>("Images/shortshelf");
+            Platform3 = new Tile(new Point(750, 400), Platform3Texture.Width, Platform3Texture.Height, 0, 0);
         }
 
         /// <summary>
@@ -110,7 +118,9 @@ namespace GameyMickGameFace
             spriteBatch.Begin();
 
             spriteBatch.Draw(BackGround, Vector2.Zero, Color.White);
-            spriteBatch.Draw( ShortShelf, new Vector2(400,50), Color.White );
+            spriteBatch.Draw(Platform1Texture, new Vector2(150, 200), Color.White);
+            spriteBatch.Draw(Platform2Texture, new Vector2(50, 400), Color.White);
+            spriteBatch.Draw(Platform3Texture, new Vector2(750, 400), Color.White);
             spriteBatch.DrawString(Media.Fonts.GUI, "Welcome to LD 36", new Vector2(100, 100), Color.White, 0f, Vector2.Zero, 2f, SpriteEffects.None, 0);
             TempPlayer.Draw(gameTime, spriteBatch);
 
