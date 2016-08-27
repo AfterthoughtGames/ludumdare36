@@ -1,4 +1,5 @@
 ﻿using GameyMickGameFace.GameObjects;
+using GameyMickGameFace.Menus;
 using GameyMickGameFace.Physics;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
@@ -7,11 +8,18 @@ using Microsoft.Xna.Framework.Input;
 
 namespace GameyMickGameFace
 {
+    public enum GameStates
+    {
+        Title, InGame
+    }
+
     /// <summary>
     /// This is the main type for your game.
     /// </summary>
     public class Game1 : Game
     {
+        public static GameStates GameState;
+
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
@@ -34,6 +42,8 @@ namespace GameyMickGameFace
         PowerUp Health;
 
 
+        Title TitleScreen;
+
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -43,6 +53,7 @@ namespace GameyMickGameFace
 
             Health = new PowerUp();
             Health.Name = "Health";
+            GameState = GameStates.Title;
 
         }
 
@@ -140,6 +151,9 @@ namespace GameyMickGameFace
             physicsManager.AddBody(Floor.Body);
 
             BackGround = Content.Load<Texture2D>("Images/woodenwallwithfloor");
+            
+                        TitleScreen = new Title();
+            Media.Textures.TitleScreen = Content.Load<Texture2D>("Images/Title");
 
             Platform1Texture = Content.Load<Texture2D>("Images/longshelf");
             Platform1 = new Tile(new Point(150, 200), Platform1Texture.Width, Platform1Texture.Height, 0, 0);
@@ -200,9 +214,18 @@ namespace GameyMickGameFace
                 }
             }
 
-            physicsManager.UpdatePhysics(gameTime);
+            if (GameState == GameStates.Title)
+            {
+                TitleScreen.Update(gameTime);
+            }
+            else
+            {
+                physicsManager.UpdatePhysics(gameTime);
 
-            TempPlayer.Update(gameTime);
+                TempPlayer.Update(gameTime);
+            }
+
+            
 
             Health.Update(gameTime);
 
@@ -220,14 +243,20 @@ namespace GameyMickGameFace
             GraphicsDevice.Clear(Color.Black);
             spriteBatch.Begin();
 
-            spriteBatch.Draw(BackGround, Vector2.Zero, Color.White);
+            if (GameState == GameStates.Title)
+            {
+                TitleScreen.Draw(gameTime, spriteBatch);
+            }
+            else
+            {
+                spriteBatch.Draw(BackGround, Vector2.Zero, Color.White);
             spriteBatch.Draw(Platform1Texture, new Vector2(150, 200), Color.White);
             spriteBatch.Draw(Platform2Texture, new Vector2(50, 400), Color.White);
             spriteBatch.Draw(Platform3Texture, new Vector2(750, 400), Color.White);
-            spriteBatch.DrawString(Media.Fonts.GUI, "Welcome to LD 36", new Vector2(100, 100), Color.White, 0f, Vector2.Zero, 2f, SpriteEffects.None, 0);
+                spriteBatch.DrawString(Media.Fonts.GUI, "Welcome to LD 36", new Vector2(100, 100), Color.White, 0f, Vector2.Zero, 2f, SpriteEffects.None, 0);
 
-            TempPlayer.Draw(gameTime, spriteBatch);
-
+                TempPlayer.Draw(gameTime, spriteBatch);
+            }
             Health.Draw(gameTime, spriteBatch);
 
             if (PhysicsDrawn)

@@ -937,3 +937,14 @@
 /processorParam:TextureFormat=Color
 /build:Characters/OtterFrames/Otter_Otter_Walking_029.png
 
+#begin Images/Title.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:TextureFormat=Color
+/build:Images/Title.png
+

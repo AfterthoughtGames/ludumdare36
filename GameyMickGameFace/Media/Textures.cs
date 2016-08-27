@@ -9,5 +9,6 @@ namespace GameyMickGameFace.Media
     public class Textures
     {
         public static Texture2D PlayerTemp { get; set; }
+        public static Texture2D TitleScreen { get; set; }
     }
 }
