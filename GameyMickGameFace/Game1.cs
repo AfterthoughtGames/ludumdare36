@@ -60,7 +60,7 @@ namespace GameyMickGameFace
             physicsManager.AddBody(TempPlayer.PhysicsBody);
             BlockerTest = new Tile(new Point(250, 250), 95, 86, 0, 0);
             physicsManager.AddBody(BlockerTest.Body);
-            BackGround = Content.Load<Texture2D>("Background");
+            BackGround = Content.Load<Texture2D>("Images\\Background");
             // TODO: use this.Content to load your game content here
 
             //Temp Code

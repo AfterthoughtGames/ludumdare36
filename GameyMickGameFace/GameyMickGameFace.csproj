@@ -87,9 +87,7 @@
     <Content Include="Content\GUIFont.xnb">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <None Include="Content\Background.xnb">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
+    <None Include="Content\Background.xnb" />
     <None Include="Content\Images\Background.xnb" />
     <None Include="Content\Images\Bow.xnb" />
     <None Include="Content\Images\playersqaure.xnb" />
