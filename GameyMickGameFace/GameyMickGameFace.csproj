@@ -43,6 +43,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Game1.cs" />
+    <Compile Include="GameObjects\Tile.cs" />
     <Compile Include="GameObjects\Weapon.cs" />
     <Compile Include="Level.cs" />
     <Compile Include="GameObjects\Player.cs" />

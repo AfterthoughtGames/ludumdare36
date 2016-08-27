@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using GameyMickGameFace.Physics;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
@@ -13,6 +14,8 @@ namespace GameyMickGameFace.GameObjects
         public int Heath { get; set; }
         public string Name { get; set; }
         public Vector2 Position { get; set; }
+
+        public Body PhysicsBody { get; set; }
 
         public int PlayerNumber { get; set; }
         public GamePadState PreviousState { get; set; }
