@@ -30,6 +30,16 @@ namespace GameyMickGameFace.GameObjects
             {
                 Position = new Vector2(Position.X - 1, Position.Y);
             }
+
+            if (currentPadState.DPad.Down == ButtonState.Pressed)
+            {
+                Position = new Vector2(Position.X, Position.Y + 1);
+            }
+
+            if (currentPadState.DPad.Up == ButtonState.Pressed)
+            {
+                Position = new Vector2(Position.X, Position.Y - 1);
+            }
         }
 
         public void Draw(GameTime time, SpriteBatch batch)
