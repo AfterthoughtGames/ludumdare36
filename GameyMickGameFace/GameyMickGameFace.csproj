@@ -94,6 +94,9 @@
     <None Include="Content\Images\sword.xnb" />
     <None Include="Content\Images\trebuchet.xnb" />
     <None Include="Content\Images\Trident.xnb" />
+    <None Include="Content\Images\woodenwall.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Content\playersqaure.xnb">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
