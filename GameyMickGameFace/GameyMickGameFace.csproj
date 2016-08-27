@@ -76,6 +76,7 @@
     <Content Include="Content\Images\flyingshoe.png" />
     <Content Include="Content\Images\healthUp.png" />
     <Content Include="Content\Images\longshelf.png" />
+    <Content Include="Content\Images\mediumShelf.png" />
     <Content Include="Content\Images\playersqaure.png" />
     <Content Include="Content\Images\playersqaure2.png" />
     <Content Include="Content\Images\shortshelf.png" />
@@ -100,6 +101,7 @@
     <None Include="Content\Images\Flame.xnb" />
     <None Include="Content\Images\flyingshoe.xnb" />
     <None Include="Content\Images\healthUp.xnb" />
+    <None Include="Content\Images\mediumShelf.xnb" />
     <None Include="Content\Images\playersqaure.xnb" />
     <None Include="Content\Images\playersqaure2.xnb" />
     <None Include="Content\Images\sword.xnb" />
