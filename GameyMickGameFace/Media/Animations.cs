@@ -9,5 +9,6 @@ namespace GameyMickGameFace.Media
     public class Animations
     {
         public static Animation PlayerWalk { get; set; }
+        public static Animation PlayerIdel { get; set; }
     }
 }

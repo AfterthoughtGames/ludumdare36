@@ -51,11 +51,13 @@ namespace GameyMickGameFace
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            Media.Animations.PlayerWalk = new Animation();
+            Media.Animations.PlayerWalk = new Animation(500);
+            Media.Animations.PlayerIdel = new Animation(1000);
 
             Media.Fonts.GUI = Content.Load<SpriteFont>("GUIFont");
             Media.Animations.PlayerWalk.AddTexture(Content.Load<Texture2D>("Images/playersqaure"));
             Media.Animations.PlayerWalk.AddTexture(Content.Load<Texture2D>("Images/playersqaure2"));
+            Media.Animations.PlayerIdel.AddTexture(Content.Load<Texture2D>("Images/playersqaure"));
             TempPlayer = new Player();
             physicsManager.AddBody(TempPlayer.PhysicsBody);
             BlockerTest = new Tile(new Point(250, 250), 95, 86, 0, 0);
