@@ -157,7 +157,7 @@ namespace GameyMickGameFace
             {
                 physicsManager.UpdatePhysics(gameTime);
 
-                TempPlayer.Update(gameTime);
+                TempPlayer.Update(gameTime, physicsManager);
             }
 
             Health.Update(gameTime);
@@ -213,7 +213,6 @@ namespace GameyMickGameFace
 
             spriteBatch.End();
 
-            // TODO: Add your drawing code here
 
             base.Draw(gameTime);
         }

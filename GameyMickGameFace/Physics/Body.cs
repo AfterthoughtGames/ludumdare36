@@ -6,6 +6,11 @@ using System.Text;
 
 namespace GameyMickGameFace.Physics
 {
+    public enum BodyDetectionType
+    {
+        Left, Right, Top, Bottom
+    }
+
     public class Body
     {
         public Vector2 parentOffset;
@@ -19,6 +24,7 @@ namespace GameyMickGameFace.Physics
         public float InverseMass;
         public float LinearDampening;
         public bool reactsToCollision = true;
+        public BodyDetectionType bodyType;
 
         public object objRef;
 
