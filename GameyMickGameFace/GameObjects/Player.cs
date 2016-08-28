@@ -47,6 +47,9 @@ namespace GameyMickGameFace.GameObjects
         private static int jumpVelo = -1790;
         private static int attackDistance = 50;
 
+        TimeSpan AILastAttack;
+        int SecBetweenAttack = 200;
+
         public Player(int seed)
         {
             rand = new Random(seed);
@@ -240,6 +243,17 @@ namespace GameyMickGameFace.GameObjects
                     if (target != null && target.PhysicsBody.Position.Y < PhysicsBody.Position.Y)
                     {
                         //it is up
+                        float waypointDistance = 99999999;
+
+                        foreach (Waypoint waypoint in Game1.Level.Waypoints)
+                        {
+                            onLevel = Math.Abs(waypoint.Location.Y - PhysicsBody.Position.Y) > 180;
+                            if (onLevel && (waypoint.Location - PhysicsBody.Position).Length() < waypointDistance)
+                            {
+                                point = waypoint;
+                                waypointDistance = (waypoint.Location - PhysicsBody.Position).Length();
+                            }
+                        }
                     }
                     else
                     {
@@ -302,7 +316,11 @@ namespace GameyMickGameFace.GameObjects
                     }
                     else
                     {
-                        Attack();
+                        if ((time.TotalGameTime - AILastAttack).Milliseconds >= SecBetweenAttack)
+                        {
+                            AILastAttack = time.TotalGameTime;
+                            Attack();
+                        }
                     }
                 }
             }
@@ -438,7 +456,7 @@ namespace GameyMickGameFace.GameObjects
         {
             foreach (Player player in Level.Players)
             {
-                if (player != this && (this.PhysicsBody.Position - player.PhysicsBody.Position).Length() < attackDistance)
+                if (player != this && (this.PhysicsBody.Position - player.PhysicsBody.Position).Length() <= attackDistance)
                 {
                     //hit
                     if (Weapon != null)
