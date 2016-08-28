@@ -219,10 +219,7 @@ namespace GameyMickGameFace.GameObjects
                 str = str + (int)(TimeLeft % 60);
             }
 
-            foreach(Waypoint waypoint in Waypoints)
-            {
-                waypoint.Draw(spriteBatch);
-            }
+            
 
             str = "OST Games: Ludum Dare 36";
 
@@ -283,6 +280,11 @@ namespace GameyMickGameFace.GameObjects
 
             if (PhysicsDrawn)
             {
+                foreach (Waypoint waypoint in Waypoints)
+                {
+                    waypoint.Draw(spriteBatch);
+                }
+
                 foreach (Body Body in physicsManager.GetBodies())
                 {
                     if (Body.reactsToCollision)
