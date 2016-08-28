@@ -65,14 +65,12 @@ namespace GameyMickGameFace
         double TimeLeft;
 
 
-
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
             graphics.PreferredBackBufferWidth = 1280;
             graphics.PreferredBackBufferHeight = 720;
             Content.RootDirectory = "Content";
-
             GameState = GameStates.Title;
         }
 
@@ -151,6 +149,11 @@ namespace GameyMickGameFace
             physicsManager.AddBody(Platform3.Body);
 
             PhysicsBox = Content.Load<Texture2D>("Images/blacksquare");
+
+            //Flying = new FlyingPowerUp(Media.Textures.flyingTexture, new Point(130, 135));
+            //physicsManager.AddBody(Flying.PhysicsBody);
+
+            //End Powerups
 
             Level = new Level(physicsManager);
 
