@@ -161,6 +161,7 @@ namespace GameyMickGameFace.GameObjects
                 if (Weapon.cleanMeUpBitches)
                 {
                     Weapons.Remove(Weapon);
+                    physicsManager.RemoveBody(Weapon.PhysicsBody);
                     break;
                 }
             }
@@ -170,8 +171,9 @@ namespace GameyMickGameFace.GameObjects
                 PowerUp.Update(gameTime);
 
                 if (PowerUp.cleanMeUpBitches)
-                {
+                {                    
                     PowerUps.Remove(PowerUp);
+                    physicsManager.RemoveBody(PowerUp.PhysicsBody);
                     break;
                 }
             }

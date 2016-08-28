@@ -38,6 +38,7 @@ namespace GameyMickGameFace.GameObjects
             player.Weapon = this;
             cleanMeUpBitches = true;
         }
+            
 
         public virtual void Draw(GameTime time, SpriteBatch batch)
         {

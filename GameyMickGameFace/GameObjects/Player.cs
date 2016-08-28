@@ -283,7 +283,7 @@ namespace GameyMickGameFace.GameObjects
                 if (!onLevel)
                 {
                     Waypoint point = null;
-                    if (target.PhysicsBody.Position.Y > PhysicsBody.Position.Y)
+                    if (target != null && target.PhysicsBody.Position.Y > PhysicsBody.Position.Y)
                     {
                         //it is up
                     }
@@ -304,7 +304,7 @@ namespace GameyMickGameFace.GameObjects
 
                     bool Left = false;
                     //find enemy direction
-                    if (point.Location.X - 50 < PhysicsBody.Position.X)
+                    if (point != null && point.Location.X - 50 < PhysicsBody.Position.X)
                     {
                         Left = true;
                     }
@@ -325,7 +325,7 @@ namespace GameyMickGameFace.GameObjects
                 {
                     bool Left = false;
                     //find enemy direction
-                    if (target.PhysicsBody.Position.X - 50 < PhysicsBody.Position.X)
+                    if (target != null && target.PhysicsBody.Position.X - 50 < PhysicsBody.Position.X)
                     {
                         Left = true;
                     }
@@ -429,6 +429,23 @@ namespace GameyMickGameFace.GameObjects
                     if (body != body2 && body.MotionPhysicsBody.Intersects(body2.MotionPhysicsBody)
                         && (body.reactsToCollision && body2.reactsToCollision))
                     {
+                        if (body.objRef is Player && body2.objRef is PowerUp)
+                        {
+                            ((PowerUp)body2.objRef).OnPickup((Player)body.objRef);
+                        }
+                        else if (body2.objRef is PowerUp && body.objRef is Player)
+                        {
+                            ((PowerUp)body2.objRef).OnPickup((Player)body.objRef);
+                        }
+                        else if (body.objRef is Player && body2.objRef is Weapon)
+                        {
+                            ((Weapon)body2.objRef).OnPickUp((Player)body.objRef);
+                        }
+                        else if (body2.objRef is Weapon && body.objRef is Player)
+                        {
+                            ((Weapon)body2.objRef).OnPickUp((Player)body.objRef);
+                        }
+                        else { 
                         switch (body.bodyType)
                         {
                             case BodyDetectionType.Left:
@@ -465,14 +482,6 @@ namespace GameyMickGameFace.GameObjects
                                     break;
                                 }
                         }
-
-                        if (body.objRef is PowerUp && body2.objRef is Player)
-                        {
-                            ((PowerUp)body.objRef).OnPickup((Player)body2.objRef);
-                        }
-                        else if (body2.objRef is PowerUp && body.objRef is Player)
-                        {
-                            ((PowerUp)body2.objRef).OnPickup((Player)body.objRef);
                         }
                     }
                 }

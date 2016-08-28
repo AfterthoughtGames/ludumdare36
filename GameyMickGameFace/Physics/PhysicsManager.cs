@@ -17,6 +17,11 @@ namespace GameyMickGameFace.Physics
             Bodies.Add(body);
         }
 
+        public void RemoveBody(Body body)
+        {
+            Bodies.Remove(body);
+        }
+
         public List<Body> GetBodies()
         {
             return Bodies;
