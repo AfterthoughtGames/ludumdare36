@@ -12,11 +12,10 @@ namespace GameyMickGameFace.GameObjects.PowerUps
     {
         Texture2D flyingTexture;
 
-        public FlyingPowerUp(Texture2D flyingTexture, Point position)
-            : base(flyingTexture, position)
+        public FlyingPowerUp(Texture2D flyingTexture, int seed)
+            : base(flyingTexture, seed)
         {
             Name = "Flying";
-            scale = .50f;
             this.flyingTexture = flyingTexture;
         }
 
@@ -28,10 +27,6 @@ namespace GameyMickGameFace.GameObjects.PowerUps
         public override void Draw(GameTime time, SpriteBatch batch)
         {
             base.Draw(time, batch);
-
-            Vector2 animationScale = new Vector2(.18f);
-            Vector2 pos = new Vector2(position.X, position.Y - 22);
-            batch.Draw(flyingTexture, pos, null, null, null, default(float), animationScale);
         }
 
         public override void Update(GameTime time)

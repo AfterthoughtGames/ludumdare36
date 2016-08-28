@@ -15,14 +15,29 @@ namespace GameyMickGameFace.GameObjects.PowerUps
         public Point position { get; set; }
         public float scale { get; set; }
         public bool cleanMeUpBitches { get; set; }
+        Random rand;
 
-        public PowerUp(Texture2D texture, Point position)
+        public PowerUp(Texture2D texture, int seed)
         {
             cleanMeUpBitches = false;
-            scale = .25f;
+            if (texture.Name.Equals("Images/potionSmall"))
+            {
+                scale = .5f;
+            }
+            else if (texture.Name.Equals("Images/speedcrystals"))
+            {
+                scale = .1f;
+            }
+            else
+            {
+                scale = .1f;
+            }
+
+            rand = new Random(seed);
             this.texture = texture;
-            this.position = position;
-            PhysicsBody = new Body(position, Convert.ToInt16(texture.Width * scale), Convert.ToInt16(texture.Height * scale), 0, 100, .85f, this);
+            position = Level.PickupSpots[rand.Next(0, Level.PickupSpots.Count)];
+            position = position - new Point(0, (int)(this.texture.Height * scale));
+            PhysicsBody = new Body(position, Convert.ToInt16(this.texture.Width * scale), Convert.ToInt16(this.texture.Height * scale), 0, 100, .85f, this);
         }
 
         public virtual void OnPickup(Player effectedPlayer)

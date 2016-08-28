@@ -1,5 +1,5 @@
 ﻿using GameyMickGameFace.GameObjects.PowerUps;
-﻿using GameyMickGameFace.AI;
+using GameyMickGameFace.AI;
 using GameyMickGameFace.Media;
 using GameyMickGameFace.Particles;
 using GameyMickGameFace.Physics;
@@ -263,13 +263,13 @@ namespace GameyMickGameFace.GameObjects
                     onLevel = Math.Abs(weapon.PhysicsBody.Position.Y - PhysicsBody.Position.Y) < 250;
                     if (Weapondistance < distance && (!foundOnLevel || (foundOnLevel == onLevel)))
                     {
-                        if(Math.Abs(weapon.PhysicsBody.Position.Y - PhysicsBody.Position.Y) < 250)
+                        if (Math.Abs(weapon.PhysicsBody.Position.Y - PhysicsBody.Position.Y) < 250)
                         {
                             foundOnLevel = true;
                             distance = Weapondistance;
                             target = weapon;
                         }
-                        else if(!foundOnLevel)
+                        else if (!foundOnLevel)
                         {
                             distance = Weapondistance;
                             target = weapon;
@@ -291,7 +291,7 @@ namespace GameyMickGameFace.GameObjects
                     {
                         //it is down
                         float waypointDistance = 99999999;
-                        
+
                         foreach (Waypoint waypoint in Game1.Level.Waypoints)
                         {
                             if ((waypoint.Location - PhysicsBody.Position).Length() < waypointDistance)
@@ -445,43 +445,44 @@ namespace GameyMickGameFace.GameObjects
                         {
                             ((Weapon)body2.objRef).OnPickUp((Player)body.objRef);
                         }
-                        else { 
-                        switch (body.bodyType)
+                        else
                         {
-                            case BodyDetectionType.Left:
-                                {
-                                    if (PhysicsBody.Velocity.X < 0)
+                            switch (body.bodyType)
+                            {
+                                case BodyDetectionType.Left:
                                     {
-                                        PhysicsBody.Velocity.X = 0;
+                                        if (PhysicsBody.Velocity.X < 0)
+                                        {
+                                            PhysicsBody.Velocity.X = 0;
+                                        }
+                                        break;
                                     }
-                                    break;
-                                }
-                            case BodyDetectionType.Right:
-                                {
-                                    if (PhysicsBody.Velocity.X > 0)
+                                case BodyDetectionType.Right:
                                     {
-                                        PhysicsBody.Velocity.X = 0;
+                                        if (PhysicsBody.Velocity.X > 0)
+                                        {
+                                            PhysicsBody.Velocity.X = 0;
+                                        }
+                                        break;
                                     }
-                                    break;
-                                }
-                            case BodyDetectionType.Top:
-                                {
-                                    if (PhysicsBody.Velocity.Y < 0)
+                                case BodyDetectionType.Top:
                                     {
-                                        PhysicsBody.Velocity.Y = 0;
+                                        if (PhysicsBody.Velocity.Y < 0)
+                                        {
+                                            PhysicsBody.Velocity.Y = 0;
+                                        }
+                                        break;
                                     }
-                                    break;
-                                }
-                            case BodyDetectionType.Bottom:
-                                {
-                                    if (PhysicsBody.Velocity.Y > 0)
+                                case BodyDetectionType.Bottom:
                                     {
-                                        PhysicsBody.Velocity.Y = 0;
-                                        jumping = false;
+                                        if (PhysicsBody.Velocity.Y > 0)
+                                        {
+                                            PhysicsBody.Velocity.Y = 0;
+                                            jumping = false;
+                                        }
+                                        break;
                                     }
-                                    break;
-                                }
-                        }
+                            }
                         }
                     }
                 }
