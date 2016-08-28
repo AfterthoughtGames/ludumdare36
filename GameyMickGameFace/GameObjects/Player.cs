@@ -21,6 +21,7 @@ namespace GameyMickGameFace.GameObjects
         // public Vector2 Position { get; set; }
 
         float scale = 0.4f;
+        bool jumping = false;
 
         public Weapon Weapon { get; set; }
         Random rand;
@@ -113,11 +114,12 @@ namespace GameyMickGameFace.GameObjects
                         PhysicsBody.AddVelocity(new Vector2(0, 100));
                         keyboardControlled = true;
                     }
-                    else if (currentState.IsKeyDown(Keys.Up) || currentState.IsKeyDown(Keys.W))
+                    else if (!jumping && (currentState.IsKeyDown(Keys.Up) || currentState.IsKeyDown(Keys.W)))
                     {
                         AnimationState = PlayerAnimationState.Standing;
-                        PhysicsBody.AddVelocity(new Vector2(0, -600));
+                        PhysicsBody.AddVelocity(new Vector2(0, -6000));
                         keyboardControlled = true;
+                        jumping = true;
                     }
 
                 }
@@ -155,8 +157,6 @@ namespace GameyMickGameFace.GameObjects
                         AnimationState = PlayerAnimationState.Standing;
                     }
                 }
-
-                PhysicsBody.AddVelocity(new Vector2(0, 200));
 
                 keyboardControlled = false;
 
@@ -233,7 +233,7 @@ namespace GameyMickGameFace.GameObjects
 
         public void provideGravity(GameTime time, PhysicsManager manager)
         {
-            PhysicsBody.AddVelocity(Vector2.Multiply(new Vector2(0, 10), time.ElapsedGameTime.Milliseconds));
+            PhysicsBody.AddVelocity(new Vector2(0, 10));
         }
 
         public void UpdateBodyPhysicsDetection()
@@ -287,6 +287,7 @@ namespace GameyMickGameFace.GameObjects
                                     {
                                         PhysicsBody.Velocity.Y = 0;
                                     }
+                                    jumping = false;
                                     break;
                                 }
 
