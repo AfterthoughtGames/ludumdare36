@@ -44,6 +44,9 @@ namespace GameyMickGameFace
         Texture2D Platform2Texture;
         Texture2D Platform3Texture;
         Texture2D PhysicsBox;
+        Tile LeftWall;
+        Tile RightWall;
+        Tile Ceiling;
         Tile Floor;
         Tile Platform1;
         Tile Platform2;
@@ -115,8 +118,14 @@ namespace GameyMickGameFace
             Media.Textures.Load(Content);
             Media.Music.Load(Content);
 
-            Floor = new Tile(new Point(-100, 650), 1800, 30, 0, 0);
+            Floor = new Tile(new Point(-100, levelFloor), 1800, 30, 0, 0);
             physicsManager.AddBody(Floor.Body);
+            LeftWall = new Tile(new Point(-100, -100), 80, 1800, 0, 0);
+            physicsManager.AddBody(LeftWall.Body);
+            RightWall = new Tile(new Point(1300, -100), 30, 1800, 0, 0);
+            physicsManager.AddBody(RightWall.Body);
+            Ceiling = new Tile(new Point(-100, -20), 1800, 30, 0, 0);
+            physicsManager.AddBody(Ceiling.Body);
 
             BackGround = Content.Load<Texture2D>("Images/woodenwallwithfloor");
 
@@ -269,22 +278,26 @@ namespace GameyMickGameFace
 
                 foreach (Body body in Level.Player1.DetectionPhysicsBodies)
                 {
-                    spriteBatch.Draw(PhysicsBox, new Rectangle((int)(Level.Player1.PhysicsBody.Position.X + body.parentOffset.X), (int)(Level.Player1.PhysicsBody.Position.Y + body.parentOffset.Y), body.width, body.height), Color.White);
+                    spriteBatch.Draw(PhysicsBox, new Rectangle((int)(Level.Player1.PhysicsBody.Position.X + body.parentOffset.X), 
+                        (int)(Level.Player1.PhysicsBody.Position.Y + body.parentOffset.Y), body.width, body.height), Color.White);
                 }
 
                 foreach (Body body in Level.Player2.DetectionPhysicsBodies)
                 {
-                    spriteBatch.Draw(PhysicsBox, new Rectangle((int)(Level.Player2.PhysicsBody.Position.X + body.parentOffset.X), (int)(Level.Player2.PhysicsBody.Position.Y + body.parentOffset.Y), body.width, body.height), Color.White);
+                    spriteBatch.Draw(PhysicsBox, new Rectangle((int)(Level.Player2.PhysicsBody.Position.X + body.parentOffset.X), 
+                        (int)(Level.Player2.PhysicsBody.Position.Y + body.parentOffset.Y), body.width, body.height), Color.White);
                 }
 
                 foreach (Body body in Level.Player3.DetectionPhysicsBodies)
                 {
-                    spriteBatch.Draw(PhysicsBox, new Rectangle((int)(Level.Player3.PhysicsBody.Position.X + body.parentOffset.X), (int)(Level.Player3.PhysicsBody.Position.Y + body.parentOffset.Y), body.width, body.height), Color.White);
+                    spriteBatch.Draw(PhysicsBox, new Rectangle((int)(Level.Player3.PhysicsBody.Position.X + body.parentOffset.X), 
+                        (int)(Level.Player3.PhysicsBody.Position.Y + body.parentOffset.Y), body.width, body.height), Color.White);
                 }
 
                 foreach (Body body in Level.Player4.DetectionPhysicsBodies)
                 {
-                    spriteBatch.Draw(PhysicsBox, new Rectangle((int)(Level.Player4.PhysicsBody.Position.X + body.parentOffset.X), (int)(Level.Player4.PhysicsBody.Position.Y + body.parentOffset.Y), body.width, body.height), Color.White);
+                    spriteBatch.Draw(PhysicsBox, new Rectangle((int)(Level.Player4.PhysicsBody.Position.X + body.parentOffset.X), 
+                        (int)(Level.Player4.PhysicsBody.Position.Y + body.parentOffset.Y), body.width, body.height), Color.White);
                 }
             }
 
