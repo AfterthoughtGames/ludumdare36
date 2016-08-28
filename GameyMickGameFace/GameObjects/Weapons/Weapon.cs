@@ -28,7 +28,7 @@ namespace GameyMickGameFace.GameObjects
             rand = new Random(seed);
             Scale = 0.1f;
             Texture = texture;
-            Position = Game1.PickupSpots[rand.Next(0, Game1.PickupSpots.Count)];
+            Position = Level.PickupSpots[rand.Next(0, Level.PickupSpots.Count)];
             Position = Position - new Point(0, (int)(Texture.Height * Scale));
             PhysicsBody = new Body(Position, Convert.ToInt16(texture.Width * Scale), Convert.ToInt16(texture.Height * Scale), 0, 100, .85f, this);
         }

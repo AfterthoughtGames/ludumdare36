@@ -1,4 +1,5 @@
-﻿using GameyMickGameFace.Media;
+﻿using GameyMickGameFace.GameObjects;
+using GameyMickGameFace.Media;
 using GameyMickGameFace.Physics;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -75,13 +76,13 @@ namespace GameyMickGameFace.Particles
                     if (!splat)
                     {
                         Dead = true;
-                        Game1.Particles.Remove(this);
+                        Level.Particles.Remove(this);
                         splat = true;
                         for (int i = 0; i < 10; i++)
                         {
                             Particle particle = new Particle(PhysicsBody.MotionPhysicsBody.Location, .25f, Textures.bloodParticle, new Vector2(rand.Next(-150,150),rand.Next(-150,150)));
                             particle.splat = true;
-                            Game1.Particles.Add(particle);
+                            Level.Particles.Add(particle);
                         }
                     }
                     else
@@ -92,7 +93,7 @@ namespace GameyMickGameFace.Particles
                         if(life < 0)
                         {
                             Dead = true;
-                            Game1.Particles.Remove(this);
+                            Level.Particles.Remove(this);
                         }
                     }
                 }

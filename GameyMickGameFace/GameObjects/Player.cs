@@ -46,7 +46,7 @@ namespace GameyMickGameFace.GameObjects
         public Player(int seed)
         {
             rand = new Random(seed);
-            Point position = Game1.PlayerSpawnPoints[rand.Next(0, Game1.PlayerSpawnPoints.Count)];
+            Point position = Level.PlayerSpawnPoints[rand.Next(0, Level.PlayerSpawnPoints.Count)];
 
             AnimationState = PlayerAnimationState.Standing;
             PreviousAnimationState = PlayerAnimationState.Standing;
@@ -169,7 +169,7 @@ namespace GameyMickGameFace.GameObjects
             else //Dead
             {
                 Health = 100;
-                PhysicsBody.Position = Game1.PlayerSpawnPoints[rand.Next(0, Game1.PlayerSpawnPoints.Count)].ToVector2();
+                PhysicsBody.Position = Level.PlayerSpawnPoints[rand.Next(0, Level.PlayerSpawnPoints.Count)].ToVector2();
 
                 //remove 5 points for death
                 Score -= 5;
@@ -208,7 +208,7 @@ namespace GameyMickGameFace.GameObjects
             int distance = 999999;
             Player target = null;
             //find the closest player
-            foreach (Player enemy in Game1.Players)
+            foreach (Player enemy in Level.Players)
             {
 
                 if (enemy != this)
@@ -270,7 +270,7 @@ namespace GameyMickGameFace.GameObjects
 
         public void Attack()
         {
-            foreach (Player player in Game1.Players)
+            foreach (Player player in Level.Players)
             {
                 if (player != this && (this.PhysicsBody.Position - player.PhysicsBody.Position).Length() < 50)
                 {
@@ -294,7 +294,7 @@ namespace GameyMickGameFace.GameObjects
                     {
                         rotation = Matrix.CreateRotationZ(currentRotation);
                         Particle particle = new Particle(location, .5f, Textures.bloodParticle, Vector2.Transform(initialVelocity, rotation));
-                        Game1.Particles.Add(particle);
+                        Level.Particles.Add(particle);
                         currentRotation += .15f;
                     }
                 }
