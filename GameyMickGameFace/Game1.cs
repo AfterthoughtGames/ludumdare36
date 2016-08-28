@@ -15,7 +15,7 @@ namespace GameyMickGameFace
 {
     public enum GameStates
     {
-        Title, InGame
+        Title, InGame, EndGame
     }
 
     /// <summary>
@@ -227,6 +227,11 @@ namespace GameyMickGameFace
                 }
             }
 
+            if (currentState.IsKeyDown(Keys.F2) && !PreviousKeyState.IsKeyDown(Keys.F2))
+            {
+                GameState = GameStates.EndGame;
+            }
+
             if (GameState == GameStates.Title)
             {
                 TitleScreen.Update(gameTime);
@@ -266,6 +271,7 @@ namespace GameyMickGameFace
         {
             GraphicsDevice.Clear(Color.Black);
             spriteBatch.Begin();
+
 
             if (GameState == GameStates.Title)
             {
