@@ -2,6 +2,7 @@
 using GameyMickGameFace.GameObjects.PowerUps;
 using GameyMickGameFace.GameObjects.Weapons;
 using GameyMickGameFace.Menus;
+using GameyMickGameFace.Particles;
 using GameyMickGameFace.Physics;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -23,6 +24,8 @@ namespace GameyMickGameFace
     {
         public static GameStates GameState;
         public static List<Player> Players = new List<Player>();
+
+        public static List<Particle> Particles = new List<Particle>();
 
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
@@ -219,6 +222,12 @@ namespace GameyMickGameFace
 
             PreviousKeyState = currentState;
 
+            //update all blood particles
+            for(int i=0;i<Particles.Count;i++)
+            {
+                Particles[i].Update(gameTime, physicsManager);
+            }
+
             base.Update(gameTime);
         }
 
@@ -300,6 +309,11 @@ namespace GameyMickGameFace
                 {
                     spriteBatch.Draw(PhysicsBox, new Rectangle((int)(Player4.PhysicsBody.Position.X + body.parentOffset.X), (int)(Player4.PhysicsBody.Position.Y + body.parentOffset.Y), body.width, body.height), Color.White);
                 }
+            }
+
+            foreach(Particle particle in Particles)
+            {
+                particle.Draw(gameTime, spriteBatch);
             }
 
             spriteBatch.End();

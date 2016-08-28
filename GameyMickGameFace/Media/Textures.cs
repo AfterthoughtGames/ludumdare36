@@ -16,6 +16,7 @@ namespace GameyMickGameFace.Media
             SwordTexture = cm.Load<Texture2D>("Images/sword");
             TridentTexture = cm.Load<Texture2D>("Images/Trident");
             BowTexture = cm.Load<Texture2D>("Images/Bow");
+            bloodParticle = cm.Load<Texture2D>("Images/BloodParticle");
         }
 
         public static Texture2D TitleScreen { get; set; }
@@ -23,5 +24,6 @@ namespace GameyMickGameFace.Media
         public static Texture2D SwordTexture { get; set; }
         public static Texture2D TridentTexture { get; set; }
         public static Texture2D BowTexture { get; set; }
+        public static Texture2D bloodParticle { get; set; }
     }
 }
