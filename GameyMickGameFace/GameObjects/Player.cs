@@ -250,14 +250,25 @@ namespace GameyMickGameFace.GameObjects
             else //need a weapon
             {
                 Weapon target = null;
+                bool foundOnLevel = false;
                 //find the closest player
                 foreach (Weapon weapon in Game1.Level.Weapons)
                 {
                     int Weapondistance = (int)((weapon.PhysicsBody.Position - new Vector2(50, 50)) - PhysicsBody.Position).Length();
-                    if (Weapondistance < distance)
+                    bool onLevel = Math.Abs(weapon.PhysicsBody.Position.Y - PhysicsBody.Position.Y) < 250;
+                    if (Weapondistance < distance && (!foundOnLevel || (foundOnLevel == onLevel)))
                     {
-                        distance = Weapondistance;
-                        target = weapon;
+                        if(Math.Abs(weapon.PhysicsBody.Position.Y - PhysicsBody.Position.Y) < 250)
+                        {
+                            foundOnLevel = true;
+                            distance = Weapondistance;
+                            target = weapon;
+                        }
+                        else if(!foundOnLevel)
+                        {
+                            distance = Weapondistance;
+                            target = weapon;
+                        }
                     }
                 }
 
