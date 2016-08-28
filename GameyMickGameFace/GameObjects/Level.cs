@@ -1,4 +1,5 @@
-﻿using GameyMickGameFace.GameObjects.PowerUps;
+﻿using GameyMickGameFace.AI;
+using GameyMickGameFace.GameObjects.PowerUps;
 using GameyMickGameFace.GameObjects.Weapons;
 using GameyMickGameFace.Particles;
 using GameyMickGameFace.Physics;
@@ -22,6 +23,7 @@ namespace GameyMickGameFace.GameObjects
         public static List<Point> PickupSpots = new List<Point>();
         public List<Weapon> Weapons;
         public List<PowerUp> PowerUps;
+        public List<Waypoint> Waypoints;
 
         private DateTime StartTime;
         public TimeSpan TimeSpent;
@@ -131,6 +133,8 @@ namespace GameyMickGameFace.GameObjects
             Platform3 = new Tile(new Point(750, levelOne), Media.Textures.Platform3Texture.Width, Media.Textures.Platform3Texture.Height - 30, 0, 0);
             physicsManager.AddBody(Platform3.Body);
 
+            addWaypoints();
+
         }
 
         public void Update(GameTime gameTime)
@@ -214,6 +218,14 @@ namespace GameyMickGameFace.GameObjects
             {
                 str = str + (int)(TimeLeft % 60);
             }
+
+            foreach(Waypoint waypoint in Waypoints)
+            {
+                waypoint.Draw(spriteBatch);
+            }
+
+            str = "OST Games: Ludum Dare 36";
+
             Vector2 strSize = Media.Fonts.GUI.MeasureString(str);
             spriteBatch.DrawString(Media.Fonts.GUI, str, new Vector2(((spriteBatch.GraphicsDevice.Viewport.Width / 2) - strSize.X), 10), Color.White, 0f, Vector2.Zero, 2f, SpriteEffects.None, 0);
 
@@ -308,6 +320,19 @@ namespace GameyMickGameFace.GameObjects
             {
                 particle.Draw(gameTime, spriteBatch);
             }
+        }
+
+        private void addWaypoints()
+        {
+            Waypoints = new List<Waypoint>();
+
+            //top level downs
+            Waypoints.Add(new Waypoint(new Vector2(100, 150), false));
+            Waypoints.Add(new Waypoint(new Vector2(1020, 150), false));
+            //middle level downs
+            Waypoints.Add(new Waypoint(new Vector2(0, 350), false));
+            Waypoints.Add(new Waypoint(new Vector2(1220, 350), false));
+            Waypoints.Add(new Waypoint(new Vector2(670, 350), false));
         }
     }
 }
