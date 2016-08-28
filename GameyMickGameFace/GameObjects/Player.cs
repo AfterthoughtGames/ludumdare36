@@ -437,55 +437,62 @@ namespace GameyMickGameFace.GameObjects
                         {
                             ((PowerUp)body2.objRef).OnPickup((Player)body.objRef);
                         }
-                        else if (body2.objRef is PowerUp && body.objRef is Player)
+                        else if (body.objRef is PowerUp && body2.objRef is Player)
                         {
-                            ((PowerUp)body2.objRef).OnPickup((Player)body.objRef);
+                            ((PowerUp)body.objRef).OnPickup((Player)body2.objRef);
                         }
                         else if (body.objRef is Player && body2.objRef is Weapon)
                         {
-                            ((Weapon)body2.objRef).OnPickUp((Player)body.objRef);
+                            if (((Player)body.objRef).Weapon == null)
+                            {
+                                ((Weapon)body2.objRef).OnPickUp((Player)body.objRef);
+                            }
                         }
-                        else if (body2.objRef is Weapon && body.objRef is Player)
+                        else if (body.objRef is Weapon && body2.objRef is Player)
                         {
-                            ((Weapon)body2.objRef).OnPickUp((Player)body.objRef);
+                            if (((Player)body.objRef).Weapon == null)
+                            {
+                                ((Weapon)body.objRef).OnPickUp((Player)body2.objRef);
+                            }
                         }
-                        else { 
-                        switch (body.bodyType)
+                        else
                         {
-                            case BodyDetectionType.Left:
-                                {
-                                    if (PhysicsBody.Velocity.X < 0)
+                            switch (body.bodyType)
+                            {
+                                case BodyDetectionType.Left:
                                     {
-                                        PhysicsBody.Velocity.X = 0;
+                                        if (PhysicsBody.Velocity.X < 0)
+                                        {
+                                            PhysicsBody.Velocity.X = 0;
+                                        }
+                                        break;
                                     }
-                                    break;
-                                }
-                            case BodyDetectionType.Right:
-                                {
-                                    if (PhysicsBody.Velocity.X > 0)
+                                case BodyDetectionType.Right:
                                     {
-                                        PhysicsBody.Velocity.X = 0;
+                                        if (PhysicsBody.Velocity.X > 0)
+                                        {
+                                            PhysicsBody.Velocity.X = 0;
+                                        }
+                                        break;
                                     }
-                                    break;
-                                }
-                            case BodyDetectionType.Top:
-                                {
-                                    if (PhysicsBody.Velocity.Y < 0)
+                                case BodyDetectionType.Top:
                                     {
-                                        PhysicsBody.Velocity.Y = 0;
+                                        if (PhysicsBody.Velocity.Y < 0)
+                                        {
+                                            PhysicsBody.Velocity.Y = 0;
+                                        }
+                                        break;
                                     }
-                                    break;
-                                }
-                            case BodyDetectionType.Bottom:
-                                {
-                                    if (PhysicsBody.Velocity.Y > 0)
+                                case BodyDetectionType.Bottom:
                                     {
-                                        PhysicsBody.Velocity.Y = 0;
-                                        jumping = false;
+                                        if (PhysicsBody.Velocity.Y > 0)
+                                        {
+                                            PhysicsBody.Velocity.Y = 0;
+                                            jumping = false;
+                                        }
+                                        break;
                                     }
-                                    break;
-                                }
-                        }
+                            }
                         }
                     }
                 }
