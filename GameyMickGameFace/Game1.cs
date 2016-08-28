@@ -8,6 +8,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
+using System;
 using System.Collections.Generic;
 
 namespace GameyMickGameFace
@@ -24,8 +25,12 @@ namespace GameyMickGameFace
     {
         public static GameStates GameState;
         public static List<Player> Players = new List<Player>();
+        public static List<Point> PlayerSpawnPoints = new List<Point>();
+        public static List<Point> PickupSpots = new List<Point>();
 
         public static List<Particle> Particles = new List<Particle>();
+
+        public Random rand = new Random();
 
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
@@ -52,6 +57,7 @@ namespace GameyMickGameFace
 
         int levelOne = 420;
         int levelTwo = 220;
+        int levelFloor = 650;
         float WeaponScale = 0.1f;
 
         HealthPowerUp Health;
@@ -89,6 +95,11 @@ namespace GameyMickGameFace
         /// </summary>
         protected override void LoadContent()
         {
+            PlayerSpawnPoints.Add(new Point(100, 130));
+            PlayerSpawnPoints.Add(new Point(800, 130));
+            PlayerSpawnPoints.Add(new Point(100, 560));
+            PlayerSpawnPoints.Add(new Point(800, 560));
+
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             Media.Fonts.Load(Content);
@@ -97,22 +108,22 @@ namespace GameyMickGameFace
             Media.Textures.Load(Content);
             Media.Music.Load(Content);
 
-            Player1 = new Player(new Point(100, 130));
+            Player1 = new Player(rand.Next());
             Player1.PlayerNumber = 1;
             Player1.Health = 100;
             Players.Add(Player1);
             physicsManager.AddBody(Player1.PhysicsBody);
-            Player2 = new Player(new Point(800, 130));
+            Player2 = new Player(rand.Next());
             Player2.PlayerNumber = 2;
             Player2.Health = 100;
             Players.Add(Player2);
             physicsManager.AddBody(Player2.PhysicsBody);
-            Player3 = new Player(new Point(100, 560));
+            Player3 = new Player(rand.Next());
             Player3.PlayerNumber = 3;
             Player3.Health = 100;
             Players.Add(Player3);
             physicsManager.AddBody(Player3.PhysicsBody);
-            Player4 = new Player(new Point(800, 560));
+            Player4 = new Player(rand.Next());
             Player4.PlayerNumber = 4;
             Player4.Health = 100;
             Players.Add(Player4);
