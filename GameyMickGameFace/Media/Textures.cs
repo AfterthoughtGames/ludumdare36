@@ -18,6 +18,7 @@ namespace GameyMickGameFace.Media
             BowTexture = cm.Load<Texture2D>("Images/Bow");
             bloodParticle = cm.Load<Texture2D>("Images/BloodParticle");
             ScoreBoard = cm.Load<Texture2D>("Images/scoreboard");
+            Waypoints = cm.Load<Texture2D>("Images/Waypoint");
         }
 
         public static Texture2D TitleScreen { get; set; }
@@ -27,5 +28,6 @@ namespace GameyMickGameFace.Media
         public static Texture2D BowTexture { get; set; }
         public static Texture2D bloodParticle { get; set; }
         public static Texture2D ScoreBoard { get; set; }
+        public static Texture2D Waypoints { get; set; }
     }
 }

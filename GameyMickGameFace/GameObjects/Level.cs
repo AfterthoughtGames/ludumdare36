@@ -1,4 +1,5 @@
-﻿using GameyMickGameFace.GameObjects.PowerUps;
+﻿using GameyMickGameFace.AI;
+using GameyMickGameFace.GameObjects.PowerUps;
 using GameyMickGameFace.GameObjects.Weapons;
 using GameyMickGameFace.Physics;
 using Microsoft.Xna.Framework;
@@ -17,6 +18,7 @@ namespace GameyMickGameFace.GameObjects
 
         public List<Weapon> Weapons;
         public List<PowerUp> PowerUps;
+        public List<Waypoint> Waypoints;
 
         private DateTime StartTime;
         public TimeSpan TimeSpent;
@@ -65,6 +67,8 @@ namespace GameyMickGameFace.GameObjects
             Bow Bow = new Bow(Media.Textures.BowTexture, rand.Next());
             physicsManager.AddBody(Bow.PhysicsBody);
             Weapons.Add(Bow);
+
+            addWaypoints();
         }
 
         public void Update(GameTime gameTime, PhysicsManager physicsManager)
@@ -122,6 +126,11 @@ namespace GameyMickGameFace.GameObjects
                 PowerUp.Draw(gameTime, spriteBatch);
             }
 
+            foreach(Waypoint waypoint in Waypoints)
+            {
+                waypoint.Draw(spriteBatch);
+            }
+
             string str = "OST Games: Ludum Dare 36";
             Vector2 strSize = Media.Fonts.GUI.MeasureString(str);
             spriteBatch.DrawString(Media.Fonts.GUI, str, new Vector2(((spriteBatch.GraphicsDevice.Viewport.Width / 2) - strSize.X), spriteBatch.GraphicsDevice.Viewport.Height - 50), Color.White, 0f, Vector2.Zero, 2f, SpriteEffects.None, 0);
@@ -153,6 +162,19 @@ namespace GameyMickGameFace.GameObjects
             str = "Score: " + Player4.Score.ToString();
             strSize = Media.Fonts.GUI.MeasureString(str);
             spriteBatch.DrawString(Media.Fonts.GUI, str, new Vector2(spriteBatch.GraphicsDevice.Viewport.Width - strSize.X * 2.5f, spriteBatch.GraphicsDevice.Viewport.Height - 70), Color.White, 0f, Vector2.Zero, 2f, SpriteEffects.None, 0);
+        }
+
+        private void addWaypoints()
+        {
+            Waypoints = new List<Waypoint>();
+
+            //top level downs
+            Waypoints.Add(new Waypoint(new Vector2(100, 150), false));
+            Waypoints.Add(new Waypoint(new Vector2(1020, 150), false));
+            //middle level downs
+            Waypoints.Add(new Waypoint(new Vector2(0, 350), false));
+            Waypoints.Add(new Waypoint(new Vector2(1220, 350), false));
+            Waypoints.Add(new Waypoint(new Vector2(670, 350), false));
         }
     }
 }
