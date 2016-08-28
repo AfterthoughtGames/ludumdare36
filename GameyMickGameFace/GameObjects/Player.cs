@@ -45,7 +45,6 @@ namespace GameyMickGameFace.GameObjects
 
         private static int gravityVelo = 100;
         private static int jumpVelo = -1790;
-        private static int attackDistance = 50;
 
         TimeSpan AILastAttack;
         int SecBetweenAttack = 200;
@@ -236,6 +235,9 @@ namespace GameyMickGameFace.GameObjects
 
                 //figure out what level the target is on compared to player
                 bool onLevel = Math.Abs(target.PhysicsBody.Position.Y - PhysicsBody.Position.Y) < 200;
+                float waypointDistance;
+
+                bool up = false;
 
                 if (!onLevel)
                 {
@@ -243,8 +245,8 @@ namespace GameyMickGameFace.GameObjects
                     if (target != null && target.PhysicsBody.Position.Y < PhysicsBody.Position.Y)
                     {
                         //it is up
-                        float waypointDistance = 99999999;
-
+                        waypointDistance = 99999999;
+                        up = true;
                         foreach (Waypoint waypoint in Game1.Level.Waypoints)
                         {
                             if (waypoint.Up)
@@ -261,7 +263,7 @@ namespace GameyMickGameFace.GameObjects
                     else
                     {
                         //it is down
-                        float waypointDistance = 99999999;
+                        waypointDistance = 99999999;
 
                         foreach (Waypoint waypoint in Game1.Level.Waypoints)
                         {
@@ -279,32 +281,44 @@ namespace GameyMickGameFace.GameObjects
 
                     if (point != null)
                     {
-                        //find enemy direction
-                        if (point.Location.X - 50 < PhysicsBody.Position.X)
+
+                        if (waypointDistance > 250)
                         {
-                            Left = true;
-                        }
+                            //find enemy direction
+                            if (point.Location.X - 50 < PhysicsBody.Position.X)
+                            {
+                                Left = true;
+                            }
 
                         if(this.PhysicsBody.Position.X > point.Location.X - 10 && this.PhysicsBody.Position.X > point.Location.X + 10)
                         {
                             jump();
                         }
 
-                        //we have the enemy that is closest so walk to him
-                        if (!Left)
-                        {
-                            moveRight();
+                            //we have the enemy that is closest so walk to him
+                            if (!Left)
+                            {
+                                moveRight();
+                            }
+                            else if (Left)
+                            {
+                                moveLeft();
+                            }
                         }
-                        else if (Left)
+                        else
                         {
-                            moveLeft();
+                            if (up)
+                            {
+                                //jump
+                                jump();
+                            }
                         }
                     }
                 }
                 else
                 {
                     //needs to match weapon distance
-                    if (distance > attackDistance)
+                    if (Weapon == null || distance > Weapon.AttackDistance)
                     {
                         bool Left = false;
                         //find enemy direction
@@ -369,6 +383,8 @@ namespace GameyMickGameFace.GameObjects
                     onLevel = false;
                 }
 
+                float waypointDistance = 0;
+
                 if (!onLevel)
                 {
                     Waypoint point = null;
@@ -389,7 +405,7 @@ namespace GameyMickGameFace.GameObjects
                     else
                     {
                         //it is down
-                        float waypointDistance = 99999999;
+                        waypointDistance = 99999999;
 
                         foreach (Waypoint waypoint in Game1.Level.Waypoints)
                         {
@@ -405,20 +421,27 @@ namespace GameyMickGameFace.GameObjects
 
                     if (point != null)
                     {
-                        //find enemy direction
-                        if (point.Location.X - 50 < PhysicsBody.Position.X)
+                        if (waypointDistance > 10)
                         {
-                            Left = true;
-                        }
+                            //find enemy direction
+                            if (point.Location.X - 50 < PhysicsBody.Position.X)
+                            {
+                                Left = true;
+                            }
 
-                        //we have the enemy that is closest so walk to him
-                        if (!Left)
-                        {
-                            moveRight();
+                            //we have the enemy that is closest so walk to him
+                            if (!Left)
+                            {
+                                moveRight();
+                            }
+                            else if (Left)
+                            {
+                                moveLeft();
+                            }
                         }
-                        else if (Left)
+                        else
                         {
-                            moveLeft();
+                            jump();
                         }
                     }
                 }
@@ -475,11 +498,17 @@ namespace GameyMickGameFace.GameObjects
         {
             foreach (Player player in Level.Players)
             {
-                if (player != this && (this.PhysicsBody.Position - player.PhysicsBody.Position).Length() <= attackDistance)
+                if (player != this && (Weapon == null || (PhysicsBody.Position - player.PhysicsBody.Position).Length() <= Weapon.AttackDistance))
                 {
                     //hit
                     if (Weapon != null)
+                    {
                         player.Health = player.Health - Weapon.Damage;
+                    }
+                    else if ((PhysicsBody.Position - player.PhysicsBody.Position).Length() <= 10)
+                    {
+                        player.Health = player.Health - 1;
+                    }
 
                     Vector2 initialVelocity = new Vector2(rand.Next(-100, 100), rand.Next(-100, 100));
                     float currentRotation = 0;

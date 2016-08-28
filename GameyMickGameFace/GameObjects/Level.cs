@@ -17,21 +17,21 @@ namespace GameyMickGameFace.GameObjects
         public Player Player2;
         public Player Player3;
         public Player Player4;
-        public static List<Particle> Particles = new List<Particle>();
+        public static List<Particle> Particles;
 
-        public static List<Player> Players = new List<Player>();
-        public static List<Point> PlayerSpawnPoints = new List<Point>();
-        public static List<Point> PickupSpots = new List<Point>();
+        public static List<Player> Players;
+        public static List<Point> PlayerSpawnPoints;
+        public static List<Point> PickupSpots;
         public List<Weapon> Weapons;
         public List<PowerUp> PowerUps;
         public List<Waypoint> Waypoints;
 
         private DateTime StartTime;
         public TimeSpan TimeSpent;
-        double GameTimeSeconds = 60;//300;
+        double GameTimeSeconds;
         double TimeLeft;
 
-        public Random rand = new Random();
+        public Random rand;
 
         Tile LeftWall;
         Tile RightWall;
@@ -45,14 +45,25 @@ namespace GameyMickGameFace.GameObjects
         int levelTwo = 220;
         int levelFloor = 650;
 
-        public static bool PhysicsDrawn = false;
+        public static bool PhysicsDrawn;
 
         bool addPowerUps;
 
-        PhysicsManager physicsManager = new PhysicsManager();
+        PhysicsManager physicsManager;
 
         public Level()
         {
+            GameTimeSeconds = 60;//300;
+
+            physicsManager = new PhysicsManager();
+            PhysicsDrawn = false;
+            rand = new Random();
+
+            Particles = new List<Particle>();
+            Players = new List<Player>();
+            PlayerSpawnPoints = new List<Point>();
+            PickupSpots = new List<Point>();
+
             Weapons = new List<Weapon>();
             PowerUps = new List<PowerUp>();
 
@@ -245,7 +256,7 @@ namespace GameyMickGameFace.GameObjects
 
         public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
-            
+
 
             foreach (Weapon Weapon in Weapons)
             {

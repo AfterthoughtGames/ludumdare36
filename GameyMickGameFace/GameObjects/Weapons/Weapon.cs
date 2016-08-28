@@ -20,6 +20,7 @@ namespace GameyMickGameFace.GameObjects
         public Point Position { get; set; }
         public float Scale { get; set; }
         public bool cleanMeUpBitches { get; set; }
+        public int AttackDistance { get; set; }
         Random rand;
 
         public Weapon(Texture2D texture, int seed)
@@ -38,7 +39,7 @@ namespace GameyMickGameFace.GameObjects
             player.Weapon = this;
             cleanMeUpBitches = true;
         }
-            
+
 
         public virtual void Draw(GameTime time, SpriteBatch batch)
         {

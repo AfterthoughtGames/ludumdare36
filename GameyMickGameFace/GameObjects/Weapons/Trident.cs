@@ -10,6 +10,7 @@ namespace GameyMickGameFace.GameObjects.Weapons
             Damage = 5;
             weaponType = WeaponType.Stabbing;
             WeaponName = "Trident";
+            AttackDistance = 60;
         }
     }
 }
