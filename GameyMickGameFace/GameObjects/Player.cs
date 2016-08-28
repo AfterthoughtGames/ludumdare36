@@ -45,6 +45,7 @@ namespace GameyMickGameFace.GameObjects
 
         private static int gravityVelo = 100;
         private static int jumpVelo = -1790;
+        private static int attackDistance = 50;
 
         TimeSpan AILastAttack;
         int SecBetweenAttack = 200;
@@ -242,6 +243,17 @@ namespace GameyMickGameFace.GameObjects
                     if (target != null && target.PhysicsBody.Position.Y < PhysicsBody.Position.Y)
                     {
                         //it is up
+                        float waypointDistance = 99999999;
+
+                        foreach (Waypoint waypoint in Game1.Level.Waypoints)
+                        {
+                            onLevel = Math.Abs(waypoint.Location.Y - PhysicsBody.Position.Y) > 180;
+                            if (onLevel && (waypoint.Location - PhysicsBody.Position).Length() < waypointDistance)
+                            {
+                                point = waypoint;
+                                waypointDistance = (waypoint.Location - PhysicsBody.Position).Length();
+                            }
+                        }
                     }
                     else
                     {
@@ -283,7 +295,7 @@ namespace GameyMickGameFace.GameObjects
                 else
                 {
                     //needs to match weapon distance
-                    if (distance > 70)
+                    if (distance > attackDistance)
                     {
                         bool Left = false;
                         //find enemy direction
@@ -444,7 +456,7 @@ namespace GameyMickGameFace.GameObjects
         {
             foreach (Player player in Level.Players)
             {
-                if (player != this && (this.PhysicsBody.Position - player.PhysicsBody.Position).Length() < 50)
+                if (player != this && (this.PhysicsBody.Position - player.PhysicsBody.Position).Length() <= attackDistance)
                 {
                     //hit
                     if (Weapon != null)
