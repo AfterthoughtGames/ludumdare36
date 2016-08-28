@@ -238,6 +238,17 @@ namespace GameyMickGameFace.GameObjects
                     if (target != null && target.PhysicsBody.Position.Y < PhysicsBody.Position.Y)
                     {
                         //it is up
+                        float waypointDistance = 99999999;
+
+                        foreach (Waypoint waypoint in Game1.Level.Waypoints)
+                        {
+                            onLevel = Math.Abs(waypoint.Location.Y - PhysicsBody.Position.Y) > 180;
+                            if (onLevel && (waypoint.Location - PhysicsBody.Position).Length() < waypointDistance)
+                            {
+                                point = waypoint;
+                                waypointDistance = (waypoint.Location - PhysicsBody.Position).Length();
+                            }
+                        }
                     }
                     else
                     {
@@ -281,7 +292,7 @@ namespace GameyMickGameFace.GameObjects
                 else
                 {
                     //needs to match weapon distance
-                    if (distance > 70)
+                    if (distance > 40)
                     {
                         bool Left = false;
                         //find enemy direction
