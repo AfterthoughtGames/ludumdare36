@@ -13,10 +13,15 @@ namespace GameyMickGameFace.Media
         {
             TitleScreen = cm.Load<Texture2D>("Images/Title");
             healthTexture = cm.Load<Texture2D>("Images/potionSmall");
+            SwordTexture = cm.Load<Texture2D>("Images/sword");
+            TridentTexture = cm.Load<Texture2D>("Images/Trident");
+            BowTexture = cm.Load<Texture2D>("Images/Bow");
         }
 
-        public static Texture2D PlayerTemp { get; set; }
         public static Texture2D TitleScreen { get; set; }
         public static Texture2D healthTexture { get; set; }
+        public static Texture2D SwordTexture { get; set; }
+        public static Texture2D TridentTexture { get; set; }
+        public static Texture2D BowTexture { get; set; }
     }
 }
