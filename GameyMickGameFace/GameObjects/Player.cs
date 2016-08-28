@@ -140,7 +140,7 @@ namespace GameyMickGameFace.GameObjects
                             AnimationState = PlayerAnimationState.WalkingRight;
                             Attack();
                         }
-                        else if(currentPadState.Buttons.A == ButtonState.Pressed)
+                        else if (currentPadState.Buttons.A == ButtonState.Pressed)
                         {
                             //jump
                             PhysicsBody.AddVelocity(new Vector2(0, jumpVelo));
@@ -173,7 +173,7 @@ namespace GameyMickGameFace.GameObjects
                         }
                     }
 
-                        keyboardControlled = false;
+                    keyboardControlled = false;
 
                     PreviousPadState = currentPadState;
                     PreviousKeyState = currentState;
@@ -204,11 +204,11 @@ namespace GameyMickGameFace.GameObjects
             //find the closest player
             foreach (Player enemy in Game1.Players)
             {
-                
+
                 if (enemy != this)
                 {
                     int enemydistance = (int)(enemy.PhysicsBody.Position - PhysicsBody.Position).Length();
-                    if(enemydistance < distance)
+                    if (enemydistance < distance)
                     {
                         distance = enemydistance;
                         target = enemy;
@@ -218,7 +218,7 @@ namespace GameyMickGameFace.GameObjects
 
             bool Left = false;
             //find enemy direction
-            if(target.PhysicsBody.Position.X < PhysicsBody.Position.X)
+            if (target.PhysicsBody.Position.X < PhysicsBody.Position.X)
             {
                 Left = true;
             }

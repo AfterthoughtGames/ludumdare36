@@ -54,6 +54,9 @@ namespace GameyMickGameFace
         int levelTwo = 220;
         int levelFloor = 650;
 
+        double GameTimeSeconds = 300;
+        double TimeLeft;
+
         Level Level;
 
         public Game1()
@@ -253,6 +256,11 @@ namespace GameyMickGameFace
                 str = "Score: " + Level.Player4.Score.ToString();
                 strSize = Media.Fonts.GUI.MeasureString(str);
                 spriteBatch.DrawString(Media.Fonts.GUI, str, new Vector2(GraphicsDevice.Viewport.Width - strSize.X * 2.5f, GraphicsDevice.Viewport.Height - 70), Color.White, 0f, Vector2.Zero, 2f, SpriteEffects.None, 0);
+
+                TimeLeft = GameTimeSeconds - Level.TimeSpent.Seconds;
+
+                str = "Time Left: " + (int)(TimeLeft / 60) + " " + (int)(TimeLeft % 60);
+                spriteBatch.DrawString(Media.Fonts.GUI, str, new Vector2(((GraphicsDevice.Viewport.Width / 2) - strSize.X), 10), Color.White, 0f, Vector2.Zero, 2f, SpriteEffects.None, 0);
 
                 Level.Draw(gameTime, spriteBatch);
             }
