@@ -253,6 +253,8 @@ namespace GameyMickGameFace
                 str = "Score: " + Level.Player4.Score.ToString();
                 strSize = Media.Fonts.GUI.MeasureString(str);
                 spriteBatch.DrawString(Media.Fonts.GUI, str, new Vector2(GraphicsDevice.Viewport.Width - strSize.X * 2.5f, GraphicsDevice.Viewport.Height - 70), Color.White, 0f, Vector2.Zero, 2f, SpriteEffects.None, 0);
+
+                Level.Draw(gameTime, spriteBatch);
             }
 
             if (PhysicsDrawn)
@@ -292,7 +294,6 @@ namespace GameyMickGameFace
             }
 
             spriteBatch.End();
-
 
             base.Draw(gameTime);
         }
