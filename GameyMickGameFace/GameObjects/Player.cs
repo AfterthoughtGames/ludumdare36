@@ -267,8 +267,8 @@ namespace GameyMickGameFace.GameObjects
 
                         foreach (Waypoint waypoint in Game1.Level.Waypoints)
                         {
-                            if(!waypoint.Up)
-                            onLevel = Math.Abs(waypoint.Location.Y - PhysicsBody.Position.Y) < 180;
+                            if (!waypoint.Up)
+                                onLevel = Math.Abs(waypoint.Location.Y - PhysicsBody.Position.Y) < 180;
                             if (onLevel && (waypoint.Location - PhysicsBody.Position).Length() < waypointDistance)
                             {
                                 point = waypoint;
@@ -290,10 +290,10 @@ namespace GameyMickGameFace.GameObjects
                                 Left = true;
                             }
 
-                        if(this.PhysicsBody.Position.X > point.Location.X - 10 && this.PhysicsBody.Position.X > point.Location.X + 10)
-                        {
-                            jump();
-                        }
+                            if (point.Up &&  (this.PhysicsBody.Position.X > point.Location.X - 1 && this.PhysicsBody.Position.X > point.Location.X + 1))
+                            {
+                                jump();
+                            }
 
                             //we have the enemy that is closest so walk to him
                             if (!Left)
@@ -462,6 +462,10 @@ namespace GameyMickGameFace.GameObjects
                     else if (Left)
                     {
                         moveLeft();
+                    }
+                    else
+                    {
+                        jump();
                     }
                 }
             }
