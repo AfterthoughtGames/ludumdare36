@@ -16,6 +16,7 @@ namespace GameyMickGameFace.GameObjects
 
     public class Player
     {
+        public int Score = 0;
         public int Health { get; set; }
         public string Name { get; set; }
         // public Vector2 Position { get; set; }
@@ -50,12 +51,12 @@ namespace GameyMickGameFace.GameObjects
 
             DetectionPhysicsBodies = new List<Body>();
 
-            Body leftDetectionBody = new Body(new Point(0, 0), (int)(25 * scale), (int)(180 * scale), (int)(0 * scale), (int)(100 * scale), .85f, this);
+            Body leftDetectionBody = new Body(new Point(0, 0), (int)(25 * scale), (int)(140 * scale), (int)(0 * scale), (int)(100 * scale), .85f, this);
             leftDetectionBody.parentOffset = new Vector2(145, 35) * scale;
             leftDetectionBody.bodyType = BodyDetectionType.Left;
             DetectionPhysicsBodies.Add(leftDetectionBody);
 
-            Body rightDetectionBody = new Body(new Point(0, 0), (int)(25 * scale), (int)(180 * scale), (int)(0 * scale), (int)(100 * scale), .85f, this);
+            Body rightDetectionBody = new Body(new Point(0, 0), (int)(25 * scale), (int)(140 * scale), (int)(0 * scale), (int)(100 * scale), .85f, this);
             rightDetectionBody.parentOffset = new Vector2(170, 35) * scale;
             DetectionPhysicsBodies.Add(rightDetectionBody);
             rightDetectionBody.bodyType = BodyDetectionType.Right;
@@ -169,6 +170,9 @@ namespace GameyMickGameFace.GameObjects
             {
                 Health = 100;
                 PhysicsBody.Position = Game1.PlayerSpawnPoints[rand.Next(0, Game1.PlayerSpawnPoints.Count)].ToVector2();
+
+                //remove 5 points for death
+                Score -= 5;
             }
         }
 
@@ -213,6 +217,13 @@ namespace GameyMickGameFace.GameObjects
                     Matrix rotation;
                     Point location = new Point(rand.Next(player.DetectionPhysicsBodies[0].MotionPhysicsBody.Left, player.DetectionPhysicsBodies[0].MotionPhysicsBody.Right),
                            rand.Next(player.DetectionPhysicsBodies[0].MotionPhysicsBody.Top, player.DetectionPhysicsBodies[0].MotionPhysicsBody.Bottom));
+
+
+                    //score crap
+                    if (player.Health <= 0)
+                    {
+                        Score += 10; //add 10 points you murdered him
+                    }
 
                     for (int i = 0; i < 10; i++)
                     {

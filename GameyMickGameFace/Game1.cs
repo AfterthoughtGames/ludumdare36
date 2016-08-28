@@ -229,18 +229,30 @@ namespace GameyMickGameFace
                 str = "Player 1: " + Level.Player1.Health.ToString();
                 spriteBatch.DrawString(Media.Fonts.GUI, str, new Vector2(20, 10), Color.White, 0f, Vector2.Zero, 2f, SpriteEffects.None, 0);
 
+                str = "Score:  " + Level.Player1.Score.ToString();
+                spriteBatch.DrawString(Media.Fonts.GUI, str, new Vector2(20, 40), Color.White, 0f, Vector2.Zero, 2f, SpriteEffects.None, 0);
+
                 str = "Player 2: " + Level.Player2.Health.ToString();
                 strSize = Media.Fonts.GUI.MeasureString(str);
                 spriteBatch.DrawString(Media.Fonts.GUI, str, new Vector2(GraphicsDevice.Viewport.Width - strSize.X * 2.5f, 10), Color.White, 0f, Vector2.Zero, 2f, SpriteEffects.None, 0);
 
+                str = "Score:  " + Level.Player2.Score.ToString();
+                strSize = Media.Fonts.GUI.MeasureString(str);
+                spriteBatch.DrawString(Media.Fonts.GUI, str, new Vector2(GraphicsDevice.Viewport.Width - strSize.X * 2.5f, 40), Color.White, 0f, Vector2.Zero, 2f, SpriteEffects.None, 0);
+
                 str = "Player 3: " + Level.Player3.Health.ToString();
                 spriteBatch.DrawString(Media.Fonts.GUI, str, new Vector2(20, GraphicsDevice.Viewport.Height - 40), Color.White, 0f, Vector2.Zero, 2f, SpriteEffects.None, 0);
+
+                str = "Score: " + Level.Player3.Score.ToString();
+                spriteBatch.DrawString(Media.Fonts.GUI, str, new Vector2(20, GraphicsDevice.Viewport.Height - 70), Color.White, 0f, Vector2.Zero, 2f, SpriteEffects.None, 0);
 
                 str = "Player 4: " + Level.Player4.Health.ToString();
                 strSize = Media.Fonts.GUI.MeasureString(str);
                 spriteBatch.DrawString(Media.Fonts.GUI, str, new Vector2(GraphicsDevice.Viewport.Width - strSize.X * 2.5f, GraphicsDevice.Viewport.Height - 40), Color.White, 0f, Vector2.Zero, 2f, SpriteEffects.None, 0);
 
-                Level.Draw(gameTime, spriteBatch);
+                str = "Score: " + Level.Player4.Score.ToString();
+                strSize = Media.Fonts.GUI.MeasureString(str);
+                spriteBatch.DrawString(Media.Fonts.GUI, str, new Vector2(GraphicsDevice.Viewport.Width - strSize.X * 2.5f, GraphicsDevice.Viewport.Height - 70), Color.White, 0f, Vector2.Zero, 2f, SpriteEffects.None, 0);
             }
 
             if (PhysicsDrawn)
