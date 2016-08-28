@@ -8,8 +8,8 @@ namespace GameyMickGameFace.GameObjects.PowerUps
         public int HealthAmount { get; set; }
         private readonly Animation _animation;
 
-        public HealthPowerUp( Texture2D healthTexture, Animation animation )
-            : base( healthTexture )
+        public HealthPowerUp( Texture2D healthTexture, Animation animation, Point position )
+            : base( healthTexture, position )
         {
             HealthAmount = 3;
             Name = "Health";

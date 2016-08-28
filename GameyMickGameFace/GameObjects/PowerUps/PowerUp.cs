@@ -15,11 +15,11 @@ namespace GameyMickGameFace.GameObjects.PowerUps
         public Point position { get; set; }
         public float scale { get; set; }
 
-        public PowerUp( Texture2D texture )
+        public PowerUp( Texture2D texture, Point position )
         {
             scale = .25f;
             this.texture = texture;
-            position = new Point( 150, 150 );
+            this.position = position;
             PhysicsBody = new Body( position, Convert.ToInt16( texture.Width * scale ), Convert.ToInt16( texture.Height * scale ), 0, 100, .85f, this );
         }
 
