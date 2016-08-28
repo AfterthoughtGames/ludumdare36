@@ -391,7 +391,7 @@ namespace GameyMickGameFace.GameObjects
                     if (target != null && target.PhysicsBody.Position.Y < PhysicsBody.Position.Y)
                     {
                         //it is up
-                        float waypointDistance = 99999999;
+                        waypointDistance = 99999999;
 
                         foreach (Waypoint waypoint in Game1.Level.Waypoints)
                         {
