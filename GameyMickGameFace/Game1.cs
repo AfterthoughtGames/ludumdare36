@@ -38,7 +38,8 @@ namespace GameyMickGameFace
         Title TitleScreen;
         Score ScoreBoard;
 
-        Level Level;
+        public static Level Level;
+
 
         public Game1()
         {
