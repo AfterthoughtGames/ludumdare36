@@ -137,7 +137,7 @@ namespace GameyMickGameFace.GameObjects
                     {
                         AnimationState = PlayerAnimationState.StandingRight;
 
-                        if (currentPadState.Triggers.Right > 0 && !(PreviousPadState.Triggers.Right > 0))
+                        if (currentPadState.Buttons.B == ButtonState.Pressed && PreviousPadState.Buttons.B != ButtonState.Pressed)
                         {
                             //TODO: attack animation state
                             AnimationState = PlayerAnimationState.WalkingRight;
@@ -588,6 +588,8 @@ namespace GameyMickGameFace.GameObjects
         {
             foreach (Player player in Level.Players)
             {
+                int prehit = player.Health;
+
                 if (player != this && (Weapon == null || (PhysicsBody.Position - player.PhysicsBody.Position).Length() <= Weapon.AttackDistance))
                 {
                     //hit
@@ -613,12 +615,15 @@ namespace GameyMickGameFace.GameObjects
                         Score += 10; //add 10 points you murdered him
                     }
 
-                    for (int i = 0; i < 10; i++)
+                    if (player.Health < prehit)
                     {
-                        rotation = Matrix.CreateRotationZ(currentRotation);
-                        Particle particle = new Particle(location, .5f, Textures.bloodParticle, Vector2.Transform(initialVelocity, rotation));
-                        Level.Particles.Add(particle);
-                        currentRotation += .15f;
+                        for (int i = 0; i < 10; i++)
+                        {
+                            rotation = Matrix.CreateRotationZ(currentRotation);
+                            Particle particle = new Particle(location, .5f, Textures.bloodParticle, Vector2.Transform(initialVelocity, rotation));
+                            Level.Particles.Add(particle);
+                            currentRotation += .15f;
+                        }
                     }
                 }
             }
