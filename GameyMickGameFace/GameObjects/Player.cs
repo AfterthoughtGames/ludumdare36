@@ -24,6 +24,7 @@ namespace GameyMickGameFace.GameObjects
         // public Vector2 Position { get; set; }
         public bool Human = false;
 
+        public float SpeedBonus = 1;
         float scale = 0.4f;
 
         public Weapon Weapon { get; set; }
@@ -180,19 +181,19 @@ namespace GameyMickGameFace.GameObjects
         private void moveRight()
         {
             AnimationState = PlayerAnimationState.WalkingRight;
-            PhysicsBody.AddVelocity(new Vector2(100, 0));
+            PhysicsBody.AddVelocity(new Vector2(100 * SpeedBonus, 0));
         }
 
         private void moveLeft()
         {
             AnimationState = PlayerAnimationState.WalkingLeft;
-            PhysicsBody.AddVelocity(new Vector2(-100, 0));
+            PhysicsBody.AddVelocity(new Vector2(-100 * SpeedBonus, 0));
         }
 
         private void moveDown()
         {
             AnimationState = PlayerAnimationState.Standing;
-            PhysicsBody.AddVelocity(new Vector2(0, 100));
+            PhysicsBody.AddVelocity(new Vector2(0, 100 * SpeedBonus));
         }
 
         private void jump()
@@ -268,13 +269,11 @@ namespace GameyMickGameFace.GameObjects
                         //we have the enemy that is closest so walk to him
                         if (!Left)
                         {
-                            AnimationState = PlayerAnimationState.WalkingRight;
-                            PhysicsBody.AddVelocity(new Vector2(100, 0));
+                            moveRight();
                         }
                         else if (Left)
                         {
-                            AnimationState = PlayerAnimationState.WalkingLeft;
-                            PhysicsBody.AddVelocity(new Vector2(-100, 0));
+                            moveLeft();
                         }
                     }
                 }
@@ -377,13 +376,11 @@ namespace GameyMickGameFace.GameObjects
                         //we have the enemy that is closest so walk to him
                         if (!Left)
                         {
-                            AnimationState = PlayerAnimationState.WalkingRight;
-                            PhysicsBody.AddVelocity(new Vector2(100, 0));
+                            moveRight();
                         }
                         else if (Left)
                         {
-                            AnimationState = PlayerAnimationState.WalkingLeft;
-                            PhysicsBody.AddVelocity(new Vector2(-100, 0));
+                            moveLeft();
                         }
                     }
                 }
@@ -399,13 +396,11 @@ namespace GameyMickGameFace.GameObjects
                     //we have the enemy that is closest so walk to him
                     if (!Left)
                     {
-                        AnimationState = PlayerAnimationState.WalkingRight;
-                        PhysicsBody.AddVelocity(new Vector2(100, 0));
+                        moveRight();
                     }
                     else if (Left)
                     {
-                        AnimationState = PlayerAnimationState.WalkingLeft;
-                        PhysicsBody.AddVelocity(new Vector2(-100, 0));
+                        moveLeft();
                     }
                 }
             }

@@ -21,6 +21,7 @@ namespace GameyMickGameFace.GameObjects.PowerUps
 
         public override void OnPickup(Player effectedPlayer)
         {
+            effectedPlayer.SpeedBonus = effectedPlayer.SpeedBonus + 0.2f;
             base.OnPickup(effectedPlayer);
         }
 
