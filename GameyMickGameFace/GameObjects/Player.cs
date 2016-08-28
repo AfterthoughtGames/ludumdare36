@@ -278,7 +278,7 @@ namespace GameyMickGameFace.GameObjects
                 }
 
                 //figure out what level the target is on compared to player
-                onLevel = Math.Abs(target.PhysicsBody.Position.Y - PhysicsBody.Position.Y) < 250;
+                onLevel = Math.Abs(target.PhysicsBody.Position.Y - PhysicsBody.Position.Y) < 200;
 
                 if (!onLevel)
                 {
@@ -303,22 +303,26 @@ namespace GameyMickGameFace.GameObjects
                     }
 
                     bool Left = false;
-                    //find enemy direction
-                    if (point != null && point.Location.X - 50 < PhysicsBody.Position.X)
-                    {
-                        Left = true;
-                    }
 
-                    //we have the enemy that is closest so walk to him
-                    if (!Left)
+                    if (point != null)
                     {
-                        AnimationState = PlayerAnimationState.WalkingRight;
-                        PhysicsBody.AddVelocity(new Vector2(100, 0));
-                    }
-                    else if (Left)
-                    {
-                        AnimationState = PlayerAnimationState.WalkingLeft;
-                        PhysicsBody.AddVelocity(new Vector2(-100, 0));
+                        //find enemy direction
+                        if (point.Location.X - 50 < PhysicsBody.Position.X)
+                        {
+                            Left = true;
+                        }
+
+                        //we have the enemy that is closest so walk to him
+                        if (!Left)
+                        {
+                            AnimationState = PlayerAnimationState.WalkingRight;
+                            PhysicsBody.AddVelocity(new Vector2(100, 0));
+                        }
+                        else if (Left)
+                        {
+                            AnimationState = PlayerAnimationState.WalkingLeft;
+                            PhysicsBody.AddVelocity(new Vector2(-100, 0));
+                        }
                     }
                 }
                 else

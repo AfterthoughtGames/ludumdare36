@@ -224,10 +224,6 @@ namespace GameyMickGameFace.GameObjects
             Vector2 strSize = Media.Fonts.GUI.MeasureString(str);
             spriteBatch.DrawString(Media.Fonts.GUI, str, new Vector2(((spriteBatch.GraphicsDevice.Viewport.Width / 2) - strSize.X), 10), Color.White, 0f, Vector2.Zero, 2f, SpriteEffects.None, 0);
 
-            foreach (Waypoint waypoint in Waypoints)
-            {
-                waypoint.Draw(spriteBatch);
-            }
 
             if (TimeLeft <= 0)
             {
@@ -283,6 +279,11 @@ namespace GameyMickGameFace.GameObjects
 
             if (PhysicsDrawn)
             {
+                foreach (Waypoint waypoint in Waypoints)
+                {
+                    waypoint.Draw(spriteBatch);
+                }
+
                 foreach (Body Body in physicsManager.GetBodies())
                 {
                     if (Body.reactsToCollision)
