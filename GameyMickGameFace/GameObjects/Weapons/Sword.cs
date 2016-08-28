@@ -10,6 +10,7 @@ namespace GameyMickGameFace.GameObjects.Weapons
             Damage = 6;
             weaponType = WeaponType.Slashing;
             WeaponName = "Sword";
+            AttackDistance = 50;
         }
     }
 }
