@@ -110,6 +110,38 @@ namespace GameyMickGameFace.GameObjects
             {
                 PowerUp.Draw(gameTime, spriteBatch);
             }
+
+            string str = "OST Games: Ludum Dare 36";
+            Vector2 strSize = Media.Fonts.GUI.MeasureString(str);
+            spriteBatch.DrawString(Media.Fonts.GUI, str, new Vector2(((spriteBatch.GraphicsDevice.Viewport.Width / 2) - strSize.X), spriteBatch.GraphicsDevice.Viewport.Height - 50), Color.White, 0f, Vector2.Zero, 2f, SpriteEffects.None, 0);
+
+            str = "Player 1: " + Player1.Health.ToString();
+            spriteBatch.DrawString(Media.Fonts.GUI, str, new Vector2(20, 10), Color.White, 0f, Vector2.Zero, 2f, SpriteEffects.None, 0);
+
+            str = "Score:  " + Player1.Score.ToString();
+            spriteBatch.DrawString(Media.Fonts.GUI, str, new Vector2(20, 40), Color.White, 0f, Vector2.Zero, 2f, SpriteEffects.None, 0);
+
+            str = "Player 2: " + Player2.Health.ToString();
+            strSize = Media.Fonts.GUI.MeasureString(str);
+            spriteBatch.DrawString(Media.Fonts.GUI, str, new Vector2(spriteBatch.GraphicsDevice.Viewport.Width - strSize.X * 2.5f, 10), Color.White, 0f, Vector2.Zero, 2f, SpriteEffects.None, 0);
+
+            str = "Score:  " + Player2.Score.ToString();
+            strSize = Media.Fonts.GUI.MeasureString(str);
+            spriteBatch.DrawString(Media.Fonts.GUI, str, new Vector2(spriteBatch.GraphicsDevice.Viewport.Width - strSize.X * 2.5f, 40), Color.White, 0f, Vector2.Zero, 2f, SpriteEffects.None, 0);
+
+            str = "Player 3: " + Player3.Health.ToString();
+            spriteBatch.DrawString(Media.Fonts.GUI, str, new Vector2(20, spriteBatch.GraphicsDevice.Viewport.Height - 40), Color.White, 0f, Vector2.Zero, 2f, SpriteEffects.None, 0);
+
+            str = "Score: " + Player3.Score.ToString();
+            spriteBatch.DrawString(Media.Fonts.GUI, str, new Vector2(20, spriteBatch.GraphicsDevice.Viewport.Height - 70), Color.White, 0f, Vector2.Zero, 2f, SpriteEffects.None, 0);
+
+            str = "Player 4: " + Player4.Health.ToString();
+            strSize = Media.Fonts.GUI.MeasureString(str);
+            spriteBatch.DrawString(Media.Fonts.GUI, str, new Vector2(spriteBatch.GraphicsDevice.Viewport.Width - strSize.X * 2.5f, spriteBatch.GraphicsDevice.Viewport.Height - 40), Color.White, 0f, Vector2.Zero, 2f, SpriteEffects.None, 0);
+
+            str = "Score: " + Player4.Score.ToString();
+            strSize = Media.Fonts.GUI.MeasureString(str);
+            spriteBatch.DrawString(Media.Fonts.GUI, str, new Vector2(spriteBatch.GraphicsDevice.Viewport.Width - strSize.X * 2.5f, spriteBatch.GraphicsDevice.Viewport.Height - 70), Color.White, 0f, Vector2.Zero, 2f, SpriteEffects.None, 0);
         }
     }
 }
