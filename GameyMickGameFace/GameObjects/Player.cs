@@ -127,7 +127,6 @@ namespace GameyMickGameFace.GameObjects
                             keyboardControlled = true;
                             jumping = true;
                         }
-
                     }
 
                     if (!keyboardControlled)
@@ -200,40 +199,82 @@ namespace GameyMickGameFace.GameObjects
             //get AI to move toward player walking
 
             int distance = 999999;
-            Player target = null;
-            //find the closest player
-            foreach (Player enemy in Game1.Players)
+            if (Weapon != null)
             {
-                
-                if (enemy != this)
+                Player target = null;
+                //find the closest player
+                foreach (Player enemy in Game1.Players)
                 {
-                    int enemydistance = (int)(enemy.PhysicsBody.Position - PhysicsBody.Position).Length();
-                    if(enemydistance < distance)
+
+                    if (enemy != this)
                     {
-                        distance = enemydistance;
-                        target = enemy;
+                        int enemydistance = (int)(enemy.PhysicsBody.Position - PhysicsBody.Position
+                            ).Length();
+                        if (enemydistance < distance)
+                        {
+                            distance = enemydistance;
+                            target = enemy;
+                        }
+                    }
+                }
+
+                //needs to match weapon distance
+                if (distance > 50)
+                {
+                    bool Left = false;
+                    //find enemy direction
+                    if (target.PhysicsBody.Position.X < PhysicsBody.Position.X)
+                    {
+                        Left = true;
+                    }
+
+
+                    //we have the enemy that is closest so walk to him
+                    if (!Left)
+                    {
+                        AnimationState = PlayerAnimationState.WalkingRight;
+                        PhysicsBody.AddVelocity(new Vector2(100, 0));
+                    }
+                    else if (Left)
+                    {
+                        AnimationState = PlayerAnimationState.WalkingLeft;
+                        PhysicsBody.AddVelocity(new Vector2(-100, 0));
                     }
                 }
             }
-
-            bool Left = false;
-            //find enemy direction
-            if(target.PhysicsBody.Position.X < PhysicsBody.Position.X)
+            else //need a wepon
             {
-                Left = true;
-            }
+                Weapon target = null;
+                //find the closest player
+                foreach (Weapon weapon in Game1.Level.Weapons)
+                {
+                    int Weapondistance = (int)((weapon.PhysicsBody.Position - new Vector2(50,50)) - PhysicsBody.Position).Length();
+                    if (Weapondistance < distance)
+                    {
+                        distance = Weapondistance;
+                        target = weapon;
+                    }
+                }
+
+                bool Left = false;
+                //find enemy direction
+                if (target.PhysicsBody.Position.X - 50 < PhysicsBody.Position.X)
+                {
+                    Left = true;
+                }
 
 
-            //we have the enemy that is closest so walk to him
-            if (!Left)
-            {
-                AnimationState = PlayerAnimationState.WalkingRight;
-                PhysicsBody.AddVelocity(new Vector2(100, 0));
-            }
-            else if (Left)
-            {
-                AnimationState = PlayerAnimationState.WalkingLeft;
-                PhysicsBody.AddVelocity(new Vector2(-100, 0));
+                //we have the enemy that is closest so walk to him
+                if (!Left)
+                {
+                    AnimationState = PlayerAnimationState.WalkingRight;
+                    PhysicsBody.AddVelocity(new Vector2(100, 0));
+                }
+                else if (Left)
+                {
+                    AnimationState = PlayerAnimationState.WalkingLeft;
+                    PhysicsBody.AddVelocity(new Vector2(-100, 0));
+                }
             }
         }
 
