@@ -60,7 +60,11 @@ namespace GameyMickGameFace
         int levelFloor = 650;
         float WeaponScale = 0.1f;
 
+        //powerups
         HealthPowerUp Health;
+        //FlyingPowerUp Flying;
+
+
         Sword Sword;
         Trident Trident;
         Bow Bow;
@@ -71,6 +75,7 @@ namespace GameyMickGameFace
             graphics.PreferredBackBufferWidth = 1280;
             graphics.PreferredBackBufferHeight = 720;
             Content.RootDirectory = "Content";
+
 
 
             GameState = GameStates.Title;
@@ -148,8 +153,19 @@ namespace GameyMickGameFace
             Platform3 = new Tile(new Point(750, levelOne), Platform3Texture.Width, Platform3Texture.Height - 30, 0, 0);
             physicsManager.AddBody(Platform3.Body);
 
+            //Powerups
             Health = new HealthPowerUp(Media.Textures.healthTexture, Media.Animations.PotionSmoke, new Point(550, 150));
             physicsManager.AddBody(Health.PhysicsBody);
+
+            if (Health is PowerUp)
+            {
+                // do something
+            }
+
+            //Flying = new FlyingPowerUp(Media.Textures.flyingTexture, new Point(130, 135));
+            //physicsManager.AddBody(Flying.PhysicsBody);
+
+            //End Powerups
 
             Texture2D SwordTexture = Media.Textures.SwordTexture;
             Sword = new Sword(SwordTexture, new Point(400, levelOne - (int)(SwordTexture.Height * WeaponScale)));
@@ -226,7 +242,10 @@ namespace GameyMickGameFace
 
             }
 
+            //powerups
             Health.Update(gameTime, GameState);
+            //Flying.Update(gameTime, GameState);
+
             Sword.Update(gameTime, GameState);
             Trident.Update(gameTime, GameState);
             Bow.Update(gameTime, GameState);
@@ -285,7 +304,10 @@ namespace GameyMickGameFace
                 Player3.Draw(gameTime, spriteBatch);
                 Player4.Draw(gameTime, spriteBatch);
 
+                //powerups
                 Health.Draw(gameTime, spriteBatch, GameState);
+                //Flying.Draw(gameTime, spriteBatch, GameState);
+
                 Sword.Draw(gameTime, spriteBatch, GameState);
                 Trident.Draw(gameTime, spriteBatch, GameState);
                 Bow.Draw(gameTime, spriteBatch, GameState);

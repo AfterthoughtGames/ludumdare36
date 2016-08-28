@@ -1,4 +1,5 @@
-﻿using GameyMickGameFace.Media;
+﻿using GameyMickGameFace.GameObjects.PowerUps;
+using GameyMickGameFace.Media;
 using GameyMickGameFace.Particles;
 using GameyMickGameFace.Physics;
 using Microsoft.Xna.Framework;
@@ -289,7 +290,15 @@ namespace GameyMickGameFace.GameObjects
                                     }
                                     break;
                                 }
+                        }
 
+                        if (body.objRef is PowerUp && body2.objRef is Player)
+                        {
+                            ((PowerUp)body.objRef).OnPickup((Player)body2.objRef);
+                        }
+                        else if (body2.objRef is PowerUp && body.objRef is Player)
+                        {
+                            ((PowerUp)body2.objRef).OnPickup((Player)body.objRef);
                         }
                     }
                 }

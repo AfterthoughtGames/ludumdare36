@@ -8,8 +8,8 @@ namespace GameyMickGameFace.GameObjects.PowerUps
         public int HealthAmount { get; set; }
         private readonly Animation _animation;
 
-        public HealthPowerUp( Texture2D healthTexture, Animation animation, Point position )
-            : base( healthTexture, position )
+        public HealthPowerUp(Texture2D healthTexture, Animation animation, Point position)
+            : base(healthTexture, position)
         {
             HealthAmount = 3;
             Name = "Health";
@@ -17,38 +17,46 @@ namespace GameyMickGameFace.GameObjects.PowerUps
             scale = .50f;
         }
 
-        public override void OnPickup( Player effectedPlayer )
+        public override void OnPickup(Player effectedPlayer)
         {
-            base.OnPickup( effectedPlayer );
+            base.OnPickup(effectedPlayer);
             effectedPlayer.Health += HealthAmount;
         }
 
-        public override void Draw( GameTime time, SpriteBatch batch, GameStates gameState )
+        public override void Draw(GameTime time, SpriteBatch batch, GameStates gameState)
         {
-            base.Draw( time, batch, gameState );
+            base.Draw(time, batch, gameState);
 
-            if( gameState == GameStates.Title )
+            if (gameState == GameStates.Title)
+            {
                 return;
+            }
 
-            if( _animation == null )
+            if (_animation == null)
+            {
                 return;
+            }
 
-            var animationScale = new Vector2(.18f);
-            var pos = new Vector2( position.X, position.Y - 22 );
-            batch.Draw( _animation.Frame, pos, null, null, null, default(float), animationScale );
+            Vector2 animationScale = new Vector2(.18f);
+            Vector2 pos = new Vector2(position.X, position.Y - 22);
+            batch.Draw(_animation.Frame, pos, null, null, null, default(float), animationScale);
         }
 
-        public override void Update( GameTime time, GameStates gameState )
+        public override void Update(GameTime time, GameStates gameState)
         {
-            base.Update( time, gameState );
+            base.Update(time, gameState);
 
-            if( gameState == GameStates.Title )
+            if (gameState == GameStates.Title)
+            {
                 return;
+            }
 
-            if( _animation == null )
+            if (_animation == null)
+            {
                 return;
+            }
 
-            _animation.NextFrame( time );
+            _animation.NextFrame(time);
         }
     }
 }

@@ -79,14 +79,14 @@ namespace GameyMickGameFace.Physics
             a.Velocity -= a.InverseMass * impulse;
             b.Velocity += b.InverseMass * impulse;
 
-            if(a.objRef is PowerUp && b.objRef is Player)
-            {
-                ((PowerUp)a.objRef).OnPickup((Player)b.objRef);
-            }
-            else if(b.objRef is PowerUp && a.objRef is Player)
-            {
-                ((PowerUp)b.objRef).OnPickup((Player)a.objRef);
-            }
+            //if(a.objRef is PowerUp && b.objRef is Player)
+            //{
+            //    ((PowerUp)a.objRef).OnPickup((Player)b.objRef);
+            //}
+            //else if(b.objRef is PowerUp && a.objRef is Player)
+            //{
+            //    ((PowerUp)b.objRef).OnPickup((Player)a.objRef);
+            //}
 
             PositionalCorrection(a, b, collisionNormal);
         }
