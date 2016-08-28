@@ -30,11 +30,11 @@ namespace GameyMickGameFace.GameObjects
         public PlayerAnimationState PreviousAnimationState { get; set; }
         public List<Body> DetectionPhysicsBodies;
 
-        public Player()
+        public Player(Point position)
         {
             AnimationState = PlayerAnimationState.Standing;
             PreviousAnimationState = PlayerAnimationState.Standing;
-            PhysicsBody = new Body(new Point(100, 100), 95, 86, 0, 100, .85f, this);
+            PhysicsBody = new Body(position, 95, 86, 0, 100, .85f, this);
             PhysicsBody.reactsToCollision = false;
 
             DetectionPhysicsBodies = new List<Body>();

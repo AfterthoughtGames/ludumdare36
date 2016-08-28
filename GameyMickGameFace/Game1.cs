@@ -87,19 +87,19 @@ namespace GameyMickGameFace
             Media.Textures.Load(Content);
             Media.Music.Load(Content);
 
-            Player1 = new Player();
+            Player1 = new Player(new Point(100,130));
             Player1.PlayerNumber = 1;
             Player1.Health = 100;
             physicsManager.AddBody(Player1.PhysicsBody);
-            Player2 = new Player();
+            Player2 = new Player(new Point(800, 130));
             Player2.PlayerNumber = 2;
             Player2.Health = 100;
             physicsManager.AddBody(Player2.PhysicsBody);
-            Player3 = new Player();
+            Player3 = new Player(new Point(100, 560));
             Player3.PlayerNumber = 3;
             Player3.Health = 100;
             physicsManager.AddBody(Player3.PhysicsBody);
-            Player4 = new Player();
+            Player4 = new Player(new Point(800, 560));
             Player4.PlayerNumber = 4;
             Player4.Health = 100;
             physicsManager.AddBody(Player4.PhysicsBody);
@@ -123,7 +123,7 @@ namespace GameyMickGameFace
             Platform3 = new Tile(new Point(750, levelOne), Platform3Texture.Width, Platform3Texture.Height - 30, 0, 0);
             physicsManager.AddBody(Platform3.Body);
 
-            Health = new HealthPowerUp(Media.Textures.healthTexture, Media.Animations.PotionSmoke);
+            Health = new HealthPowerUp(Media.Textures.healthTexture, Media.Animations.PotionSmoke, new Point(550,150));
             physicsManager.AddBody(Health.PhysicsBody);
 
             PhysicsBox = Content.Load<Texture2D>("Images/blacksquare");
