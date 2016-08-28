@@ -270,8 +270,8 @@ namespace GameyMickGameFace.GameObjects
 
                         foreach (Waypoint waypoint in Game1.Level.Waypoints)
                         {
-                            if(!waypoint.Up)
-                            onLevel = Math.Abs(waypoint.Location.Y - PhysicsBody.Position.Y) < 180;
+                            if (!waypoint.Up)
+                                onLevel = Math.Abs(waypoint.Location.Y - PhysicsBody.Position.Y) < 180;
                             if (onLevel && (waypoint.Location - PhysicsBody.Position).Length() < waypointDistance)
                             {
                                 point = waypoint;
@@ -293,10 +293,10 @@ namespace GameyMickGameFace.GameObjects
                                 Left = true;
                             }
 
-                        if(this.PhysicsBody.Position.X > point.Location.X - 10 && this.PhysicsBody.Position.X > point.Location.X + 10)
-                        {
-                            jump();
-                        }
+                            if (this.PhysicsBody.Position.X > point.Location.X - 10 && this.PhysicsBody.Position.X > point.Location.X + 10)
+                            {
+                                jump();
+                            }
 
                             //we have the enemy that is closest so walk to him
                             if (!Left)
@@ -472,6 +472,7 @@ namespace GameyMickGameFace.GameObjects
 
         public void Draw(GameTime time, SpriteBatch batch)
         {
+            //WalkingWithSwordLeft, WalkingWithSwordRight, WalkingWithTridentLeft, WalkingWithTridentRight,
             if (AnimationState == PlayerAnimationState.WalkingRight)
             {
                 Animations.PlayerWalk.NextFrame(time);
@@ -521,6 +522,26 @@ namespace GameyMickGameFace.GameObjects
             {
                 Animations.AttackingWithTrident.NextFrame(time);
                 batch.Draw(Animations.AttackingWithTrident.Frame, PhysicsBody.Position + new Vector2(35, 0), null, Color.White, 0.0f, Vector2.Zero, scale, SpriteEffects.FlipHorizontally, 0);
+            }
+            else if (AnimationState == PlayerAnimationState.WalkingWithSwordRight)
+            {
+                Animations.WalkingWithSword.NextFrame(time);
+                batch.Draw(Animations.WalkingWithSword.Frame, PhysicsBody.Position, null, Color.White, 0.0f, Vector2.Zero, scale, SpriteEffects.None, 0);
+            }
+            else if (AnimationState == PlayerAnimationState.WalkingWithSwordLeft)
+            {
+                Animations.WalkingWithSword.NextFrame(time);
+                batch.Draw(Animations.WalkingWithSword.Frame, PhysicsBody.Position + new Vector2(35, 0), null, Color.White, 0.0f, Vector2.Zero, scale, SpriteEffects.FlipHorizontally, 0);
+            }
+            else if (AnimationState == PlayerAnimationState.WalkingWithTridentRight)
+            {
+                Animations.WalkingWithTrident.NextFrame(time);
+                batch.Draw(Animations.WalkingWithTrident.Frame, PhysicsBody.Position, null, Color.White, 0.0f, Vector2.Zero, scale, SpriteEffects.None, 0);
+            }
+            else if (AnimationState == PlayerAnimationState.WalkingWithTridentLeft)
+            {
+                Animations.WalkingWithTrident.NextFrame(time);
+                batch.Draw(Animations.WalkingWithTrident.Frame, PhysicsBody.Position + new Vector2(35, 0), null, Color.White, 0.0f, Vector2.Zero, scale, SpriteEffects.FlipHorizontally, 0);
             }
             else if (PreviousAnimationState == PlayerAnimationState.WalkingLeft || PreviousAnimationState == PlayerAnimationState.StandingLeft)
             {

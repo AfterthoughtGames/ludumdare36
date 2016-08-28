@@ -98,5 +98,7 @@ namespace GameyMickGameFace.Media
         public static Animation StandingWithTrident { get; set; }
         public static Animation AttackingWithSword { get; set; }
         public static Animation AttackingWithTrident { get; set; }
+        public static Animation WalkingWithSword { get; set; }
+        public static Animation WalkingWithTrident { get; set; }
     }
 }
