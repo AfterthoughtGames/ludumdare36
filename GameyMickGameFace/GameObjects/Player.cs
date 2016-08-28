@@ -235,6 +235,9 @@ namespace GameyMickGameFace.GameObjects
 
                 //figure out what level the target is on compared to player
                 bool onLevel = Math.Abs(target.PhysicsBody.Position.Y - PhysicsBody.Position.Y) < 200;
+                float waypointDistance;
+
+                bool up = false;
 
                 if (!onLevel)
                 {
@@ -242,8 +245,8 @@ namespace GameyMickGameFace.GameObjects
                     if (target != null && target.PhysicsBody.Position.Y < PhysicsBody.Position.Y)
                     {
                         //it is up
-                        float waypointDistance = 99999999;
-
+                        waypointDistance = 99999999;
+                        up = true;
                         foreach (Waypoint waypoint in Game1.Level.Waypoints)
                         {
                             onLevel = Math.Abs(waypoint.Location.Y - PhysicsBody.Position.Y) > 180;
@@ -257,7 +260,7 @@ namespace GameyMickGameFace.GameObjects
                     else
                     {
                         //it is down
-                        float waypointDistance = 99999999;
+                        waypointDistance = 99999999;
 
                         foreach (Waypoint waypoint in Game1.Level.Waypoints)
                         {
@@ -274,20 +277,32 @@ namespace GameyMickGameFace.GameObjects
 
                     if (point != null)
                     {
-                        //find enemy direction
-                        if (point.Location.X - 50 < PhysicsBody.Position.X)
-                        {
-                            Left = true;
-                        }
 
-                        //we have the enemy that is closest so walk to him
-                        if (!Left)
+                        if (waypointDistance > 250)
                         {
-                            moveRight();
+                            //find enemy direction
+                            if (point.Location.X - 50 < PhysicsBody.Position.X)
+                            {
+                                Left = true;
+                            }
+
+                            //we have the enemy that is closest so walk to him
+                            if (!Left)
+                            {
+                                moveRight();
+                            }
+                            else if (Left)
+                            {
+                                moveLeft();
+                            }
                         }
-                        else if (Left)
+                        else
                         {
-                            moveLeft();
+                            if (up)
+                            {
+                                //jump
+                                jump();
+                            }
                         }
                     }
                 }
@@ -359,6 +374,8 @@ namespace GameyMickGameFace.GameObjects
                     onLevel = false;
                 }
 
+                float waypointDistance = 0;
+
                 if (!onLevel)
                 {
                     Waypoint point = null;
@@ -369,7 +386,7 @@ namespace GameyMickGameFace.GameObjects
                     else
                     {
                         //it is down
-                        float waypointDistance = 99999999;
+                        waypointDistance = 99999999;
 
                         foreach (Waypoint waypoint in Game1.Level.Waypoints)
                         {
@@ -385,20 +402,27 @@ namespace GameyMickGameFace.GameObjects
 
                     if (point != null)
                     {
-                        //find enemy direction
-                        if (point.Location.X - 50 < PhysicsBody.Position.X)
+                        if (waypointDistance > 10)
                         {
-                            Left = true;
-                        }
+                            //find enemy direction
+                            if (point.Location.X - 50 < PhysicsBody.Position.X)
+                            {
+                                Left = true;
+                            }
 
-                        //we have the enemy that is closest so walk to him
-                        if (!Left)
-                        {
-                            moveRight();
+                            //we have the enemy that is closest so walk to him
+                            if (!Left)
+                            {
+                                moveRight();
+                            }
+                            else if (Left)
+                            {
+                                moveLeft();
+                            }
                         }
-                        else if (Left)
+                        else
                         {
-                            moveLeft();
+                            jump();
                         }
                     }
                 }
