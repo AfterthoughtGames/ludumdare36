@@ -19,6 +19,8 @@ namespace GameyMickGameFace.GameObjects
 
         float scale = 0.4f;
 
+        public Weapon Weapon { get; set; }
+
         public Body PhysicsBody { get; set; }
 
         public int PlayerNumber { get; set; }

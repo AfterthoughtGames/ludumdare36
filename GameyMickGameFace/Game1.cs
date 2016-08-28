@@ -1,5 +1,6 @@
 ﻿using GameyMickGameFace.GameObjects;
 using GameyMickGameFace.GameObjects.PowerUps;
+using GameyMickGameFace.GameObjects.Weapons;
 using GameyMickGameFace.Menus;
 using GameyMickGameFace.Physics;
 using Microsoft.Xna.Framework;
@@ -46,8 +47,12 @@ namespace GameyMickGameFace
 
         int levelOne = 420;
         int levelTwo = 220;
+        float WeaponScale = 0.1f;
 
         HealthPowerUp Health;
+        Sword Sword;
+        Trident Trident;
+        Bow Bow;
 
         public Game1()
         {
@@ -87,7 +92,7 @@ namespace GameyMickGameFace
             Media.Textures.Load(Content);
             Media.Music.Load(Content);
 
-            Player1 = new Player(new Point(100,130));
+            Player1 = new Player(new Point(100, 130));
             Player1.PlayerNumber = 1;
             Player1.Health = 100;
             physicsManager.AddBody(Player1.PhysicsBody);
@@ -123,8 +128,20 @@ namespace GameyMickGameFace
             Platform3 = new Tile(new Point(750, levelOne), Platform3Texture.Width, Platform3Texture.Height - 30, 0, 0);
             physicsManager.AddBody(Platform3.Body);
 
-            Health = new HealthPowerUp(Media.Textures.healthTexture, Media.Animations.PotionSmoke, new Point(550,150));
+            Health = new HealthPowerUp(Media.Textures.healthTexture, Media.Animations.PotionSmoke, new Point(550, 150));
             physicsManager.AddBody(Health.PhysicsBody);
+
+            Texture2D SwordTexture = Media.Textures.SwordTexture;
+            Sword = new Sword(SwordTexture, new Point(400, levelOne - (int)(SwordTexture.Height * WeaponScale)));
+            physicsManager.AddBody(Sword.PhysicsBody);
+
+            Texture2D TridentTexture = Media.Textures.TridentTexture;
+            Trident = new Trident(TridentTexture, new Point(650, levelTwo - (int)(TridentTexture.Height * WeaponScale)));
+            physicsManager.AddBody(Trident.PhysicsBody);
+
+            Texture2D BowTexture = Media.Textures.BowTexture;
+            Bow = new Bow(BowTexture, new Point(890, levelOne - (int)(BowTexture.Height * WeaponScale)));
+            physicsManager.AddBody(Bow.PhysicsBody);
 
             PhysicsBox = Content.Load<Texture2D>("Images/blacksquare");
 
@@ -190,6 +207,9 @@ namespace GameyMickGameFace
             }
 
             Health.Update(gameTime, GameState);
+            Sword.Update(gameTime, GameState);
+            Trident.Update(gameTime, GameState);
+            Bow.Update(gameTime, GameState);
 
             PreviousKeyState = currentState;
 
@@ -239,9 +259,11 @@ namespace GameyMickGameFace
                 Player3.Draw(gameTime, spriteBatch);
                 Player4.Draw(gameTime, spriteBatch);
 
+                Health.Draw(gameTime, spriteBatch, GameState);
+                Sword.Draw(gameTime, spriteBatch, GameState);
+                Trident.Draw(gameTime, spriteBatch, GameState);
+                Bow.Draw(gameTime, spriteBatch, GameState);
             }
-            Health.Draw(gameTime, spriteBatch, GameState);
-
 
             if (PhysicsDrawn)
             {
