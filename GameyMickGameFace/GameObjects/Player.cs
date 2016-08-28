@@ -92,7 +92,7 @@ namespace GameyMickGameFace.GameObjects
                 {
                     if (PlayerNumber == 1)
                     {
-                        if (currentState.IsKeyDown(Keys.Enter))
+                        if (currentState.IsKeyDown(Keys.Enter) && !PreviousKeyState.IsKeyDown(Keys.Enter))
                         {
                             //TODO: attack animation state
                             AnimationState = PlayerAnimationState.WalkingRight;
@@ -130,7 +130,7 @@ namespace GameyMickGameFace.GameObjects
                     {
                         AnimationState = PlayerAnimationState.Standing;
 
-                        if (currentPadState.Triggers.Right > 0)
+                        if (currentPadState.Triggers.Right > 0 && !(PreviousPadState.Triggers.Right > 0))
                         {
                             //TODO: attack animation state
                             AnimationState = PlayerAnimationState.WalkingRight;
@@ -278,7 +278,14 @@ namespace GameyMickGameFace.GameObjects
                 }
 
                 //figure out what level the target is on compared to player
-                onLevel = Math.Abs(target.PhysicsBody.Position.Y - PhysicsBody.Position.Y) < 200;
+                if (target != null)
+                {
+                    onLevel = Math.Abs(target.PhysicsBody.Position.Y - PhysicsBody.Position.Y) < 200;
+                }
+                else
+                {
+                    onLevel = false;
+                }
 
                 if (!onLevel)
                 {
@@ -383,7 +390,8 @@ namespace GameyMickGameFace.GameObjects
                 if (player != this && (this.PhysicsBody.Position - player.PhysicsBody.Position).Length() < 50)
                 {
                     //hit
-                    player.Health--;
+                    if(Weapon != null)
+                    player.Health = player.Health - Weapon.Damage;
 
                     Vector2 initialVelocity = new Vector2(rand.Next(-100, 100), rand.Next(-100, 100));
                     float currentRotation = 0;
