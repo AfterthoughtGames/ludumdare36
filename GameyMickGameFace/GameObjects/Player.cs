@@ -92,7 +92,7 @@ namespace GameyMickGameFace.GameObjects
                 {
                     if (PlayerNumber == 1)
                     {
-                        if (currentState.IsKeyDown(Keys.Enter))
+                        if (currentState.IsKeyDown(Keys.Enter) && !PreviousKeyState.IsKeyDown(Keys.Enter))
                         {
                             //TODO: attack animation state
                             AnimationState = PlayerAnimationState.WalkingRight;
@@ -130,7 +130,7 @@ namespace GameyMickGameFace.GameObjects
                     {
                         AnimationState = PlayerAnimationState.Standing;
 
-                        if (currentPadState.Triggers.Right > 0)
+                        if (currentPadState.Triggers.Right > 0 && !(PreviousPadState.Triggers.Right > 0))
                         {
                             //TODO: attack animation state
                             AnimationState = PlayerAnimationState.WalkingRight;
@@ -229,25 +229,80 @@ namespace GameyMickGameFace.GameObjects
                     }
                 }
 
+                //figure out what level the target is on compared to player
+                bool onLevel = Math.Abs(target.PhysicsBody.Position.Y - PhysicsBody.Position.Y) < 200;
 
-                //needs to match weapon distance
-                if (distance > 50)
+                if (!onLevel)
                 {
-                    bool Left = false;
-                    //find enemy direction
-                    if (target.PhysicsBody.Position.X < PhysicsBody.Position.X)
+                    Waypoint point = null;
+                    if (target != null && target.PhysicsBody.Position.Y < PhysicsBody.Position.Y)
                     {
-                        Left = true;
+                        //it is up
+                    }
+                    else
+                    {
+                        //it is down
+                        float waypointDistance = 99999999;
+
+                        foreach (Waypoint waypoint in Game1.Level.Waypoints)
+                        {
+                            onLevel = Math.Abs(waypoint.Location.Y - PhysicsBody.Position.Y) < 180;
+                            if (onLevel && (waypoint.Location - PhysicsBody.Position).Length() < waypointDistance)
+                            {
+                                point = waypoint;
+                                waypointDistance = (waypoint.Location - PhysicsBody.Position).Length();
+                            }
+                        }
                     }
 
-                    //we have the enemy that is closest so walk to him
-                    if (!Left)
+                    bool Left = false;
+
+                    if (point != null)
                     {
-                        moveRight();
+                        //find enemy direction
+                        if (point.Location.X - 50 < PhysicsBody.Position.X)
+                        {
+                            Left = true;
+                        }
+
+                        //we have the enemy that is closest so walk to him
+                        if (!Left)
+                        {
+                            AnimationState = PlayerAnimationState.WalkingRight;
+                            PhysicsBody.AddVelocity(new Vector2(100, 0));
+                        }
+                        else if (Left)
+                        {
+                            AnimationState = PlayerAnimationState.WalkingLeft;
+                            PhysicsBody.AddVelocity(new Vector2(-100, 0));
+                        }
                     }
-                    else if (Left)
+                }
+                else
+                {
+                    //needs to match weapon distance
+                    if (distance > 70)
                     {
-                        moveLeft();
+                        bool Left = false;
+                        //find enemy direction
+                        if (target.PhysicsBody.Position.X < PhysicsBody.Position.X)
+                        {
+                            Left = true;
+                        }
+
+                        //we have the enemy that is closest so walk to him
+                        if (!Left)
+                        {
+                            moveRight();
+                        }
+                        else if (Left)
+                        {
+                            moveLeft();
+                        }
+                    }
+                    else
+                    {
+                        Attack();
                     }
                 }
             }
@@ -278,12 +333,19 @@ namespace GameyMickGameFace.GameObjects
                 }
 
                 //figure out what level the target is on compared to player
-                onLevel = Math.Abs(target.PhysicsBody.Position.Y - PhysicsBody.Position.Y) < 250;
+                if (target != null)
+                {
+                    onLevel = Math.Abs(target.PhysicsBody.Position.Y - PhysicsBody.Position.Y) < 200;
+                }
+                else
+                {
+                    onLevel = false;
+                }
 
                 if (!onLevel)
                 {
                     Waypoint point = null;
-                    if (target != null && target.PhysicsBody.Position.Y > PhysicsBody.Position.Y)
+                    if (target != null && target.PhysicsBody.Position.Y < PhysicsBody.Position.Y)
                     {
                         //it is up
                     }
@@ -303,22 +365,26 @@ namespace GameyMickGameFace.GameObjects
                     }
 
                     bool Left = false;
-                    //find enemy direction
-                    if (point != null && point.Location.X - 50 < PhysicsBody.Position.X)
-                    {
-                        Left = true;
-                    }
 
-                    //we have the enemy that is closest so walk to him
-                    if (!Left)
+                    if (point != null)
                     {
-                        AnimationState = PlayerAnimationState.WalkingRight;
-                        PhysicsBody.AddVelocity(new Vector2(100, 0));
-                    }
-                    else if (Left)
-                    {
-                        AnimationState = PlayerAnimationState.WalkingLeft;
-                        PhysicsBody.AddVelocity(new Vector2(-100, 0));
+                        //find enemy direction
+                        if (point.Location.X - 50 < PhysicsBody.Position.X)
+                        {
+                            Left = true;
+                        }
+
+                        //we have the enemy that is closest so walk to him
+                        if (!Left)
+                        {
+                            AnimationState = PlayerAnimationState.WalkingRight;
+                            PhysicsBody.AddVelocity(new Vector2(100, 0));
+                        }
+                        else if (Left)
+                        {
+                            AnimationState = PlayerAnimationState.WalkingLeft;
+                            PhysicsBody.AddVelocity(new Vector2(-100, 0));
+                        }
                     }
                 }
                 else
@@ -379,7 +445,8 @@ namespace GameyMickGameFace.GameObjects
                 if (player != this && (this.PhysicsBody.Position - player.PhysicsBody.Position).Length() < 50)
                 {
                     //hit
-                    player.Health--;
+                    if (Weapon != null)
+                        player.Health = player.Health - Weapon.Damage;
 
                     Vector2 initialVelocity = new Vector2(rand.Next(-100, 100), rand.Next(-100, 100));
                     float currentRotation = 0;
@@ -433,17 +500,23 @@ namespace GameyMickGameFace.GameObjects
                         {
                             ((PowerUp)body2.objRef).OnPickup((Player)body.objRef);
                         }
-                        else if (body2.objRef is PowerUp && body.objRef is Player)
+                        else if (body.objRef is PowerUp && body2.objRef is Player)
                         {
-                            ((PowerUp)body2.objRef).OnPickup((Player)body.objRef);
+                            ((PowerUp)body.objRef).OnPickup((Player)body2.objRef);
                         }
                         else if (body.objRef is Player && body2.objRef is Weapon)
                         {
-                            ((Weapon)body2.objRef).OnPickUp((Player)body.objRef);
+                            if (((Player)body.objRef).Weapon == null)
+                            {
+                                ((Weapon)body2.objRef).OnPickUp((Player)body.objRef);
+                            }
                         }
-                        else if (body2.objRef is Weapon && body.objRef is Player)
+                        else if (body.objRef is Weapon && body2.objRef is Player)
                         {
-                            ((Weapon)body2.objRef).OnPickUp((Player)body.objRef);
+                            if (((Player)body.objRef).Weapon == null)
+                            {
+                                ((Weapon)body.objRef).OnPickUp((Player)body2.objRef);
+                            }
                         }
                         else
                         {
