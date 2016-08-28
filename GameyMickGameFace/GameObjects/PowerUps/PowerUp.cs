@@ -30,6 +30,7 @@ namespace GameyMickGameFace.GameObjects.PowerUps
             cleanMeUpBitches = true;
         }
 
+<<<<<<< eb5679f6af6838d240b6e5a5b0f10a89efad4567
         public virtual void Draw(GameTime time, SpriteBatch batch)
         {
             batch.Draw(texture, PhysicsBody.Position, null, Color.White, 0.0f, Vector2.Zero, scale, SpriteEffects.None, 0.0f);
@@ -37,6 +38,24 @@ namespace GameyMickGameFace.GameObjects.PowerUps
 
         public virtual void Update(GameTime time)
         {
+=======
+        public virtual void Draw(GameTime time, SpriteBatch batch, GameStates gameState)
+        {
+            if (gameState == GameStates.Title)
+            {
+                return;
+            }
+
+            batch.Draw(texture, PhysicsBody.Position, null, Color.White, 0.0f, Vector2.Zero, scale, SpriteEffects.None, 0.0f);
+        }
+
+        public virtual void Update(GameTime time, GameStates gameState)
+        {
+            if (gameState == GameStates.Title)
+            {
+                return;
+            }
+>>>>>>> added new powerup stuff and modified other powerup stuff
         }
     }
 }
