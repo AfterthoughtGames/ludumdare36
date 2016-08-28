@@ -64,7 +64,10 @@ namespace GameyMickGameFace.Physics
         {
             Position += Velocity * (gameTime.ElapsedGameTime.Milliseconds / 1000f);
 
-            Velocity *= LinearDampening * (gameTime.ElapsedGameTime.Milliseconds / 1000f);
+            if (LinearDampening != 1)
+            {
+                Velocity *= LinearDampening * (gameTime.ElapsedGameTime.Milliseconds / 1000f);
+            }
 
             UpdatePosition();
         }

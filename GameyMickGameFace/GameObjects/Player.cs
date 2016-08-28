@@ -1,7 +1,10 @@
-﻿using GameyMickGameFace.Physics;
+﻿using GameyMickGameFace.Media;
+using GameyMickGameFace.Particles;
+using GameyMickGameFace.Physics;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System;
 using System.Collections.Generic;
 
 namespace GameyMickGameFace.GameObjects
@@ -18,6 +21,8 @@ namespace GameyMickGameFace.GameObjects
         // public Vector2 Position { get; set; }
 
         float scale = 0.4f;
+
+        Random rand = new Random();
 
         public Body PhysicsBody { get; set; }
 
@@ -188,6 +193,20 @@ namespace GameyMickGameFace.GameObjects
                 {
                     //hit
                     player.Health--;
+
+                    Vector2 initialVelocity = new Vector2(rand.Next(-100, 100), rand.Next(-100, 100));
+                    float currentRotation = 0;
+                    Matrix rotation;
+                    Point location = new Point(rand.Next(player.DetectionPhysicsBodies[0].MotionPhysicsBody.Left, player.DetectionPhysicsBodies[0].MotionPhysicsBody.Right),
+                           rand.Next(player.DetectionPhysicsBodies[0].MotionPhysicsBody.Top, player.DetectionPhysicsBodies[0].MotionPhysicsBody.Bottom));
+
+                    for (int i=0;i<10;i++)
+                    {
+                        rotation = Matrix.CreateRotationZ(currentRotation);
+                        Particle particle = new Particle(location, .5f, Textures.bloodParticle, Vector2.Transform(initialVelocity,rotation));
+                        Game1.Particles.Add(particle);
+                        currentRotation += .15f;
+                    }
                 }
             }
         }

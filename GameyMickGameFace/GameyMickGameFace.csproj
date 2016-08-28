@@ -57,6 +57,7 @@
     <Compile Include="Media\SpriteSheets.cs" />
     <Compile Include="Media\Textures.cs" />
     <Compile Include="Menus\Title.cs" />
+    <Compile Include="Particles\Particle.cs" />
     <Compile Include="Physics\Body.cs" />
     <Compile Include="Physics\PhysicsManager.cs" />
     <Compile Include="Program.cs" />
@@ -135,6 +136,9 @@
     <None Include="Content\Images\arrow.xnb" />
     <None Include="Content\Images\Background.xnb" />
     <None Include="Content\Images\blacksquare.xnb" />
+    <Content Include="Content\Images\BloodParticle.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <None Include="Content\Images\Bow.xnb" />
     <None Include="Content\Images\Flame.xnb" />
     <None Include="Content\Images\flyingshoe.xnb" />
