@@ -39,23 +39,23 @@ namespace GameyMickGameFace.GameObjects
 
             DetectionPhysicsBodies = new List<Body>();
 
-            Body leftDetectionBody = new Body(new Point(0, 0), (int)(25 * scale), (int)(235 * scale), (int)(0 * scale), (int)(100 * scale), .85f, this);
-            leftDetectionBody.parentOffset = new Vector2(145, 0) * scale;
+            Body leftDetectionBody = new Body(new Point(0,0), (int)(25*scale), (int)(180 * scale), (int)(0 * scale), (int)(100 * scale), .85f, this);
+            leftDetectionBody.parentOffset = new Vector2(145,35) * scale;
             leftDetectionBody.bodyType = BodyDetectionType.Left;
             DetectionPhysicsBodies.Add(leftDetectionBody);
 
-            Body rightDetectionBody = new Body(new Point(0, 0), (int)(25 * scale), (int)(235 * scale), (int)(0 * scale), (int)(100 * scale), .85f, this);
-            rightDetectionBody.parentOffset = new Vector2(170, 0) * scale;
+            Body rightDetectionBody = new Body(new Point(0, 0), (int)(25 * scale), (int)(180 * scale), (int)(0 * scale), (int)(100 * scale), .85f, this);
+            rightDetectionBody.parentOffset = new Vector2(170, 35) * scale;
             DetectionPhysicsBodies.Add(rightDetectionBody);
             rightDetectionBody.bodyType = BodyDetectionType.Right;
 
-            Body topDetectionBody = new Body(new Point(0, 0), (int)(50 * scale), (int)(20 * scale), (int)(0 * scale), (int)(100 * scale), .85f, this);
-            topDetectionBody.parentOffset = new Vector2(145, 0) * scale;
+            Body topDetectionBody = new Body(new Point(0, 0), (int)(40 * scale), (int)(20 * scale), (int)(0 * scale), (int)(100 * scale), .85f, this);
+            topDetectionBody.parentOffset = new Vector2(150, 25) * scale;
             topDetectionBody.bodyType = BodyDetectionType.Top;
             DetectionPhysicsBodies.Add(topDetectionBody);
 
-            Body bottomDetectionBody = new Body(new Point(0, 0), (int)(50 * scale), (int)(20 * scale), (int)(0 * scale), (int)(100 * scale), .85f, this);
-            bottomDetectionBody.parentOffset = new Vector2(145, 215) * scale;
+            Body bottomDetectionBody = new Body(new Point(0, 0), (int)(40 * scale), (int)(20 * scale), (int)(0 * scale), (int)(100 * scale), .85f, this);
+            bottomDetectionBody.parentOffset = new Vector2(150, 205) * scale;
             bottomDetectionBody.bodyType = BodyDetectionType.Bottom;
             DetectionPhysicsBodies.Add(bottomDetectionBody);
         }
