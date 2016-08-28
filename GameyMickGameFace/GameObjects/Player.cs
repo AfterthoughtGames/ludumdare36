@@ -186,12 +186,35 @@ namespace GameyMickGameFace.GameObjects
 
         private void moveRight()
         {
-            AnimationState = PlayerAnimationState.WalkingRight;
+            if (Weapon == null)
+            {
+                AnimationState = PlayerAnimationState.WalkingRight;
+            }
+            else if (Weapon.weaponType == WeaponType.Slashing)
+            {
+                AnimationState = PlayerAnimationState.WalkingWithSwordRight;
+            }
+            else if (Weapon.weaponType == WeaponType.Stabbing)
+            {
+                AnimationState = PlayerAnimationState.WalkingWithTridentRight;
+            }
             PhysicsBody.AddVelocity(new Vector2(100 * SpeedBonus, 0));
         }
 
         private void moveLeft()
         {
+            if (Weapon == null)
+            {
+                AnimationState = PlayerAnimationState.WalkingLeft;
+            }
+            else if (Weapon.weaponType == WeaponType.Slashing)
+            {
+                AnimationState = PlayerAnimationState.WalkingWithSwordLeft;
+            }
+            else if (Weapon.weaponType == WeaponType.Stabbing)
+            {
+                AnimationState = PlayerAnimationState.WalkingWithTridentLeft;
+            }
             AnimationState = PlayerAnimationState.WalkingLeft;
             PhysicsBody.AddVelocity(new Vector2(-100 * SpeedBonus, 0));
         }
