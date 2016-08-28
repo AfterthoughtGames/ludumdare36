@@ -39,6 +39,9 @@ namespace GameyMickGameFace.GameObjects
         public List<Body> DetectionPhysicsBodies;
         public long lastTime = 0;
 
+        private static int gravityVelo = 80;
+        private static int jumpVelo = -390;
+
         public Player(int seed)
         {
             rand = new Random(seed);
@@ -80,7 +83,7 @@ namespace GameyMickGameFace.GameObjects
                 KeyboardState currentState = Keyboard.GetState();
 
                 bool keyboardControlled = false;
-                gravityItsTheLaw(time, manager);
+                provideGravity(time, manager);
 
                 if (PlayerNumber == 1)
                 {
@@ -117,7 +120,7 @@ namespace GameyMickGameFace.GameObjects
                     else if (!jumping && (currentState.IsKeyDown(Keys.Up) || currentState.IsKeyDown(Keys.W)))
                     {
                         AnimationState = PlayerAnimationState.Standing;
-                        PhysicsBody.AddVelocity(new Vector2(0, -6000));
+                        PhysicsBody.AddVelocity(new Vector2(0, jumpVelo));
                         keyboardControlled = true;
                         jumping = true;
                     }
@@ -243,7 +246,7 @@ namespace GameyMickGameFace.GameObjects
 
         public void provideGravity(GameTime time, PhysicsManager manager)
         {
-            PhysicsBody.AddVelocity(new Vector2(0, 10));
+            PhysicsBody.AddVelocity(new Vector2(0, gravityVelo));
         }
 
         public void UpdateBodyPhysicsDetection()
