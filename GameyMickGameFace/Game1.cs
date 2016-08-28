@@ -244,7 +244,10 @@ namespace GameyMickGameFace
             {
                 foreach (Body Body in physicsManager.GetBodies())
                 {
-                    spriteBatch.Draw(PhysicsBox, new Rectangle((int)Body.Position.X, (int)Body.Position.Y, Body.width, Body.height), Color.White);
+                    if (Body.reactsToCollision)
+                    {
+                        spriteBatch.Draw(PhysicsBox, new Rectangle((int)Body.Position.X, (int)Body.Position.Y, Body.width, Body.height), Color.White);
+                    }
                 }
 
                 foreach (Body body in Player1.DetectionPhysicsBodies)
