@@ -229,25 +229,76 @@ namespace GameyMickGameFace.GameObjects
                     }
                 }
 
+                //figure out what level the target is on compared to player
+                bool onLevel = Math.Abs(target.PhysicsBody.Position.Y - PhysicsBody.Position.Y) < 200;
 
-                //needs to match weapon distance
-                if (distance > 50)
+                if (!onLevel)
                 {
-                    bool Left = false;
-                    //find enemy direction
-                    if (target.PhysicsBody.Position.X < PhysicsBody.Position.X)
+                    Waypoint point = null;
+                    if (target != null && target.PhysicsBody.Position.Y < PhysicsBody.Position.Y)
                     {
-                        Left = true;
+                        //it is up
+                    }
+                    else
+                    {
+                        //it is down
+                        float waypointDistance = 99999999;
+                        
+                        foreach (Waypoint waypoint in Game1.Level.Waypoints)
+                        {
+                            onLevel = Math.Abs(waypoint.Location.Y - PhysicsBody.Position.Y) < 180;
+                            if (onLevel && (waypoint.Location - PhysicsBody.Position).Length() < waypointDistance)
+                            {
+                                point = waypoint;
+                                waypointDistance = (waypoint.Location - PhysicsBody.Position).Length();
+                            }
+                        }
                     }
 
-                    //we have the enemy that is closest so walk to him
-                    if (!Left)
+                    bool Left = false;
+
+                    if (point != null)
                     {
-                        moveRight();
+                        //find enemy direction
+                        if (point.Location.X - 50 < PhysicsBody.Position.X)
+                        {
+                            Left = true;
+                        }
+
+                        //we have the enemy that is closest so walk to him
+                        if (!Left)
+                        {
+                            AnimationState = PlayerAnimationState.WalkingRight;
+                            PhysicsBody.AddVelocity(new Vector2(100, 0));
+                        }
+                        else if (Left)
+                        {
+                            AnimationState = PlayerAnimationState.WalkingLeft;
+                            PhysicsBody.AddVelocity(new Vector2(-100, 0));
+                        }
                     }
-                    else if (Left)
+                }
+                else
+                {
+                    //needs to match weapon distance
+                    if (distance > 50)
                     {
-                        moveLeft();
+                        bool Left = false;
+                        //find enemy direction
+                        if (target.PhysicsBody.Position.X < PhysicsBody.Position.X)
+                        {
+                            Left = true;
+                        }
+
+                        //we have the enemy that is closest so walk to him
+                        if (!Left)
+                        {
+                            moveRight();
+                        }
+                        else if (Left)
+                        {
+                            moveLeft();
+                        }
                     }
                 }
             }
@@ -283,7 +334,7 @@ namespace GameyMickGameFace.GameObjects
                 if (!onLevel)
                 {
                     Waypoint point = null;
-                    if (target != null && target.PhysicsBody.Position.Y > PhysicsBody.Position.Y)
+                    if (target != null && target.PhysicsBody.Position.Y < PhysicsBody.Position.Y)
                     {
                         //it is up
                     }
