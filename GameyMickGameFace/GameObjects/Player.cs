@@ -253,11 +253,6 @@ namespace GameyMickGameFace.GameObjects
             }
         }
 
-        public void gravityItsTheLaw(GameTime time, PhysicsManager manager)
-        {
-            provideGravity(time, manager);
-        }
-
         public void provideGravity(GameTime time, PhysicsManager manager)
         {
             PhysicsBody.AddVelocity(new Vector2(0, gravityVelo));
