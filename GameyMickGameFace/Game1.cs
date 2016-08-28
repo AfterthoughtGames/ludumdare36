@@ -1,15 +1,10 @@
 ﻿using GameyMickGameFace.GameObjects;
-using GameyMickGameFace.GameObjects.PowerUps;
-using GameyMickGameFace.GameObjects.Weapons;
 using GameyMickGameFace.Menus;
-using GameyMickGameFace.Particles;
-using GameyMickGameFace.Physics;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 using System;
-using System.Collections.Generic;
 
 namespace GameyMickGameFace
 {
@@ -25,15 +20,13 @@ namespace GameyMickGameFace
     {
         public static GameStates GameState;
         
-
-        
-
         public Random rand = new Random();
 
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
-        public KeyboardState PreviousKeyState { get; set; }
+        public static KeyboardState PreviousKeyState { get; set; }
+        public static GamePadState PreviousPadState { get; set; }
 
         Title TitleScreen;
         Score ScoreBoard;
@@ -77,7 +70,6 @@ namespace GameyMickGameFace
             Media.Music.Load(Content);
 
             TitleScreen = new Title();
-            Level = new Level();
 
             ScoreBoard = new Score();
 

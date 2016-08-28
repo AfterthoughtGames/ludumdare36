@@ -1,6 +1,7 @@
 ﻿using GameyMickGameFace.GameObjects;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,7 +21,17 @@ namespace GameyMickGameFace.Menus
 
         public void Update(GameTime time)
         {
+            KeyboardState currentKey = Keyboard.GetState();
+            GamePadState currentPad = GamePad.GetState(PlayerIndex.One);
 
+            if ((currentKey.IsKeyDown(Keys.Enter)  && !Game1.PreviousKeyState.IsKeyDown(Keys.Enter)) || 
+                (currentPad.Buttons.A == ButtonState.Pressed && !Game1.PreviousPadState.IsButtonDown(Buttons.A)))
+            {
+                Game1.GameState = GameStates.Title;
+            }
+
+            Game1.PreviousKeyState = currentKey;
+            Game1.PreviousPadState = currentPad;
         }
 
         public void Draw(GameTime time, SpriteBatch batch)
