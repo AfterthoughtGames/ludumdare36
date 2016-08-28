@@ -145,6 +145,13 @@ namespace GameyMickGameFace.GameObjects
                         AnimationState = PlayerAnimationState.WalkingLeft;
                         PhysicsBody.AddVelocity(new Vector2(-100, 0));
                     }
+                    else if (!jumping && currentPadState.DPad.Up == ButtonState.Pressed)
+                    {
+                        AnimationState = PlayerAnimationState.Standing;
+                        PhysicsBody.AddVelocity(new Vector2(0, jumpVelo));
+                        keyboardControlled = true;
+                        jumping = true;
+                    }
                     else if (currentPadState.ThumbSticks.Left.X > 0.0f)
                     {
                         AnimationState = PlayerAnimationState.WalkingRight;
@@ -154,6 +161,13 @@ namespace GameyMickGameFace.GameObjects
                     {
                         AnimationState = PlayerAnimationState.WalkingLeft;
                         PhysicsBody.AddVelocity(new Vector2(-100, 0));
+                    }
+                    else if (currentPadState.ThumbSticks.Left.Y > 0.0f)
+                    {
+                        AnimationState = PlayerAnimationState.Standing;
+                        PhysicsBody.AddVelocity(new Vector2(0, jumpVelo));
+                        keyboardControlled = true;
+                        jumping = true;
                     }
                     else
                     {
