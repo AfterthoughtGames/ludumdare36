@@ -16,6 +16,7 @@ namespace GameyMickGameFace.GameObjects
 
     public class Player
     {
+        public int Score = 0;
         public int Health { get; set; }
         public string Name { get; set; }
         // public Vector2 Position { get; set; }
@@ -170,6 +171,9 @@ namespace GameyMickGameFace.GameObjects
             {
                 Health = 100;
                 PhysicsBody.Position = Game1.PlayerSpawnPoints[rand.Next(0, Game1.PlayerSpawnPoints.Count)].ToVector2();
+
+                //remove 5 points for death
+                Score -= 5;
             }
         }
 
@@ -214,6 +218,12 @@ namespace GameyMickGameFace.GameObjects
                     Matrix rotation;
                     Point location = new Point(rand.Next(player.DetectionPhysicsBodies[0].MotionPhysicsBody.Left, player.DetectionPhysicsBodies[0].MotionPhysicsBody.Right),
                            rand.Next(player.DetectionPhysicsBodies[0].MotionPhysicsBody.Top, player.DetectionPhysicsBodies[0].MotionPhysicsBody.Bottom));
+
+                    //score crap
+                    if(player.Health <= 0)
+                    {
+                        Score += 10; //add 10 points you murdered him
+                    }
 
                     for (int i=0;i<10;i++)
                     {
