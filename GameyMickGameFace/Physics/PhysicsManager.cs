@@ -43,6 +43,10 @@ namespace GameyMickGameFace.Physics
 
         public void ResolveCollision(Body a, Body b)
         {
+            if(a.Mass == 0 && b.Mass == 0)
+            {
+                return;
+            }
             //find the collision normal (aka the direction of the collision
             Vector2 collisionNormal = b.Position - a.Position;
 
