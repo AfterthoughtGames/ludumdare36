@@ -130,46 +130,50 @@ namespace GameyMickGameFace.GameObjects
 
                     }
 
-                    //if (!keyboardControlled)
-                    //{
-                    //    AnimationState = PlayerAnimationState.Standing;
-                    //    PhysicsBody.AddVelocity(new Vector2(0, jumpVelo));
-                    //    keyboardControlled = true;
-                    //    jumping = true;
+                    if (!keyboardControlled)
+                    {
+                        AnimationState = PlayerAnimationState.Standing;
 
-                    //    if (currentPadState.Buttons.A == ButtonState.Pressed)
-                    //    {
-                    //        //TODO: attack animation state
-                    //        AnimationState = PlayerAnimationState.WalkingRight;
-                    //        Attack();
-                    //    }
-                    //    else if (currentPadState.DPad.Right == ButtonState.Pressed)
-                    //    {
-                    //        AnimationState = PlayerAnimationState.WalkingRight;
-                    //        PhysicsBody.AddVelocity(new Vector2(100, 0));
-                    //    }
-                    //    else if (currentPadState.DPad.Left == ButtonState.Pressed)
-                    //    {
-                    //        AnimationState = PlayerAnimationState.WalkingLeft;
-                    //        PhysicsBody.AddVelocity(new Vector2(-100, 0));
-                    //    }
-                    //    else if (currentPadState.ThumbSticks.Left.X > 0.0f)
-                    //    {
-                    //        AnimationState = PlayerAnimationState.WalkingRight;
-                    //        PhysicsBody.AddVelocity(new Vector2(100, 0));
-                    //    }
-                    //    else if (currentPadState.ThumbSticks.Left.X < 0.0f)
-                    //    {
-                    //        AnimationState = PlayerAnimationState.WalkingLeft;
-                    //        PhysicsBody.AddVelocity(new Vector2(-100, 0));
-                    //    }
-                    //    else
-                    //    {
-                    //        AnimationState = PlayerAnimationState.Standing;
-                    //    }
-                    //}
+                        if (currentPadState.Triggers.Right > 0)
+                        {
+                            //TODO: attack animation state
+                            AnimationState = PlayerAnimationState.WalkingRight;
+                            Attack();
+                        }
+                        else if(currentPadState.Buttons.A == ButtonState.Pressed)
+                        {
+                            //jump
+                            PhysicsBody.AddVelocity(new Vector2(0, jumpVelo));
+                            keyboardControlled = true;
+                            jumping = true;
+                        }
+                        else if (currentPadState.DPad.Right == ButtonState.Pressed)
+                        {
+                            AnimationState = PlayerAnimationState.WalkingRight;
+                            PhysicsBody.AddVelocity(new Vector2(100, 0));
+                        }
+                        else if (currentPadState.DPad.Left == ButtonState.Pressed)
+                        {
+                            AnimationState = PlayerAnimationState.WalkingLeft;
+                            PhysicsBody.AddVelocity(new Vector2(-100, 0));
+                        }
+                        else if (currentPadState.ThumbSticks.Left.X > 0.0f)
+                        {
+                            AnimationState = PlayerAnimationState.WalkingRight;
+                            PhysicsBody.AddVelocity(new Vector2(100, 0));
+                        }
+                        else if (currentPadState.ThumbSticks.Left.X < 0.0f)
+                        {
+                            AnimationState = PlayerAnimationState.WalkingLeft;
+                            PhysicsBody.AddVelocity(new Vector2(-100, 0));
+                        }
+                        else
+                        {
+                            AnimationState = PlayerAnimationState.Standing;
+                        }
+                    }
 
-                    keyboardControlled = false;
+                        keyboardControlled = false;
 
                     PreviousPadState = currentPadState;
                     PreviousKeyState = currentState;
