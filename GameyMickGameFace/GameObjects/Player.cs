@@ -39,8 +39,8 @@ namespace GameyMickGameFace.GameObjects
         public List<Body> DetectionPhysicsBodies;
         public long lastTime = 0;
 
-        private static int gravityVelo = 80;
-        private static int jumpVelo = -390;
+        private static int gravityVelo = 100;
+        private static int jumpVelo = -2090;
 
         public Player(int seed)
         {
@@ -299,8 +299,9 @@ namespace GameyMickGameFace.GameObjects
                                     if (PhysicsBody.Velocity.Y > 0)
                                     {
                                         PhysicsBody.Velocity.Y = 0;
+                                        jumping = false;
                                     }
-                                    jumping = false;
+
                                     break;
                                 }
 
