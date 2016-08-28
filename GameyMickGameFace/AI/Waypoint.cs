@@ -23,7 +23,14 @@ namespace GameyMickGameFace.AI
 
         public void Draw(SpriteBatch batch)
         {
-            batch.Draw(Textures.Waypoints, Location, null, Color.White, 0.0f, Vector2.Zero, 1, SpriteEffects.None, 0.0f);
+            if (Up)
+            {
+                batch.Draw(Textures.Waypoints, Location, null, Color.Blue, 0.0f, Vector2.Zero, 1, SpriteEffects.None, 0.0f);
+            }
+            else
+            {
+                batch.Draw(Textures.Waypoints, Location, null, Color.White, 0.0f, Vector2.Zero, 1, SpriteEffects.None, 0.0f);
+            }
         }
     }
 }

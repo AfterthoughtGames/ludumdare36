@@ -398,6 +398,18 @@ namespace GameyMickGameFace.GameObjects
             Waypoints.Add(new Waypoint(new Vector2(0, 350), false));
             Waypoints.Add(new Waypoint(new Vector2(1220, 350), false));
             Waypoints.Add(new Waypoint(new Vector2(670, 350), false));
+
+            // Up
+            // Mid level ups
+            Waypoints.Add(new Waypoint(new Vector2(100, 350), true));
+            Waypoints.Add(new Waypoint(new Vector2(1000, 350), true));
+
+            //bottem level ups
+            Waypoints.Add(new Waypoint(new Vector2(10, 580), true));
+            Waypoints.Add(new Waypoint(new Vector2(1200, 580), true));
+            Waypoints.Add(new Waypoint(new Vector2(680, 580), true));
+
+
         }
     }
 }
