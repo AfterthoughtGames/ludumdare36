@@ -45,6 +45,7 @@
     <Compile Include="Animation.cs" />
     <Compile Include="Game1.cs" />
     <Compile Include="GameObjects\Level.cs" />
+    <Compile Include="GameObjects\PowerUps\FlyingPowerUp.cs" />
     <Compile Include="GameObjects\PowerUps\HealthPowerUp.cs" />
     <Compile Include="GameObjects\Tile.cs" />
     <Compile Include="GameObjects\Weapons\Bow.cs" />
@@ -105,6 +106,7 @@
     <Content Include="Content\Images\playersqaure2.png" />
     <Content Include="Content\Images\potionSmall.png" />
     <Content Include="Content\Images\shortshelf.png" />
+    <Content Include="Content\Images\speedcrystals.png" />
     <Content Include="Content\Images\sword.png" />
     <Content Include="Content\Images\trebuchet.png" />
     <Content Include="Content\Images\Trident.png" />
@@ -153,6 +155,7 @@
     <None Include="Content\Images\playersqaure2.xnb" />
     <None Include="Content\Images\potionSmall.xnb" />
     <None Include="Content\Images\shortshelf.xnb" />
+    <None Include="Content\Images\speedcrystals.xnb" />
     <None Include="Content\Images\sword.xnb" />
     <None Include="Content\Images\Title.xnb">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

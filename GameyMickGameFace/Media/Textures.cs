@@ -12,7 +12,6 @@ namespace GameyMickGameFace.Media
         public static void Load(ContentManager cm)
         {
             TitleScreen = cm.Load<Texture2D>("Images/Title");
-            healthTexture = cm.Load<Texture2D>("Images/potionSmall");
             SwordTexture = cm.Load<Texture2D>("Images/sword");
             TridentTexture = cm.Load<Texture2D>("Images/Trident");
             BowTexture = cm.Load<Texture2D>("Images/Bow");
@@ -23,10 +22,13 @@ namespace GameyMickGameFace.Media
             Platform2Texture = cm.Load<Texture2D>("Images/mediumshelf");
             Platform3Texture = cm.Load<Texture2D>("Images/shortshelf");
             PhysicsBox = cm.Load<Texture2D>("Images/blacksquare");
+
+            //powerup textures
+            healthTexture = cm.Load<Texture2D>("Images/potionSmall");
+            flyingTexture = cm.Load<Texture2D>("Images/speedcrystals");
         }
 
         public static Texture2D TitleScreen { get; set; }
-        public static Texture2D healthTexture { get; set; }
         public static Texture2D SwordTexture { get; set; }
         public static Texture2D TridentTexture { get; set; }
         public static Texture2D BowTexture { get; set; }
@@ -37,5 +39,10 @@ namespace GameyMickGameFace.Media
         public static Texture2D Platform2Texture { get; set; }
         public static Texture2D Platform3Texture { get; set; }
         public static Texture2D PhysicsBox { get; set; }
+
+        //powerups
+        public static Texture2D healthTexture { get; set; }
+        public static Texture2D flyingTexture { get; set; }
+
     }
 }

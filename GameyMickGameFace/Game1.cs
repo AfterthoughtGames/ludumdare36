@@ -40,14 +40,12 @@ namespace GameyMickGameFace
 
         public static Level Level;
 
-
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
             graphics.PreferredBackBufferWidth = 1280;
             graphics.PreferredBackBufferHeight = 720;
             Content.RootDirectory = "Content";
-
             GameState = GameStates.Title;
         }
 
@@ -80,6 +78,7 @@ namespace GameyMickGameFace
 
             TitleScreen = new Title();
             Level = new Level();
+
             ScoreBoard = new Score();
 
             //TODO: Should be moved

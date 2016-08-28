@@ -28,7 +28,9 @@ namespace GameyMickGameFace.GameObjects.PowerUps
             base.Draw(time, batch);
 
             if (_animation == null)
+            { 
                 return;
+            }
 
             var animationScale = new Vector2(.18f);
             var pos = new Vector2(position.X, position.Y - 22);
@@ -40,7 +42,9 @@ namespace GameyMickGameFace.GameObjects.PowerUps
             base.Update(time);
 
             if (_animation == null)
+            { 
                 return;
+            }
 
             _animation.NextFrame(time);
         }
