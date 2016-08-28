@@ -69,7 +69,14 @@ namespace GameyMickGameFace.GameObjects
 
             if (PlayerNumber == 1)
             {
-                if (currentState.IsKeyDown(Keys.Right) || currentState.IsKeyDown(Keys.D))
+                if(currentState.IsKeyDown(Keys.Space) || currentState.IsKeyDown(Keys.Space))
+                {
+                    //TODO: attack animation state
+                    AnimationState = PlayerAnimationState.WalkingRight;
+                    keyboardControlled = true;
+                    Attack();
+                }
+                else if (currentState.IsKeyDown(Keys.Right) || currentState.IsKeyDown(Keys.D))
                 {
                     AnimationState = PlayerAnimationState.WalkingRight;
                     PhysicsBody.AddVelocity(new Vector2(100, 0));
@@ -98,11 +105,18 @@ namespace GameyMickGameFace.GameObjects
                     PhysicsBody.AddVelocity(new Vector2(0, -100));
                     keyboardControlled = true;
                 }
+                
             }
 
             if (!keyboardControlled)
             {
-                if (currentPadState.DPad.Right == ButtonState.Pressed)
+                if (currentPadState.Buttons.A == ButtonState.Pressed)
+                {
+                    //TODO: attack animation state
+                    AnimationState = PlayerAnimationState.WalkingRight;
+                    Attack();
+                }
+                else if (currentPadState.DPad.Right == ButtonState.Pressed)
                 {
                     AnimationState = PlayerAnimationState.WalkingRight;
                     PhysicsBody.AddVelocity(new Vector2(100, 0));
@@ -162,6 +176,18 @@ namespace GameyMickGameFace.GameObjects
             }
 
             PreviousAnimationState = AnimationState;
+        }
+
+        public void Attack()
+        {
+            foreach(Player player in Game1.Players)
+            {
+                if(player != this && (this.PhysicsBody.Position - player.PhysicsBody.Position).Length() < 50)
+                {
+                    //hit
+                    player.Health--;
+                }
+            }
         }
 
         public void UpdateBodyPhysicsDetection()
