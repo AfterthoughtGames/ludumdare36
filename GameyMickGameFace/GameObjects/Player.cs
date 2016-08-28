@@ -45,6 +45,7 @@ namespace GameyMickGameFace.GameObjects
 
         private static int gravityVelo = 100;
         private static int jumpVelo = -1790;
+        private static int attackDistance = 50;
 
         public Player(int seed)
         {
@@ -280,7 +281,7 @@ namespace GameyMickGameFace.GameObjects
                 else
                 {
                     //needs to match weapon distance
-                    if (distance > 70)
+                    if (distance > attackDistance)
                     {
                         bool Left = false;
                         //find enemy direction
@@ -437,7 +438,7 @@ namespace GameyMickGameFace.GameObjects
         {
             foreach (Player player in Level.Players)
             {
-                if (player != this && (this.PhysicsBody.Position - player.PhysicsBody.Position).Length() < 50)
+                if (player != this && (this.PhysicsBody.Position - player.PhysicsBody.Position).Length() < attackDistance)
                 {
                     //hit
                     if (Weapon != null)
