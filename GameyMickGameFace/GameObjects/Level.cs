@@ -139,17 +139,6 @@ namespace GameyMickGameFace.GameObjects
                 physicsManager.AddBody(Player4.PhysicsBody);
             }
 
-            //Player3 = new Player(rand.Next());
-            //Player3.PlayerNumber = 3;
-            //Player3.Health = 100;
-            //Players.Add(Player3);
-            //physicsManager.AddBody(Player3.PhysicsBody);
-            //Player4 = new Player(rand.Next());
-            //Player4.PlayerNumber = 4;
-            //Player4.Health = 100;
-            //Players.Add(Player4);
-            //physicsManager.AddBody(Player4.PhysicsBody);
-
             Sword Sword = new Sword(Media.Textures.SwordTexture, rand.Next());
             physicsManager.AddBody(Sword.PhysicsBody);
             Weapons.Add(Sword);
@@ -398,6 +387,18 @@ namespace GameyMickGameFace.GameObjects
             Waypoints.Add(new Waypoint(new Vector2(0, 350), false));
             Waypoints.Add(new Waypoint(new Vector2(1220, 350), false));
             Waypoints.Add(new Waypoint(new Vector2(670, 350), false));
+
+            // Up
+            // Mid level ups
+            Waypoints.Add(new Waypoint(new Vector2(100, 350), true));
+            Waypoints.Add(new Waypoint(new Vector2(1000, 350), true));
+
+            //bottem level ups
+            Waypoints.Add(new Waypoint(new Vector2(10, 580), true));
+            Waypoints.Add(new Waypoint(new Vector2(1200, 580), true));
+            Waypoints.Add(new Waypoint(new Vector2(680, 580), true));
+
+
         }
     }
 }
