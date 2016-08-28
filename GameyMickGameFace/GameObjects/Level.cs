@@ -28,18 +28,23 @@ namespace GameyMickGameFace.GameObjects
             Player1 = new Player(rand.Next());
             Player1.PlayerNumber = 1;
             Player1.Health = 100;
+            Player1.Human = true;
+            Game1.Players.Add(Player1);
             physicsManager.AddBody(Player1.PhysicsBody);
             Player2 = new Player(rand.Next());
             Player2.PlayerNumber = 2;
             Player2.Health = 100;
+            Game1.Players.Add(Player2);
             physicsManager.AddBody(Player2.PhysicsBody);
             Player3 = new Player(rand.Next());
             Player3.PlayerNumber = 3;
             Player3.Health = 100;
+            Game1.Players.Add(Player3);
             physicsManager.AddBody(Player3.PhysicsBody);
             Player4 = new Player(rand.Next());
             Player4.PlayerNumber = 4;
             Player4.Health = 100;
+            Game1.Players.Add(Player4);
             physicsManager.AddBody(Player4.PhysicsBody);
 
             HealthPowerUp Health = new HealthPowerUp(Media.Textures.healthTexture, Media.Animations.PotionSmoke, new Point(550, 150));
