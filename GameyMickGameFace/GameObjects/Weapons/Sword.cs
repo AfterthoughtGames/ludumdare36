@@ -5,7 +5,7 @@ namespace GameyMickGameFace.GameObjects.Weapons
 {
     class Sword : Weapon
     {
-        public Sword(Texture2D texture, Point position) : base(texture, position)
+        public Sword(Texture2D texture, int seed) : base(texture, seed)
         {
             Damage = 6;
             weaponType = WeaponType.Slashing;

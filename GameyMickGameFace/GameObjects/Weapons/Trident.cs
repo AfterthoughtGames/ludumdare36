@@ -5,7 +5,7 @@ namespace GameyMickGameFace.GameObjects.Weapons
 {
     class Trident : Weapon
     {
-        public Trident(Texture2D texture, Point position) : base(texture, position)
+        public Trident(Texture2D texture, int seed) : base(texture, seed)
         {
             Damage = 5;
             weaponType = WeaponType.Stabbing;

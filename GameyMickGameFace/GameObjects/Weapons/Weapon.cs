@@ -19,13 +19,16 @@ namespace GameyMickGameFace.GameObjects
         public Body PhysicsBody { get; set; }
         public Point Position { get; set; }
         public float Scale { get; set; }
+        Random rand;
 
-        public Weapon(Texture2D texture, Point position)
+        public Weapon(Texture2D texture, int seed)
         {
+            rand = new Random(seed);
             Scale = 0.1f;
             Texture = texture;
-            Position = position;
-            PhysicsBody = new Body(position, Convert.ToInt16(texture.Width * Scale), Convert.ToInt16(texture.Height * Scale), 0, 100, .85f, this);
+            Position = Game1.PickupSpots[rand.Next(0, Game1.PickupSpots.Count)];
+            Position = Position - new Point(0, (int)(Texture.Height * Scale));
+            PhysicsBody = new Body(Position, Convert.ToInt16(texture.Width * Scale), Convert.ToInt16(texture.Height * Scale), 0, 100, .85f, this);
         }
 
         public virtual void OnPickUp(Player player)

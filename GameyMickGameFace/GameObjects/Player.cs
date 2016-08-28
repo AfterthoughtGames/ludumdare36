@@ -25,7 +25,6 @@ namespace GameyMickGameFace.GameObjects
         public Weapon Weapon { get; set; }
         Random rand;
 
-
         public Body PhysicsBody { get; set; }
 
         public int PlayerNumber { get; set; }
@@ -215,10 +214,10 @@ namespace GameyMickGameFace.GameObjects
                     Point location = new Point(rand.Next(player.DetectionPhysicsBodies[0].MotionPhysicsBody.Left, player.DetectionPhysicsBodies[0].MotionPhysicsBody.Right),
                            rand.Next(player.DetectionPhysicsBodies[0].MotionPhysicsBody.Top, player.DetectionPhysicsBodies[0].MotionPhysicsBody.Bottom));
 
-                    for (int i=0;i<10;i++)
+                    for (int i = 0; i < 10; i++)
                     {
                         rotation = Matrix.CreateRotationZ(currentRotation);
-                        Particle particle = new Particle(location, .5f, Textures.bloodParticle, Vector2.Transform(initialVelocity,rotation));
+                        Particle particle = new Particle(location, .5f, Textures.bloodParticle, Vector2.Transform(initialVelocity, rotation));
                         Game1.Particles.Add(particle);
                         currentRotation += .15f;
                     }
