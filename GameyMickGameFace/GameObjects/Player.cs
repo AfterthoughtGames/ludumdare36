@@ -20,6 +20,7 @@ namespace GameyMickGameFace.GameObjects
         public int Health { get; set; }
         public string Name { get; set; }
         // public Vector2 Position { get; set; }
+        public bool Human = false;
 
         float scale = 0.4f;
 
@@ -82,87 +83,93 @@ namespace GameyMickGameFace.GameObjects
                 bool keyboardControlled = false;
                 gravityItsTheLaw(time, manager);
 
-                if (PlayerNumber == 1)
+                if (Human)
                 {
-                    if (currentState.IsKeyDown(Keys.Space) || currentState.IsKeyDown(Keys.Space))
+                    if (PlayerNumber == 1)
                     {
-                        //TODO: attack animation state
-                        AnimationState = PlayerAnimationState.WalkingRight;
-                        keyboardControlled = true;
-                        Attack();
-                    }
-                    else if (currentState.IsKeyDown(Keys.Right) || currentState.IsKeyDown(Keys.D))
-                    {
-                        AnimationState = PlayerAnimationState.WalkingRight;
-                        PhysicsBody.AddVelocity(new Vector2(100, 0));
-                        keyboardControlled = true;
-                    }
-                    else if (currentState.IsKeyDown(Keys.Left) || currentState.IsKeyDown(Keys.A))
-                    {
-                        AnimationState = PlayerAnimationState.WalkingLeft;
-                        PhysicsBody.AddVelocity(new Vector2(-100, 0));
-                        keyboardControlled = true;
-                    }
-                    else
-                    {
-                        AnimationState = PlayerAnimationState.Standing;
+                        if (currentState.IsKeyDown(Keys.Space) || currentState.IsKeyDown(Keys.Space))
+                        {
+                            //TODO: attack animation state
+                            AnimationState = PlayerAnimationState.WalkingRight;
+                            keyboardControlled = true;
+                            Attack();
+                        }
+                        else if (currentState.IsKeyDown(Keys.Right) || currentState.IsKeyDown(Keys.D))
+                        {
+                            AnimationState = PlayerAnimationState.WalkingRight;
+                            PhysicsBody.AddVelocity(new Vector2(100, 0));
+                            keyboardControlled = true;
+                        }
+                        else if (currentState.IsKeyDown(Keys.Left) || currentState.IsKeyDown(Keys.A))
+                        {
+                            AnimationState = PlayerAnimationState.WalkingLeft;
+                            PhysicsBody.AddVelocity(new Vector2(-100, 0));
+                            keyboardControlled = true;
+                        }
+                        else
+                        {
+                            AnimationState = PlayerAnimationState.Standing;
+                        }
+
+                        if (currentState.IsKeyDown(Keys.Down) || currentState.IsKeyDown(Keys.S))
+                        {
+                            AnimationState = PlayerAnimationState.Standing;
+                            PhysicsBody.AddVelocity(new Vector2(0, 100));
+                            keyboardControlled = true;
+                        }
+                        else if (!jumping && (currentState.IsKeyDown(Keys.Up) || currentState.IsKeyDown(Keys.W)))
+                        {
+                            AnimationState = PlayerAnimationState.Standing;
+                            PhysicsBody.AddVelocity(new Vector2(0, -6000));
+                            keyboardControlled = true;
+                            jumping = true;
+                        }
+
                     }
 
-                    if (currentState.IsKeyDown(Keys.Down) || currentState.IsKeyDown(Keys.S))
+                    if (!keyboardControlled)
                     {
-                        AnimationState = PlayerAnimationState.Standing;
-                        PhysicsBody.AddVelocity(new Vector2(0, 100));
-                        keyboardControlled = true;
-                    }
-                    else if (!jumping && (currentState.IsKeyDown(Keys.Up) || currentState.IsKeyDown(Keys.W)))
-                    {
-                        AnimationState = PlayerAnimationState.Standing;
-                        PhysicsBody.AddVelocity(new Vector2(0, -6000));
-                        keyboardControlled = true;
-                        jumping = true;
+                        if (currentPadState.Buttons.A == ButtonState.Pressed)
+                        {
+                            //TODO: attack animation state
+                            AnimationState = PlayerAnimationState.WalkingRight;
+                            Attack();
+                        }
+                        else if (currentPadState.DPad.Right == ButtonState.Pressed)
+                        {
+                            AnimationState = PlayerAnimationState.WalkingRight;
+                            PhysicsBody.AddVelocity(new Vector2(100, 0));
+                        }
+                        else if (currentPadState.DPad.Left == ButtonState.Pressed)
+                        {
+                            AnimationState = PlayerAnimationState.WalkingLeft;
+                            PhysicsBody.AddVelocity(new Vector2(-100, 0));
+                        }
+                        else if (currentPadState.ThumbSticks.Left.X > 0.0f)
+                        {
+                            AnimationState = PlayerAnimationState.WalkingRight;
+                            PhysicsBody.AddVelocity(new Vector2(100, 0));
+                        }
+                        else if (currentPadState.ThumbSticks.Left.X < 0.0f)
+                        {
+                            AnimationState = PlayerAnimationState.WalkingLeft;
+                            PhysicsBody.AddVelocity(new Vector2(-100, 0));
+                        }
+                        else
+                        {
+                            AnimationState = PlayerAnimationState.Standing;
+                        }
                     }
 
+                    keyboardControlled = false;
+
+                    PreviousPadState = currentPadState;
+                    PreviousKeyState = currentState;
                 }
-
-                if (!keyboardControlled)
+                else
                 {
-                    if (currentPadState.Buttons.A == ButtonState.Pressed)
-                    {
-                        //TODO: attack animation state
-                        AnimationState = PlayerAnimationState.WalkingRight;
-                        Attack();
-                    }
-                    else if (currentPadState.DPad.Right == ButtonState.Pressed)
-                    {
-                        AnimationState = PlayerAnimationState.WalkingRight;
-                        PhysicsBody.AddVelocity(new Vector2(100, 0));
-                    }
-                    else if (currentPadState.DPad.Left == ButtonState.Pressed)
-                    {
-                        AnimationState = PlayerAnimationState.WalkingLeft;
-                        PhysicsBody.AddVelocity(new Vector2(-100, 0));
-                    }
-                    else if (currentPadState.ThumbSticks.Left.X > 0.0f)
-                    {
-                        AnimationState = PlayerAnimationState.WalkingRight;
-                        PhysicsBody.AddVelocity(new Vector2(100, 0));
-                    }
-                    else if (currentPadState.ThumbSticks.Left.X < 0.0f)
-                    {
-                        AnimationState = PlayerAnimationState.WalkingLeft;
-                        PhysicsBody.AddVelocity(new Vector2(-100, 0));
-                    }
-                    else
-                    {
-                        AnimationState = PlayerAnimationState.Standing;
-                    }
+                    processAI(time);
                 }
-
-                keyboardControlled = false;
-
-                PreviousPadState = currentPadState;
-                PreviousKeyState = currentState;
-
                 UpdateBodyPhysicsDetection();
                 collisionDetection(manager);
             }
@@ -174,6 +181,11 @@ namespace GameyMickGameFace.GameObjects
                 //remove 5 points for death
                 Score -= 5;
             }
+        }
+
+        private void processAI(GameTime time)
+        {
+            
         }
 
         public void Draw(GameTime time, SpriteBatch batch)

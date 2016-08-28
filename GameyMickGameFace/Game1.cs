@@ -312,6 +312,7 @@ namespace GameyMickGameFace
                 spriteBatch.DrawString(Media.Fonts.GUI, str, new Vector2(GraphicsDevice.Viewport.Width - strSize.X * 2.5f, GraphicsDevice.Viewport.Height - 70), Color.White, 0f, Vector2.Zero, 2f, SpriteEffects.None, 0);
 
                 Player1.Draw(gameTime, spriteBatch);
+                Player1.Human = true;  //TODO:  this is hardcoded terrible so all the other players are AI
                 Player2.Draw(gameTime, spriteBatch);
                 Player3.Draw(gameTime, spriteBatch);
                 Player4.Draw(gameTime, spriteBatch);
