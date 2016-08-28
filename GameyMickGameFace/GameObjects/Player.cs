@@ -1,5 +1,5 @@
 ﻿using GameyMickGameFace.GameObjects.PowerUps;
-﻿using GameyMickGameFace.AI;
+using GameyMickGameFace.AI;
 using GameyMickGameFace.Media;
 using GameyMickGameFace.Particles;
 using GameyMickGameFace.Physics;
@@ -24,6 +24,7 @@ namespace GameyMickGameFace.GameObjects
         // public Vector2 Position { get; set; }
         public bool Human = false;
 
+        public float SpeedBonus = 1;
         float scale = 0.4f;
 
         public Weapon Weapon { get; set; }
@@ -183,19 +184,19 @@ namespace GameyMickGameFace.GameObjects
         private void moveRight()
         {
             AnimationState = PlayerAnimationState.WalkingRight;
-            PhysicsBody.AddVelocity(new Vector2(100, 0));
+            PhysicsBody.AddVelocity(new Vector2(100 * SpeedBonus, 0));
         }
 
         private void moveLeft()
         {
             AnimationState = PlayerAnimationState.WalkingLeft;
-            PhysicsBody.AddVelocity(new Vector2(-100, 0));
+            PhysicsBody.AddVelocity(new Vector2(-100 * SpeedBonus, 0));
         }
 
         private void moveDown()
         {
             AnimationState = PlayerAnimationState.Standing;
-            PhysicsBody.AddVelocity(new Vector2(0, 100));
+            PhysicsBody.AddVelocity(new Vector2(0, 100 * SpeedBonus));
         }
 
         private void jump()
@@ -246,7 +247,7 @@ namespace GameyMickGameFace.GameObjects
                     {
                         //it is down
                         float waypointDistance = 99999999;
-                        
+
                         foreach (Waypoint waypoint in Game1.Level.Waypoints)
                         {
                             onLevel = Math.Abs(waypoint.Location.Y - PhysicsBody.Position.Y) < 180;
@@ -271,13 +272,11 @@ namespace GameyMickGameFace.GameObjects
                         //we have the enemy that is closest so walk to him
                         if (!Left)
                         {
-                            AnimationState = PlayerAnimationState.WalkingRight;
-                            PhysicsBody.AddVelocity(new Vector2(100, 0));
+                            moveRight();
                         }
                         else if (Left)
                         {
-                            AnimationState = PlayerAnimationState.WalkingLeft;
-                            PhysicsBody.AddVelocity(new Vector2(-100, 0));
+                            moveLeft();
                         }
                     }
                 }
@@ -325,13 +324,13 @@ namespace GameyMickGameFace.GameObjects
                     onLevel = Math.Abs(weapon.PhysicsBody.Position.Y - PhysicsBody.Position.Y) < 250;
                     if (Weapondistance < distance && (!foundOnLevel || (foundOnLevel == onLevel)))
                     {
-                        if(Math.Abs(weapon.PhysicsBody.Position.Y - PhysicsBody.Position.Y) < 250)
+                        if (Math.Abs(weapon.PhysicsBody.Position.Y - PhysicsBody.Position.Y) < 250)
                         {
                             foundOnLevel = true;
                             distance = Weapondistance;
                             target = weapon;
                         }
-                        else if(!foundOnLevel)
+                        else if (!foundOnLevel)
                         {
                             distance = Weapondistance;
                             target = weapon;
@@ -360,7 +359,7 @@ namespace GameyMickGameFace.GameObjects
                     {
                         //it is down
                         float waypointDistance = 99999999;
-                        
+
                         foreach (Waypoint waypoint in Game1.Level.Waypoints)
                         {
                             if ((waypoint.Location - PhysicsBody.Position).Length() < waypointDistance)
@@ -384,13 +383,11 @@ namespace GameyMickGameFace.GameObjects
                         //we have the enemy that is closest so walk to him
                         if (!Left)
                         {
-                            AnimationState = PlayerAnimationState.WalkingRight;
-                            PhysicsBody.AddVelocity(new Vector2(100, 0));
+                            moveRight();
                         }
                         else if (Left)
                         {
-                            AnimationState = PlayerAnimationState.WalkingLeft;
-                            PhysicsBody.AddVelocity(new Vector2(-100, 0));
+                            moveLeft();
                         }
                     }
                 }
@@ -406,13 +403,11 @@ namespace GameyMickGameFace.GameObjects
                     //we have the enemy that is closest so walk to him
                     if (!Left)
                     {
-                        AnimationState = PlayerAnimationState.WalkingRight;
-                        PhysicsBody.AddVelocity(new Vector2(100, 0));
+                        moveRight();
                     }
                     else if (Left)
                     {
-                        AnimationState = PlayerAnimationState.WalkingLeft;
-                        PhysicsBody.AddVelocity(new Vector2(-100, 0));
+                        moveLeft();
                     }
                 }
             }
@@ -452,8 +447,8 @@ namespace GameyMickGameFace.GameObjects
                 if (player != this && (this.PhysicsBody.Position - player.PhysicsBody.Position).Length() < 50)
                 {
                     //hit
-                    if(Weapon != null)
-                    player.Health = player.Health - Weapon.Damage;
+                    if (Weapon != null)
+                        player.Health = player.Health - Weapon.Damage;
 
                     Vector2 initialVelocity = new Vector2(rand.Next(-100, 100), rand.Next(-100, 100));
                     float currentRotation = 0;

@@ -8,13 +8,12 @@ namespace GameyMickGameFace.GameObjects.PowerUps
         public int HealthAmount { get; set; }
         private readonly Animation _animation;
 
-        public HealthPowerUp(Texture2D healthTexture, Animation animation, Point position)
-            : base(healthTexture, position)
+        public HealthPowerUp(Texture2D healthTexture, Animation animation, int seed)
+            : base(healthTexture, seed)
         {
             HealthAmount = 3;
             Name = "Health";
             _animation = animation;
-            scale = .50f;
         }
 
         public override void OnPickup(Player effectedPlayer)
@@ -28,7 +27,7 @@ namespace GameyMickGameFace.GameObjects.PowerUps
             base.Draw(time, batch);
 
             if (_animation == null)
-            { 
+            {
                 return;
             }
 
@@ -42,7 +41,7 @@ namespace GameyMickGameFace.GameObjects.PowerUps
             base.Update(time);
 
             if (_animation == null)
-            { 
+            {
                 return;
             }
 

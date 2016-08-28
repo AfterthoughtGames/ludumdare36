@@ -46,6 +46,8 @@ namespace GameyMickGameFace.GameObjects
 
         public static bool PhysicsDrawn = false;
 
+        bool addPowerUps;
+
         PhysicsManager physicsManager = new PhysicsManager();
 
         public Level()
@@ -99,10 +101,6 @@ namespace GameyMickGameFace.GameObjects
             //Players.Add(Player4);
             //physicsManager.AddBody(Player4.PhysicsBody);
 
-            HealthPowerUp Health = new HealthPowerUp(Media.Textures.healthTexture, Media.Animations.PotionSmoke, new Point(550, 150));
-            physicsManager.AddBody(Health.PhysicsBody);
-            PowerUps.Add(Health);
-
             Sword Sword = new Sword(Media.Textures.SwordTexture, rand.Next());
             physicsManager.AddBody(Sword.PhysicsBody);
             Weapons.Add(Sword);
@@ -111,9 +109,13 @@ namespace GameyMickGameFace.GameObjects
             physicsManager.AddBody(Trident.PhysicsBody);
             Weapons.Add(Trident);
 
-            Bow Bow = new Bow(Media.Textures.BowTexture, rand.Next());
-            physicsManager.AddBody(Bow.PhysicsBody);
-            Weapons.Add(Bow);
+            Sword Sword2 = new Sword(Media.Textures.SwordTexture, rand.Next());
+            physicsManager.AddBody(Sword2.PhysicsBody);
+            Weapons.Add(Sword2);
+
+            Trident Trident2 = new Trident(Media.Textures.TridentTexture, rand.Next());
+            physicsManager.AddBody(Trident2.PhysicsBody);
+            Weapons.Add(Trident2);
 
             Floor = new Tile(new Point(-100, levelFloor), 1800, 30, 0, 0);
             physicsManager.AddBody(Floor.Body);
@@ -134,7 +136,7 @@ namespace GameyMickGameFace.GameObjects
             physicsManager.AddBody(Platform3.Body);
 
             addWaypoints();
-
+            addPowerUps = true;
         }
 
         public void Update(GameTime gameTime)
@@ -171,7 +173,7 @@ namespace GameyMickGameFace.GameObjects
                 PowerUp.Update(gameTime);
 
                 if (PowerUp.cleanMeUpBitches)
-                {                    
+                {
                     PowerUps.Remove(PowerUp);
                     physicsManager.RemoveBody(PowerUp.PhysicsBody);
                     break;
@@ -184,7 +186,23 @@ namespace GameyMickGameFace.GameObjects
                 Particles[i].Update(gameTime, physicsManager);
             }
 
+            if (TimeLeft % 30 == 0 && addPowerUps)
+            {
+                HealthPowerUp Health = new HealthPowerUp(Media.Textures.healthTexture, Media.Animations.PotionSmoke, rand.Next());
+                physicsManager.AddBody(Health.PhysicsBody);
+                PowerUps.Add(Health);
 
+
+                FlyingPowerUp Flying = new FlyingPowerUp(Media.Textures.flyingTexture, rand.Next());
+                physicsManager.AddBody(Flying.PhysicsBody);
+                PowerUps.Add(Flying);
+
+                addPowerUps = false;
+            }
+            else if (TimeLeft % 30 != 0)
+            {
+                addPowerUps = true;
+            }
         }
 
         public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
