@@ -102,7 +102,7 @@ namespace GameyMickGameFace.GameObjects
                 else if (currentState.IsKeyDown(Keys.Up) || currentState.IsKeyDown(Keys.W))
                 {
                     AnimationState = PlayerAnimationState.Standing;
-                    PhysicsBody.AddVelocity(new Vector2(0, -100));
+                    PhysicsBody.AddVelocity(new Vector2(0, -600));
                     keyboardControlled = true;
                 }
                 
@@ -141,6 +141,8 @@ namespace GameyMickGameFace.GameObjects
                     AnimationState = PlayerAnimationState.Standing;
                 }
             }
+
+            PhysicsBody.AddVelocity(new Vector2(0, 200));
 
             keyboardControlled = false;
 
