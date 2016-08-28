@@ -680,6 +680,186 @@
     <Content Include="Content\Characters\OtterFrames\Otter_Otter_Walking_Trident_029.xnb">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\Characters\OtterFrames\Otter_Otter_Sword_Attack_Swords_000.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Characters\OtterFrames\Otter_Otter_Sword_Attack_Swords_001.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Characters\OtterFrames\Otter_Otter_Sword_Attack_Swords_002.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Characters\OtterFrames\Otter_Otter_Sword_Attack_Swords_003.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Characters\OtterFrames\Otter_Otter_Sword_Attack_Swords_004.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Characters\OtterFrames\Otter_Otter_Sword_Attack_Swords_005.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Characters\OtterFrames\Otter_Otter_Sword_Attack_Swords_006.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Characters\OtterFrames\Otter_Otter_Sword_Attack_Swords_007.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Characters\OtterFrames\Otter_Otter_Sword_Attack_Swords_008.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Characters\OtterFrames\Otter_Otter_Sword_Attack_Swords_009.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Characters\OtterFrames\Otter_Otter_Sword_Attack_Swords_010.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Characters\OtterFrames\Otter_Otter_Sword_Attack_Swords_011.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Characters\OtterFrames\Otter_Otter_Sword_Attack_Swords_012.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Characters\OtterFrames\Otter_Otter_Sword_Attack_Swords_013.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Characters\OtterFrames\Otter_Otter_Sword_Attack_Swords_014.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Characters\OtterFrames\Otter_Otter_Sword_Attack_Swords_015.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Characters\OtterFrames\Otter_Otter_Sword_Attack_Swords_016.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Characters\OtterFrames\Otter_Otter_Sword_Attack_Swords_017.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Characters\OtterFrames\Otter_Otter_Sword_Attack_Swords_018.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Characters\OtterFrames\Otter_Otter_Sword_Attack_Swords_019.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Characters\OtterFrames\Otter_Otter_Sword_Attack_Swords_020.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Characters\OtterFrames\Otter_Otter_Sword_Attack_Swords_021.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Characters\OtterFrames\Otter_Otter_Sword_Attack_Swords_022.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Characters\OtterFrames\Otter_Otter_Sword_Attack_Swords_023.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Characters\OtterFrames\Otter_Otter_Sword_Attack_Swords_024.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Characters\OtterFrames\Otter_Otter_Sword_Attack_Swords_025.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Characters\OtterFrames\Otter_Otter_Sword_Attack_Swords_026.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Characters\OtterFrames\Otter_Otter_Sword_Attack_Swords_027.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Characters\OtterFrames\Otter_Otter_Sword_Attack_Swords_028.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Characters\OtterFrames\Otter_Otter_Sword_Attack_Swords_029.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Characters\OtterFrames\Otter_Otter_Trident_Attack_Trident_000.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Characters\OtterFrames\Otter_Otter_Trident_Attack_Trident_001.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Characters\OtterFrames\Otter_Otter_Trident_Attack_Trident_002.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Characters\OtterFrames\Otter_Otter_Trident_Attack_Trident_003.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Characters\OtterFrames\Otter_Otter_Trident_Attack_Trident_004.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Characters\OtterFrames\Otter_Otter_Trident_Attack_Trident_005.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Characters\OtterFrames\Otter_Otter_Trident_Attack_Trident_006.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Characters\OtterFrames\Otter_Otter_Trident_Attack_Trident_007.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Characters\OtterFrames\Otter_Otter_Trident_Attack_Trident_008.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Characters\OtterFrames\Otter_Otter_Trident_Attack_Trident_009.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Characters\OtterFrames\Otter_Otter_Trident_Attack_Trident_010.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Characters\OtterFrames\Otter_Otter_Trident_Attack_Trident_011.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Characters\OtterFrames\Otter_Otter_Trident_Attack_Trident_012.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Characters\OtterFrames\Otter_Otter_Trident_Attack_Trident_013.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Characters\OtterFrames\Otter_Otter_Trident_Attack_Trident_014.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Characters\OtterFrames\Otter_Otter_Trident_Attack_Trident_015.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Characters\OtterFrames\Otter_Otter_Trident_Attack_Trident_016.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Characters\OtterFrames\Otter_Otter_Trident_Attack_Trident_017.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Characters\OtterFrames\Otter_Otter_Trident_Attack_Trident_018.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Characters\OtterFrames\Otter_Otter_Trident_Attack_Trident_019.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Characters\OtterFrames\Otter_Otter_Trident_Attack_Trident_020.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Characters\OtterFrames\Otter_Otter_Trident_Attack_Trident_021.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Characters\OtterFrames\Otter_Otter_Trident_Attack_Trident_022.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Characters\OtterFrames\Otter_Otter_Trident_Attack_Trident_023.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Characters\OtterFrames\Otter_Otter_Trident_Attack_Trident_024.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Characters\OtterFrames\Otter_Otter_Trident_Attack_Trident_025.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Characters\OtterFrames\Otter_Otter_Trident_Attack_Trident_026.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Characters\OtterFrames\Otter_Otter_Trident_Attack_Trident_027.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Characters\OtterFrames\Otter_Otter_Trident_Attack_Trident_028.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Characters\OtterFrames\Otter_Otter_Trident_Attack_Trident_029.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <None Include="Content\Images\arrow.xnb" />
     <None Include="Content\Images\Background.xnb" />
     <None Include="Content\Images\blacksquare.xnb" />

@@ -316,7 +316,7 @@ namespace GameyMickGameFace.GameObjects
                                 Left = true;
                             }
 
-                            if (this.PhysicsBody.Position.X > point.Location.X - 10 && this.PhysicsBody.Position.X > point.Location.X + 10)
+                            if (point.Up &&  (this.PhysicsBody.Position.X > point.Location.X - 1 && this.PhysicsBody.Position.X > point.Location.X + 1))
                             {
                                 jump();
                             }
@@ -488,6 +488,10 @@ namespace GameyMickGameFace.GameObjects
                     else if (Left)
                     {
                         moveLeft();
+                    }
+                    else
+                    {
+                        jump();
                     }
                 }
             }
