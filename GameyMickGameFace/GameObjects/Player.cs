@@ -13,7 +13,10 @@ namespace GameyMickGameFace.GameObjects
 {
     public enum PlayerAnimationState
     {
-        Standing, Jummping, Falling, WalkingLeft, WalkingRight, StandingLeft
+        StandingLeft, StandingRight, Jummping, Falling, WalkingLeft, WalkingRight,
+        WalkingWithSwordLeft, WalkingWithSwordRight, WalkingWithTridentLeft, WalkingWithTridentRight,
+        StandingWithSwordLeft, StandingWithSwordRight, StandingWithTridentLeft, StandingWithTridentRight,
+        AttackingWithSwordLeft, AttackingWithSwordRight, AttackingWithTridentLeft, AttackingWithTridentRight
     }
 
     public class Player
@@ -54,30 +57,30 @@ namespace GameyMickGameFace.GameObjects
             rand = new Random(seed);
             Point position = Level.PlayerSpawnPoints[rand.Next(0, Level.PlayerSpawnPoints.Count)];
 
-            AnimationState = PlayerAnimationState.Standing;
-            PreviousAnimationState = PlayerAnimationState.Standing;
+            AnimationState = PlayerAnimationState.StandingRight;
+            PreviousAnimationState = PlayerAnimationState.StandingRight;
             PhysicsBody = new Body(position, 95, 86, 0, 100, .85f, this);
             PhysicsBody.reactsToCollision = false;
 
             DetectionPhysicsBodies = new List<Body>();
 
-            Body leftDetectionBody = new Body(new Point(0, 0), (int)(25 * scale), (int)(140 * scale), (int)(0 * scale), (int)(100 * scale), .85f, this);
-            leftDetectionBody.parentOffset = new Vector2(145, 35) * scale;
+            Body leftDetectionBody = new Body(new Point(0, 0), (int)(25 * scale), (int)(120 * scale), (int)(0 * scale), (int)(100 * scale), .85f, this);
+            leftDetectionBody.parentOffset = new Vector2(115, 35) * scale;
             leftDetectionBody.bodyType = BodyDetectionType.Left;
             DetectionPhysicsBodies.Add(leftDetectionBody);
 
-            Body rightDetectionBody = new Body(new Point(0, 0), (int)(25 * scale), (int)(140 * scale), (int)(0 * scale), (int)(100 * scale), .85f, this);
-            rightDetectionBody.parentOffset = new Vector2(170, 35) * scale;
+            Body rightDetectionBody = new Body(new Point(0, 0), (int)(25 * scale), (int)(120 * scale), (int)(0 * scale), (int)(100 * scale), .85f, this);
+            rightDetectionBody.parentOffset = new Vector2(140, 35) * scale;
             DetectionPhysicsBodies.Add(rightDetectionBody);
             rightDetectionBody.bodyType = BodyDetectionType.Right;
 
             Body topDetectionBody = new Body(new Point(0, 0), (int)(40 * scale), (int)(20 * scale), (int)(0 * scale), (int)(100 * scale), .85f, this);
-            topDetectionBody.parentOffset = new Vector2(150, 25) * scale;
+            topDetectionBody.parentOffset = new Vector2(120, 15) * scale;
             topDetectionBody.bodyType = BodyDetectionType.Top;
             DetectionPhysicsBodies.Add(topDetectionBody);
 
             Body bottomDetectionBody = new Body(new Point(0, 0), (int)(40 * scale), (int)(20 * scale), (int)(0 * scale), (int)(100 * scale), .85f, this);
-            bottomDetectionBody.parentOffset = new Vector2(150, 205) * scale;
+            bottomDetectionBody.parentOffset = new Vector2(120, 175) * scale;
             bottomDetectionBody.bodyType = BodyDetectionType.Bottom;
             DetectionPhysicsBodies.Add(bottomDetectionBody);
         }
@@ -115,7 +118,7 @@ namespace GameyMickGameFace.GameObjects
                         }
                         else
                         {
-                            AnimationState = PlayerAnimationState.Standing;
+                            AnimationState = PlayerAnimationState.StandingRight;
                         }
 
                         if (currentState.IsKeyDown(Keys.Down) || currentState.IsKeyDown(Keys.S))
@@ -132,7 +135,7 @@ namespace GameyMickGameFace.GameObjects
 
                     if (!keyboardControlled)
                     {
-                        AnimationState = PlayerAnimationState.Standing;
+                        AnimationState = PlayerAnimationState.StandingRight;
 
                         if (currentPadState.Triggers.Right > 0 && !(PreviousPadState.Triggers.Right > 0))
                         {
@@ -154,7 +157,7 @@ namespace GameyMickGameFace.GameObjects
                         }
                         else
                         {
-                            AnimationState = PlayerAnimationState.Standing;
+                            AnimationState = PlayerAnimationState.StandingRight;
                         }
                     }
 
@@ -195,13 +198,13 @@ namespace GameyMickGameFace.GameObjects
 
         private void moveDown()
         {
-            AnimationState = PlayerAnimationState.Standing;
+            AnimationState = PlayerAnimationState.StandingRight;
             PhysicsBody.AddVelocity(new Vector2(0, 100 * SpeedBonus));
         }
 
         private void jump()
         {
-            AnimationState = PlayerAnimationState.Standing;
+            AnimationState = PlayerAnimationState.StandingRight;
             PhysicsBody.AddVelocity(new Vector2(0, jumpVelo));
             jumping = true;
         }
@@ -473,26 +476,87 @@ namespace GameyMickGameFace.GameObjects
 
         public void Draw(GameTime time, SpriteBatch batch)
         {
+            //WalkingWithSwordLeft, WalkingWithSwordRight, WalkingWithTridentLeft, WalkingWithTridentRight,
             if (AnimationState == PlayerAnimationState.WalkingRight)
             {
-                Media.Animations.PlayerWalk.NextFrame(time);
-                batch.Draw(Media.Animations.PlayerWalk.Frame, PhysicsBody.Position, null, Color.White, 0.0f, Vector2.Zero, scale, SpriteEffects.None, 0);
+                Animations.PlayerWalk.NextFrame(time);
+                batch.Draw(Animations.PlayerWalk.Frame, PhysicsBody.Position, null, Color.White, 0.0f, Vector2.Zero, scale, SpriteEffects.None, 0);
             }
             else if (AnimationState == PlayerAnimationState.WalkingLeft)
             {
-                Media.Animations.PlayerWalk.NextFrame(time);
-                batch.Draw(Media.Animations.PlayerWalk.Frame, PhysicsBody.Position + new Vector2(35, 0), null, Color.White, 0.0f, Vector2.Zero, scale, SpriteEffects.FlipHorizontally, 0);
+                Animations.PlayerWalk.NextFrame(time);
+                batch.Draw(Animations.PlayerWalk.Frame, PhysicsBody.Position + new Vector2(35, 0), null, Color.White, 0.0f, Vector2.Zero, scale, SpriteEffects.FlipHorizontally, 0);
+            }
+            else if (AnimationState == PlayerAnimationState.StandingWithSwordRight)
+            {
+                Animations.StandingWithSword.NextFrame(time);
+                batch.Draw(Animations.StandingWithSword.Frame, PhysicsBody.Position, null, Color.White, 0.0f, Vector2.Zero, scale, SpriteEffects.None, 0);
+            }
+            else if (AnimationState == PlayerAnimationState.StandingWithSwordLeft)
+            {
+                Animations.StandingWithSword.NextFrame(time);
+                batch.Draw(Animations.StandingWithSword.Frame, PhysicsBody.Position + new Vector2(35, 0), null, Color.White, 0.0f, Vector2.Zero, scale, SpriteEffects.FlipHorizontally, 0);
+            }
+            else if (AnimationState == PlayerAnimationState.StandingWithTridentRight)
+            {
+                Animations.StandingWithTrident.NextFrame(time);
+                batch.Draw(Animations.StandingWithTrident.Frame, PhysicsBody.Position, null, Color.White, 0.0f, Vector2.Zero, scale, SpriteEffects.None, 0);
+            }
+            else if (AnimationState == PlayerAnimationState.StandingWithTridentLeft)
+            {
+                Animations.StandingWithTrident.NextFrame(time);
+                batch.Draw(Animations.StandingWithTrident.Frame, PhysicsBody.Position + new Vector2(35, 0), null, Color.White, 0.0f, Vector2.Zero, scale, SpriteEffects.FlipHorizontally, 0);
+            }
+            else if (AnimationState == PlayerAnimationState.AttackingWithSwordRight)
+            {
+                Animations.AttackingWithSword.NextFrame(time);
+                batch.Draw(Animations.AttackingWithSword.Frame, PhysicsBody.Position, null, Color.White, 0.0f, Vector2.Zero, scale, SpriteEffects.None, 0);
+            }
+            else if (AnimationState == PlayerAnimationState.AttackingWithSwordLeft)
+            {
+                Animations.AttackingWithSword.NextFrame(time);
+                batch.Draw(Animations.AttackingWithSword.Frame, PhysicsBody.Position + new Vector2(35, 0), null, Color.White, 0.0f, Vector2.Zero, scale, SpriteEffects.FlipHorizontally, 0);
+            }
+            else if (AnimationState == PlayerAnimationState.AttackingWithTridentRight)
+            {
+                Animations.AttackingWithTrident.NextFrame(time);
+                batch.Draw(Animations.AttackingWithTrident.Frame, PhysicsBody.Position, null, Color.White, 0.0f, Vector2.Zero, scale, SpriteEffects.None, 0);
+            }
+            else if (AnimationState == PlayerAnimationState.AttackingWithTridentLeft)
+            {
+                Animations.AttackingWithTrident.NextFrame(time);
+                batch.Draw(Animations.AttackingWithTrident.Frame, PhysicsBody.Position + new Vector2(35, 0), null, Color.White, 0.0f, Vector2.Zero, scale, SpriteEffects.FlipHorizontally, 0);
+            }
+            else if (AnimationState == PlayerAnimationState.WalkingWithSwordRight)
+            {
+                Animations.WalkingWithSword.NextFrame(time);
+                batch.Draw(Animations.WalkingWithSword.Frame, PhysicsBody.Position, null, Color.White, 0.0f, Vector2.Zero, scale, SpriteEffects.None, 0);
+            }
+            else if (AnimationState == PlayerAnimationState.WalkingWithSwordLeft)
+            {
+                Animations.WalkingWithSword.NextFrame(time);
+                batch.Draw(Animations.WalkingWithSword.Frame, PhysicsBody.Position + new Vector2(35, 0), null, Color.White, 0.0f, Vector2.Zero, scale, SpriteEffects.FlipHorizontally, 0);
+            }
+            else if (AnimationState == PlayerAnimationState.WalkingWithTridentRight)
+            {
+                Animations.WalkingWithTrident.NextFrame(time);
+                batch.Draw(Animations.WalkingWithTrident.Frame, PhysicsBody.Position, null, Color.White, 0.0f, Vector2.Zero, scale, SpriteEffects.None, 0);
+            }
+            else if (AnimationState == PlayerAnimationState.WalkingWithTridentLeft)
+            {
+                Animations.WalkingWithTrident.NextFrame(time);
+                batch.Draw(Animations.WalkingWithTrident.Frame, PhysicsBody.Position + new Vector2(35, 0), null, Color.White, 0.0f, Vector2.Zero, scale, SpriteEffects.FlipHorizontally, 0);
             }
             else if (PreviousAnimationState == PlayerAnimationState.WalkingLeft || PreviousAnimationState == PlayerAnimationState.StandingLeft)
             {
-                Media.Animations.PlayerIdel.NextFrame(time);
-                batch.Draw(Media.Animations.PlayerIdel.Frame, PhysicsBody.Position + new Vector2(35, 0), null, Color.White, 0.0f, Vector2.Zero, scale, SpriteEffects.FlipHorizontally, 0);
+                Animations.PlayerIdel.NextFrame(time);
+                batch.Draw(Animations.PlayerIdel.Frame, PhysicsBody.Position + new Vector2(35, 0), null, Color.White, 0.0f, Vector2.Zero, scale, SpriteEffects.FlipHorizontally, 0);
                 AnimationState = PlayerAnimationState.StandingLeft;
             }
             else
             {
-                Media.Animations.PlayerIdel.NextFrame(time);
-                batch.Draw(Media.Animations.PlayerIdel.Frame, PhysicsBody.Position, null, Color.White, 0.0f, Vector2.Zero, scale, SpriteEffects.None, 0);
+                Animations.PlayerIdel.NextFrame(time);
+                batch.Draw(Animations.PlayerIdel.Frame, PhysicsBody.Position, null, Color.White, 0.0f, Vector2.Zero, scale, SpriteEffects.None, 0);
             }
 
             PreviousAnimationState = AnimationState;

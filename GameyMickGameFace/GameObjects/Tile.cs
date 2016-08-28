@@ -10,12 +10,12 @@ namespace GameyMickGameFace.GameObjects
 
         public Tile(Point position, int width, int height, float restitution, int mass)
         {
-            Body = new Body(position, width, height, restitution, mass,0, this);
+            Body = new Body(position, width, height, restitution, mass, 0, this);
         }
 
         public void Draw(GameTime time, SpriteBatch batch)
         {
-            batch.Draw(Media.Animations.PlayerWalk.Frame, Body.MotionPhysicsBody.Location.ToVector2(), Color.White);
+
         }
     }
 }
