@@ -5,22 +5,22 @@ namespace GameyMickGameFace.GameObjects.PowerUps
 {
     public class HealthPowerUp : PowerUp
     {
-        public int healthAmount { get; set; }
+        public int HealthAmount { get; set; }
         private readonly Animation _animation;
 
         public HealthPowerUp( Texture2D healthTexture, Animation animation )
             : base( healthTexture )
         {
-            healthAmount = 3;
+            HealthAmount = 3;
             Name = "Health";
             _animation = animation;
-            scale = .75f;
+            scale = .50f;
         }
 
         public override void OnPickup( Player effectedPlayer )
         {
             base.OnPickup( effectedPlayer );
-            effectedPlayer.Health += healthAmount;
+            effectedPlayer.Health += HealthAmount;
         }
 
         public override void Draw( GameTime time, SpriteBatch batch, GameStates gameState )
@@ -33,8 +33,8 @@ namespace GameyMickGameFace.GameObjects.PowerUps
             if( _animation == null )
                 return;
 
-            var animationScale = new Vector2(.20f);
-            var pos = new Vector2( position.X + 7, position.Y - 28 );
+            var animationScale = new Vector2(.18f);
+            var pos = new Vector2( position.X, position.Y - 22 );
             batch.Draw( _animation.Frame, pos, null, null, null, default(float), animationScale );
         }
 
