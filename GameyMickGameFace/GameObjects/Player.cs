@@ -45,6 +45,9 @@ namespace GameyMickGameFace.GameObjects
         private static int gravityVelo = 100;
         private static int jumpVelo = -1790;
 
+        TimeSpan AILastAttack;
+        int SecBetweenAttack = 200;
+
         public Player(int seed)
         {
             rand = new Random(seed);
@@ -302,7 +305,11 @@ namespace GameyMickGameFace.GameObjects
                     }
                     else
                     {
-                        Attack();
+                        if ((time.TotalGameTime - AILastAttack).Milliseconds >= SecBetweenAttack)
+                        {
+                            AILastAttack = time.TotalGameTime;
+                            Attack();
+                        }
                     }
                 }
             }
