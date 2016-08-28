@@ -127,9 +127,9 @@ namespace GameyMickGameFace
 
             Floor = new Tile(new Point(-100, levelFloor), 1800, 30, 0, 0);
             physicsManager.AddBody(Floor.Body);
-            LeftWall = new Tile(new Point(-100, -100), 80, 1800, 0, 0);
+            LeftWall = new Tile(new Point(-100, -100), 100, 1800, 0, 0);
             physicsManager.AddBody(LeftWall.Body);
-            RightWall = new Tile(new Point(1300, -100), 30, 1800, 0, 0);
+            RightWall = new Tile(new Point(1285, -100), 100, 1800, 0, 0);
             physicsManager.AddBody(RightWall.Body);
             Ceiling = new Tile(new Point(-100, -20), 1800, 30, 0, 0);
             physicsManager.AddBody(Ceiling.Body);
