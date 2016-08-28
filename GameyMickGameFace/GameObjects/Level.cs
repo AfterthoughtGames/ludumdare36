@@ -91,6 +91,7 @@ namespace GameyMickGameFace.GameObjects
                 if (Weapon.cleanMeUpBitches)
                 {
                     Weapons.Remove(Weapon);
+                    break;
                 }
             }
 
@@ -101,6 +102,7 @@ namespace GameyMickGameFace.GameObjects
                 if (PowerUp.cleanMeUpBitches)
                 {
                     PowerUps.Remove(PowerUp);
+                    break;
                 }
             }
         }

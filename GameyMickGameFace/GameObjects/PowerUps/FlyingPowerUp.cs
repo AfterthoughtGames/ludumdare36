@@ -25,29 +25,19 @@ namespace GameyMickGameFace.GameObjects.PowerUps
             base.OnPickup(effectedPlayer);
         }
 
-        public override void Draw(GameTime time, SpriteBatch batch, GameStates gameState)
+        public override void Draw(GameTime time, SpriteBatch batch)
         {
-            base.Draw(time, batch, gameState);
-
-            if (gameState == GameStates.Title)
-            {
-                return;
-            }
-
+            base.Draw(time, batch);
 
             Vector2 animationScale = new Vector2(.18f);
             Vector2 pos = new Vector2(position.X, position.Y - 22);
             batch.Draw(flyingTexture, pos, null, null, null, default(float), animationScale);
         }
 
-        public override void Update(GameTime time, GameStates gameState)
+        public override void Update(GameTime time)
         {
-            base.Update(time, gameState);
+            base.Update(time);
 
-            if (gameState == GameStates.Title)
-            {
-                return;
-            }
         }
     }
 }

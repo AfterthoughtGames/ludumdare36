@@ -1087,11 +1087,7 @@
 /processorParam:TextureFormat=Color
 /build:Images/BloodParticle.png
 
-<<<<<<< eb5679f6af6838d240b6e5a5b0f10a89efad4567
 #begin Images/scoreboard.png
-=======
-#begin Images/speedcrystals.png
->>>>>>> added new powerup stuff and modified other powerup stuff
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -1101,5 +1097,15 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:TextureFormat=Color
 /build:Images/scoreboard.png
+
+#begin Images/speedcrystals.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:TextureFormat=Color
 /build:Images/speedcrystals.png
 
