@@ -29,6 +29,7 @@ namespace GameyMickGameFace.GameObjects
         public PlayerAnimationState AnimationState { get; set; }
         public PlayerAnimationState PreviousAnimationState { get; set; }
         public List<Body> DetectionPhysicsBodies;
+        public long lastTime = 0;
 
         public Player(Point position)
         {
@@ -66,6 +67,7 @@ namespace GameyMickGameFace.GameObjects
             KeyboardState currentState = Keyboard.GetState();
 
             bool keyboardControlled = false;
+            gravityItsTheLaw(time, manager);
 
             if (PlayerNumber == 1)
             {
@@ -182,14 +184,24 @@ namespace GameyMickGameFace.GameObjects
 
         public void Attack()
         {
-            foreach(Player player in Game1.Players)
+            foreach (Player player in Game1.Players)
             {
-                if(player != this && (this.PhysicsBody.Position - player.PhysicsBody.Position).Length() < 50)
+                if (player != this && (this.PhysicsBody.Position - player.PhysicsBody.Position).Length() < 50)
                 {
                     //hit
                     player.Health--;
                 }
             }
+        }
+
+        public void gravityItsTheLaw(GameTime time, PhysicsManager manager)
+        {
+            provideGravity(time, manager);
+        }
+
+        public void provideGravity(GameTime time, PhysicsManager manager)
+        {
+            PhysicsBody.AddVelocity(Vector2.Multiply(new Vector2(0, 10), time.ElapsedGameTime.Milliseconds));
         }
 
         public void UpdateBodyPhysicsDetection()

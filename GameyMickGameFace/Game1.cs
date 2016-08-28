@@ -129,7 +129,7 @@ namespace GameyMickGameFace
             Platform3 = new Tile(new Point(750, levelOne), Platform3Texture.Width, Platform3Texture.Height - 30, 0, 0);
             physicsManager.AddBody(Platform3.Body);
 
-            Health = new HealthPowerUp(Media.Textures.healthTexture, Media.Animations.PotionSmoke, new Point(550,150));
+            Health = new HealthPowerUp(Media.Textures.healthTexture, Media.Animations.PotionSmoke, new Point(550, 150));
             physicsManager.AddBody(Health.PhysicsBody);
 
             PhysicsBox = Content.Load<Texture2D>("Images/blacksquare");
