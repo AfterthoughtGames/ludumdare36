@@ -40,7 +40,7 @@ namespace GameyMickGameFace.GameObjects
         public long lastTime = 0;
 
         private static int gravityVelo = 100;
-        private static int jumpVelo = -2090;
+        private static int jumpVelo = -1790;
 
         public Player(int seed)
         {
@@ -301,7 +301,6 @@ namespace GameyMickGameFace.GameObjects
                                         PhysicsBody.Velocity.Y = 0;
                                         jumping = false;
                                     }
-
                                     break;
                                 }
 
