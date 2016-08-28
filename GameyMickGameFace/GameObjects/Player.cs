@@ -90,7 +90,7 @@ namespace GameyMickGameFace.GameObjects
                 {
                     if (PlayerNumber == 1)
                     {
-                        if (currentState.IsKeyDown(Keys.Space) || currentState.IsKeyDown(Keys.Space))
+                        if (currentState.IsKeyDown(Keys.Enter))
                         {
                             //TODO: attack animation state
                             AnimationState = PlayerAnimationState.WalkingRight;
@@ -120,10 +120,10 @@ namespace GameyMickGameFace.GameObjects
                             PhysicsBody.AddVelocity(new Vector2(0, 100));
                             keyboardControlled = true;
                         }
-                        else if (!jumping && (currentState.IsKeyDown(Keys.Up) || currentState.IsKeyDown(Keys.W)))
+                        else if (!jumping && currentState.IsKeyDown(Keys.Space))
                         {
                             AnimationState = PlayerAnimationState.Standing;
-                            PhysicsBody.AddVelocity(new Vector2(0, -6000));
+                            PhysicsBody.AddVelocity(new Vector2(0, jumpVelo));
                             keyboardControlled = true;
                             jumping = true;
                         }
@@ -140,7 +140,7 @@ namespace GameyMickGameFace.GameObjects
                             AnimationState = PlayerAnimationState.WalkingRight;
                             Attack();
                         }
-                        else if(currentPadState.Buttons.A == ButtonState.Pressed)
+                        else if(!jumping && currentPadState.Buttons.A == ButtonState.Pressed)
                         {
                             //jump
                             PhysicsBody.AddVelocity(new Vector2(0, jumpVelo));
