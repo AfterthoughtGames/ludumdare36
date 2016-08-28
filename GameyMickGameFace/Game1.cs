@@ -39,11 +39,6 @@ namespace GameyMickGameFace
         public KeyboardState PreviousKeyState { get; set; }
         private bool PhysicsDrawn = false;
 
-        // Temp Code
-        Player Player1;
-        Player Player2;
-        Player Player3;
-        Player Player4;
         Texture2D BackGround;
         Texture2D Platform1Texture;
         Texture2D Platform2Texture;
@@ -59,10 +54,7 @@ namespace GameyMickGameFace
         int levelTwo = 220;
         int levelFloor = 650;
 
-        HealthPowerUp Health;
-        Sword Sword;
-        Trident Trident;
-        Bow Bow;
+        Level Level;
 
         public Game1()
         {
@@ -70,7 +62,6 @@ namespace GameyMickGameFace
             graphics.PreferredBackBufferWidth = 1280;
             graphics.PreferredBackBufferHeight = 720;
             Content.RootDirectory = "Content";
-
 
             GameState = GameStates.Title;
         }
@@ -124,27 +115,6 @@ namespace GameyMickGameFace
             Media.Textures.Load(Content);
             Media.Music.Load(Content);
 
-            Player1 = new Player(rand.Next());
-            Player1.PlayerNumber = 1;
-            Player1.Health = 100;
-            Players.Add(Player1);
-            physicsManager.AddBody(Player1.PhysicsBody);
-            Player2 = new Player(rand.Next());
-            Player2.PlayerNumber = 2;
-            Player2.Health = 100;
-            Players.Add(Player2);
-            physicsManager.AddBody(Player2.PhysicsBody);
-            Player3 = new Player(rand.Next());
-            Player3.PlayerNumber = 3;
-            Player3.Health = 100;
-            Players.Add(Player3);
-            physicsManager.AddBody(Player3.PhysicsBody);
-            Player4 = new Player(rand.Next());
-            Player4.PlayerNumber = 4;
-            Player4.Health = 100;
-            Players.Add(Player4);
-            physicsManager.AddBody(Player4.PhysicsBody);
-
             Floor = new Tile(new Point(-100, 650), 1800, 30, 0, 0);
             physicsManager.AddBody(Floor.Body);
 
@@ -164,28 +134,13 @@ namespace GameyMickGameFace
             Platform3 = new Tile(new Point(750, levelOne), Platform3Texture.Width, Platform3Texture.Height - 30, 0, 0);
             physicsManager.AddBody(Platform3.Body);
 
-            Health = new HealthPowerUp(Media.Textures.healthTexture, Media.Animations.PotionSmoke, new Point(550, 150));
-            physicsManager.AddBody(Health.PhysicsBody);
-
-            Texture2D SwordTexture = Media.Textures.SwordTexture;
-            Sword = new Sword(SwordTexture, rand.Next());
-            physicsManager.AddBody(Sword.PhysicsBody);
-
-            Texture2D TridentTexture = Media.Textures.TridentTexture;
-            Trident = new Trident(TridentTexture, rand.Next());
-            physicsManager.AddBody(Trident.PhysicsBody);
-
-            Texture2D BowTexture = Media.Textures.BowTexture;
-            Bow = new Bow(BowTexture, rand.Next());
-            physicsManager.AddBody(Bow.PhysicsBody);
-
             PhysicsBox = Content.Load<Texture2D>("Images/blacksquare");
+
+            Level = new Level(physicsManager);
 
             //TODO: Should be moved
             MediaPlayer.IsRepeating = true;
             MediaPlayer.Play(Media.Music.Music1);
-
-
         }
 
         /// <summary>
@@ -233,19 +188,8 @@ namespace GameyMickGameFace
             }
             else
             {
-                physicsManager.UpdatePhysics(gameTime);
-
-                Player1.Update(gameTime, physicsManager);
-                Player2.Update(gameTime, physicsManager);
-                Player3.Update(gameTime, physicsManager);
-                Player4.Update(gameTime, physicsManager);
-
+                Level.Update(gameTime, physicsManager);
             }
-
-            Health.Update(gameTime, GameState);
-            Sword.Update(gameTime, GameState);
-            Trident.Update(gameTime, GameState);
-            Bow.Update(gameTime, GameState);
 
             PreviousKeyState = currentState;
 
@@ -282,29 +226,21 @@ namespace GameyMickGameFace
                 Vector2 strSize = Media.Fonts.GUI.MeasureString(str);
                 spriteBatch.DrawString(Media.Fonts.GUI, str, new Vector2(((GraphicsDevice.Viewport.Width / 2) - strSize.X), GraphicsDevice.Viewport.Height - 50), Color.White, 0f, Vector2.Zero, 2f, SpriteEffects.None, 0);
 
-                str = "Player 1: " + Player1.Health.ToString();
+                str = "Player 1: " + Level.Player1.Health.ToString();
                 spriteBatch.DrawString(Media.Fonts.GUI, str, new Vector2(20, 10), Color.White, 0f, Vector2.Zero, 2f, SpriteEffects.None, 0);
 
-                str = "Player 2: " + Player2.Health.ToString();
+                str = "Player 2: " + Level.Player2.Health.ToString();
                 strSize = Media.Fonts.GUI.MeasureString(str);
                 spriteBatch.DrawString(Media.Fonts.GUI, str, new Vector2(GraphicsDevice.Viewport.Width - strSize.X * 2.5f, 10), Color.White, 0f, Vector2.Zero, 2f, SpriteEffects.None, 0);
 
-                str = "Player 3: " + Player3.Health.ToString();
+                str = "Player 3: " + Level.Player3.Health.ToString();
                 spriteBatch.DrawString(Media.Fonts.GUI, str, new Vector2(20, GraphicsDevice.Viewport.Height - 40), Color.White, 0f, Vector2.Zero, 2f, SpriteEffects.None, 0);
 
-                str = "Player 4: " + Player4.Health.ToString();
+                str = "Player 4: " + Level.Player4.Health.ToString();
                 strSize = Media.Fonts.GUI.MeasureString(str);
                 spriteBatch.DrawString(Media.Fonts.GUI, str, new Vector2(GraphicsDevice.Viewport.Width - strSize.X * 2.5f, GraphicsDevice.Viewport.Height - 40), Color.White, 0f, Vector2.Zero, 2f, SpriteEffects.None, 0);
 
-                Player1.Draw(gameTime, spriteBatch);
-                Player2.Draw(gameTime, spriteBatch);
-                Player3.Draw(gameTime, spriteBatch);
-                Player4.Draw(gameTime, spriteBatch);
-
-                Health.Draw(gameTime, spriteBatch, GameState);
-                Sword.Draw(gameTime, spriteBatch, GameState);
-                Trident.Draw(gameTime, spriteBatch, GameState);
-                Bow.Draw(gameTime, spriteBatch, GameState);
+                Level.Draw(gameTime, spriteBatch);
             }
 
             if (PhysicsDrawn)
@@ -317,24 +253,24 @@ namespace GameyMickGameFace
                     }
                 }
 
-                foreach (Body body in Player1.DetectionPhysicsBodies)
+                foreach (Body body in Level.Player1.DetectionPhysicsBodies)
                 {
-                    spriteBatch.Draw(PhysicsBox, new Rectangle((int)(Player1.PhysicsBody.Position.X + body.parentOffset.X), (int)(Player1.PhysicsBody.Position.Y + body.parentOffset.Y), body.width, body.height), Color.White);
+                    spriteBatch.Draw(PhysicsBox, new Rectangle((int)(Level.Player1.PhysicsBody.Position.X + body.parentOffset.X), (int)(Level.Player1.PhysicsBody.Position.Y + body.parentOffset.Y), body.width, body.height), Color.White);
                 }
 
-                foreach (Body body in Player2.DetectionPhysicsBodies)
+                foreach (Body body in Level.Player2.DetectionPhysicsBodies)
                 {
-                    spriteBatch.Draw(PhysicsBox, new Rectangle((int)(Player2.PhysicsBody.Position.X + body.parentOffset.X), (int)(Player2.PhysicsBody.Position.Y + body.parentOffset.Y), body.width, body.height), Color.White);
+                    spriteBatch.Draw(PhysicsBox, new Rectangle((int)(Level.Player2.PhysicsBody.Position.X + body.parentOffset.X), (int)(Level.Player2.PhysicsBody.Position.Y + body.parentOffset.Y), body.width, body.height), Color.White);
                 }
 
-                foreach (Body body in Player3.DetectionPhysicsBodies)
+                foreach (Body body in Level.Player3.DetectionPhysicsBodies)
                 {
-                    spriteBatch.Draw(PhysicsBox, new Rectangle((int)(Player3.PhysicsBody.Position.X + body.parentOffset.X), (int)(Player3.PhysicsBody.Position.Y + body.parentOffset.Y), body.width, body.height), Color.White);
+                    spriteBatch.Draw(PhysicsBox, new Rectangle((int)(Level.Player3.PhysicsBody.Position.X + body.parentOffset.X), (int)(Level.Player3.PhysicsBody.Position.Y + body.parentOffset.Y), body.width, body.height), Color.White);
                 }
 
-                foreach (Body body in Player4.DetectionPhysicsBodies)
+                foreach (Body body in Level.Player4.DetectionPhysicsBodies)
                 {
-                    spriteBatch.Draw(PhysicsBox, new Rectangle((int)(Player4.PhysicsBody.Position.X + body.parentOffset.X), (int)(Player4.PhysicsBody.Position.Y + body.parentOffset.Y), body.width, body.height), Color.White);
+                    spriteBatch.Draw(PhysicsBox, new Rectangle((int)(Level.Player4.PhysicsBody.Position.X + body.parentOffset.X), (int)(Level.Player4.PhysicsBody.Position.Y + body.parentOffset.Y), body.width, body.height), Color.White);
                 }
             }
 

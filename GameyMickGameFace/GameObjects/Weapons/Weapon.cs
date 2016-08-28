@@ -19,10 +19,12 @@ namespace GameyMickGameFace.GameObjects
         public Body PhysicsBody { get; set; }
         public Point Position { get; set; }
         public float Scale { get; set; }
+        public bool cleanMeUpBitches { get; set; }
         Random rand;
 
         public Weapon(Texture2D texture, int seed)
         {
+            cleanMeUpBitches = false;
             rand = new Random(seed);
             Scale = 0.1f;
             Texture = texture;
@@ -34,22 +36,16 @@ namespace GameyMickGameFace.GameObjects
         public virtual void OnPickUp(Player player)
         {
             player.Weapon = this;
+            cleanMeUpBitches = true;
         }
 
-        public virtual void Draw(GameTime time, SpriteBatch batch, GameStates gameState)
+        public virtual void Draw(GameTime time, SpriteBatch batch)
         {
-            if (gameState == GameStates.Title)
-            {
-                return;
-            }
-
             batch.Draw(Texture, PhysicsBody.Position, null, Color.White, 0.0f, Vector2.Zero, Scale, SpriteEffects.None, 0.0f);
         }
 
-        public virtual void Update(GameTime time, GameStates gameState)
+        public virtual void Update(GameTime time)
         {
-            if (gameState == GameStates.Title)
-                return;
         }
     }
 }
