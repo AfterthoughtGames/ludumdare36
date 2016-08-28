@@ -32,7 +32,7 @@ namespace GameyMickGameFace.Physics
                 body.Update(gameTime);
                 foreach (Body body2 in Bodies)
                 {
-                    if (body != body2 && body.MotionPhysicsBody.Intersects(body2.MotionPhysicsBody) 
+                    if (body != body2 && body.MotionPhysicsBody.Intersects(body2.MotionPhysicsBody)
                         && (body.reactsToCollision && body2.reactsToCollision))
                     {
                         ResolveCollision(body, body2);
@@ -79,13 +79,21 @@ namespace GameyMickGameFace.Physics
             a.Velocity -= a.InverseMass * impulse;
             b.Velocity += b.InverseMass * impulse;
 
-            if(a.objRef is PowerUp && b.objRef is Player)
+            if (a.objRef is PowerUp && b.objRef is Player)
             {
                 ((PowerUp)a.objRef).OnPickup((Player)b.objRef);
             }
-            else if(b.objRef is PowerUp && a.objRef is Player)
+            else if (b.objRef is PowerUp && a.objRef is Player)
             {
                 ((PowerUp)b.objRef).OnPickup((Player)a.objRef);
+            }
+            else if (a.objRef is Weapon && b.objRef is Player)
+            {
+                ((Weapon)a.objRef).OnPickUp((Player)b.objRef);
+            }
+            else if (b.objRef is Weapon && a.objRef is Player)
+            {
+                ((Weapon)b.objRef).OnPickUp((Player)a.objRef);
             }
 
             PositionalCorrection(a, b, collisionNormal);

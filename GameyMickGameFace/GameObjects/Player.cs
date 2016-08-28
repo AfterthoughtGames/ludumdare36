@@ -39,6 +39,9 @@ namespace GameyMickGameFace.GameObjects
         public List<Body> DetectionPhysicsBodies;
         public long lastTime = 0;
 
+        private static int gravityVelo = 100;
+        private static int jumpVelo = -1790;
+
         public Player(int seed)
         {
             rand = new Random(seed);
@@ -80,7 +83,7 @@ namespace GameyMickGameFace.GameObjects
                 KeyboardState currentState = Keyboard.GetState();
 
                 bool keyboardControlled = false;
-                gravityItsTheLaw(time, manager);
+                provideGravity(time, manager);
 
                 if (PlayerNumber == 1)
                 {
@@ -117,7 +120,7 @@ namespace GameyMickGameFace.GameObjects
                     else if (!jumping && (currentState.IsKeyDown(Keys.Up) || currentState.IsKeyDown(Keys.W)))
                     {
                         AnimationState = PlayerAnimationState.Standing;
-                        PhysicsBody.AddVelocity(new Vector2(0, -6000));
+                        PhysicsBody.AddVelocity(new Vector2(0, jumpVelo));
                         keyboardControlled = true;
                         jumping = true;
                     }
@@ -142,6 +145,13 @@ namespace GameyMickGameFace.GameObjects
                         AnimationState = PlayerAnimationState.WalkingLeft;
                         PhysicsBody.AddVelocity(new Vector2(-100, 0));
                     }
+                    else if (!jumping && currentPadState.DPad.Up == ButtonState.Pressed)
+                    {
+                        AnimationState = PlayerAnimationState.Standing;
+                        PhysicsBody.AddVelocity(new Vector2(0, jumpVelo));
+                        keyboardControlled = true;
+                        jumping = true;
+                    }
                     else if (currentPadState.ThumbSticks.Left.X > 0.0f)
                     {
                         AnimationState = PlayerAnimationState.WalkingRight;
@@ -151,6 +161,13 @@ namespace GameyMickGameFace.GameObjects
                     {
                         AnimationState = PlayerAnimationState.WalkingLeft;
                         PhysicsBody.AddVelocity(new Vector2(-100, 0));
+                    }
+                    else if (currentPadState.ThumbSticks.Left.Y > 0.0f)
+                    {
+                        AnimationState = PlayerAnimationState.Standing;
+                        PhysicsBody.AddVelocity(new Vector2(0, jumpVelo));
+                        keyboardControlled = true;
+                        jumping = true;
                     }
                     else
                     {
@@ -220,12 +237,12 @@ namespace GameyMickGameFace.GameObjects
 
 
                     //score crap
-                    if(player.Health <= 0)
+                    if (player.Health <= 0)
                     {
                         Score += 10; //add 10 points you murdered him
                     }
 
-                    for (int i=0;i<10;i++)
+                    for (int i = 0; i < 10; i++)
                     {
                         rotation = Matrix.CreateRotationZ(currentRotation);
                         Particle particle = new Particle(location, .5f, Textures.bloodParticle, Vector2.Transform(initialVelocity, rotation));
@@ -236,14 +253,9 @@ namespace GameyMickGameFace.GameObjects
             }
         }
 
-        public void gravityItsTheLaw(GameTime time, PhysicsManager manager)
-        {
-            provideGravity(time, manager);
-        }
-
         public void provideGravity(GameTime time, PhysicsManager manager)
         {
-            PhysicsBody.AddVelocity(new Vector2(0, 10));
+            PhysicsBody.AddVelocity(new Vector2(0, gravityVelo));
         }
 
         public void UpdateBodyPhysicsDetection()
@@ -296,8 +308,8 @@ namespace GameyMickGameFace.GameObjects
                                     if (PhysicsBody.Velocity.Y > 0)
                                     {
                                         PhysicsBody.Velocity.Y = 0;
+                                        jumping = false;
                                     }
-                                    jumping = false;
                                     break;
                                 }
 

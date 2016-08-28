@@ -44,13 +44,13 @@
   <ItemGroup>
     <Compile Include="Animation.cs" />
     <Compile Include="Game1.cs" />
+    <Compile Include="GameObjects\Level.cs" />
     <Compile Include="GameObjects\PowerUps\HealthPowerUp.cs" />
     <Compile Include="GameObjects\Tile.cs" />
     <Compile Include="GameObjects\Weapons\Bow.cs" />
     <Compile Include="GameObjects\Weapons\Sword.cs" />
     <Compile Include="GameObjects\Weapons\Trident.cs" />
     <Compile Include="GameObjects\Weapons\Weapon.cs" />
-    <Compile Include="Level.cs" />
     <Compile Include="GameObjects\Player.cs" />
     <Compile Include="GameObjects\PowerUps\PowerUp.cs" />
     <Compile Include="Media\Animations.cs" />
