@@ -55,7 +55,7 @@ namespace GameyMickGameFace
         int levelTwo = 220;
         int levelFloor = 650;
 
-        Level Level;
+        public static Level Level;
 
         public Game1()
         {
