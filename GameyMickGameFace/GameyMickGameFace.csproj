@@ -59,6 +59,7 @@
     <Compile Include="Media\Music.cs" />
     <Compile Include="Media\SpriteSheets.cs" />
     <Compile Include="Media\Textures.cs" />
+    <Compile Include="Menus\Score.cs" />
     <Compile Include="Menus\Title.cs" />
     <Compile Include="Particles\Particle.cs" />
     <Compile Include="Physics\Body.cs" />

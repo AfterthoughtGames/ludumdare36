@@ -15,7 +15,7 @@ namespace GameyMickGameFace
 {
     public enum GameStates
     {
-        Title, InGame
+        Title, InGame, EndGame
     }
 
     /// <summary>
@@ -49,6 +49,7 @@ namespace GameyMickGameFace
         Tile Platform2;
         Tile Platform3;
         Title TitleScreen;
+        Score ScoreBoard;
 
         int levelOne = 420;
         int levelTwo = 220;
@@ -141,6 +142,8 @@ namespace GameyMickGameFace
 
             Level = new Level(physicsManager);
 
+            ScoreBoard = new Score();
+
             //TODO: Should be moved
             MediaPlayer.IsRepeating = true;
             MediaPlayer.Play(Media.Music.Music1);
@@ -185,13 +188,23 @@ namespace GameyMickGameFace
                 }
             }
 
-            if (GameState == GameStates.Title)
+            if (currentState.IsKeyDown(Keys.F2) && !PreviousKeyState.IsKeyDown(Keys.F2))
             {
-                TitleScreen.Update(gameTime);
+                GameState = GameStates.EndGame;
             }
-            else
+
+            switch (GameState)
             {
-                Level.Update(gameTime, physicsManager);
+                case GameStates.Title:
+                    TitleScreen.Update(gameTime);
+                    break;
+                case GameStates.InGame:
+                    Level.Update(gameTime, physicsManager);
+                    break;
+                case GameStates.EndGame:
+                    ScoreBoard.currentLevel = Level;
+                    ScoreBoard.Update(gameTime);
+                    break;
             }
 
             PreviousKeyState = currentState;
@@ -214,55 +227,37 @@ namespace GameyMickGameFace
             GraphicsDevice.Clear(Color.Black);
             spriteBatch.Begin();
 
-            if (GameState == GameStates.Title)
+            switch (GameState)
             {
-                TitleScreen.Draw(gameTime, spriteBatch);
-            }
-            else
-            {
-                spriteBatch.Draw(BackGround, Vector2.Zero, Color.White);
-                spriteBatch.Draw(Platform1Texture, new Vector2(150, levelTwo), Color.White);
-                spriteBatch.Draw(Platform2Texture, new Vector2(50, levelOne), Color.White);
-                spriteBatch.Draw(Platform3Texture, new Vector2(750, levelOne), Color.White);
+                case GameStates.Title:
+                    TitleScreen.Draw(gameTime, spriteBatch);
+                    break;
+                case GameStates.InGame:
+                    spriteBatch.Draw(BackGround, Vector2.Zero, Color.White);
+                    spriteBatch.Draw(Platform1Texture, new Vector2(150, levelTwo), Color.White);
+                    spriteBatch.Draw(Platform2Texture, new Vector2(50, levelOne), Color.White);
+                    spriteBatch.Draw(Platform3Texture, new Vector2(750, levelOne), Color.White);
+                    TimeLeft = GameTimeSeconds - Level.TimeSpent.Seconds;
 
-                string str = "OST Games: Ludum Dare 36";
-                Vector2 strSize = Media.Fonts.GUI.MeasureString(str);
-                spriteBatch.DrawString(Media.Fonts.GUI, str, new Vector2(((GraphicsDevice.Viewport.Width / 2) - strSize.X), GraphicsDevice.Viewport.Height - 50), Color.White, 0f, Vector2.Zero, 2f, SpriteEffects.None, 0);
+                    string str = "Time Left: " + (int)(TimeLeft / 60) + " " + (int)(TimeLeft % 60);
+                    Vector2 strSize = Media.Fonts.GUI.MeasureString(str);
+                    spriteBatch.DrawString(Media.Fonts.GUI, str, new Vector2(((GraphicsDevice.Viewport.Width / 2) - strSize.X), 10), Color.White, 0f, Vector2.Zero, 2f, SpriteEffects.None, 0);
 
-                str = "Player 1: " + Level.Player1.Health.ToString();
-                spriteBatch.DrawString(Media.Fonts.GUI, str, new Vector2(20, 10), Color.White, 0f, Vector2.Zero, 2f, SpriteEffects.None, 0);
+                    if (TimeLeft <= 0)
+                    {
+                        GameState = GameStates.EndGame;
+                    }
 
-                str = "Score:  " + Level.Player1.Score.ToString();
-                spriteBatch.DrawString(Media.Fonts.GUI, str, new Vector2(20, 40), Color.White, 0f, Vector2.Zero, 2f, SpriteEffects.None, 0);
-
-                str = "Player 2: " + Level.Player2.Health.ToString();
-                strSize = Media.Fonts.GUI.MeasureString(str);
-                spriteBatch.DrawString(Media.Fonts.GUI, str, new Vector2(GraphicsDevice.Viewport.Width - strSize.X * 2.5f, 10), Color.White, 0f, Vector2.Zero, 2f, SpriteEffects.None, 0);
-
-                str = "Score:  " + Level.Player2.Score.ToString();
-                strSize = Media.Fonts.GUI.MeasureString(str);
-                spriteBatch.DrawString(Media.Fonts.GUI, str, new Vector2(GraphicsDevice.Viewport.Width - strSize.X * 2.5f, 40), Color.White, 0f, Vector2.Zero, 2f, SpriteEffects.None, 0);
-
-                str = "Player 3: " + Level.Player3.Health.ToString();
-                spriteBatch.DrawString(Media.Fonts.GUI, str, new Vector2(20, GraphicsDevice.Viewport.Height - 40), Color.White, 0f, Vector2.Zero, 2f, SpriteEffects.None, 0);
-
-                str = "Score: " + Level.Player3.Score.ToString();
-                spriteBatch.DrawString(Media.Fonts.GUI, str, new Vector2(20, GraphicsDevice.Viewport.Height - 70), Color.White, 0f, Vector2.Zero, 2f, SpriteEffects.None, 0);
-
-                str = "Player 4: " + Level.Player4.Health.ToString();
-                strSize = Media.Fonts.GUI.MeasureString(str);
-                spriteBatch.DrawString(Media.Fonts.GUI, str, new Vector2(GraphicsDevice.Viewport.Width - strSize.X * 2.5f, GraphicsDevice.Viewport.Height - 40), Color.White, 0f, Vector2.Zero, 2f, SpriteEffects.None, 0);
-
-                str = "Score: " + Level.Player4.Score.ToString();
-                strSize = Media.Fonts.GUI.MeasureString(str);
-                spriteBatch.DrawString(Media.Fonts.GUI, str, new Vector2(GraphicsDevice.Viewport.Width - strSize.X * 2.5f, GraphicsDevice.Viewport.Height - 70), Color.White, 0f, Vector2.Zero, 2f, SpriteEffects.None, 0);
-
-                TimeLeft = GameTimeSeconds - Level.TimeSpent.Seconds;
-
-                str = "Time Left: " + (int)(TimeLeft / 60) + " " + (int)(TimeLeft % 60);
-                spriteBatch.DrawString(Media.Fonts.GUI, str, new Vector2(((GraphicsDevice.Viewport.Width / 2) - strSize.X), 10), Color.White, 0f, Vector2.Zero, 2f, SpriteEffects.None, 0);
-
-                Level.Draw(gameTime, spriteBatch);
+                    Level.Draw(gameTime, spriteBatch);
+                    break;
+                case GameStates.EndGame:
+                    spriteBatch.Draw(BackGround, Vector2.Zero, Color.White);
+                    spriteBatch.Draw(Platform1Texture, new Vector2(150, levelTwo), Color.White);
+                    spriteBatch.Draw(Platform2Texture, new Vector2(50, levelOne), Color.White);
+                    spriteBatch.Draw(Platform3Texture, new Vector2(750, levelOne), Color.White);
+                    Level.Draw(gameTime, spriteBatch);
+                    ScoreBoard.Draw(gameTime, spriteBatch);
+                    break;
             }
 
             if (PhysicsDrawn)
