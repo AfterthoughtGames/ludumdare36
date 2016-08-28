@@ -18,6 +18,9 @@ namespace GameyMickGameFace.GameObjects
         public List<Weapon> Weapons;
         public List<PowerUp> PowerUps;
 
+        private DateTime StartTime;
+        public TimeSpan TimeSpent;
+
         public Random rand = new Random();
 
         public Level(PhysicsManager physicsManager)
@@ -66,6 +69,14 @@ namespace GameyMickGameFace.GameObjects
 
         public void Update(GameTime gameTime, PhysicsManager physicsManager)
         {
+            if (StartTime == new DateTime())
+            {
+                StartTime = DateTime.Now;
+            }
+
+            DateTime Now = DateTime.Now;
+            TimeSpent = Now - StartTime;
+
             physicsManager.UpdatePhysics(gameTime);
 
             Player1.Update(gameTime, physicsManager);

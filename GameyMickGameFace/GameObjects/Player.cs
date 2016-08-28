@@ -134,7 +134,7 @@ namespace GameyMickGameFace.GameObjects
                             AnimationState = PlayerAnimationState.WalkingRight;
                             Attack();
                         }
-                        else if(!jumping && currentPadState.Buttons.A == ButtonState.Pressed)
+                        else if (!jumping && currentPadState.Buttons.A == ButtonState.Pressed)
                         {
                             jump();
                         }
@@ -207,15 +207,16 @@ namespace GameyMickGameFace.GameObjects
             int distance = 999999;
             if (Weapon != null)
             {
+
                 Player target = null;
                 //find the closest player
                 foreach (Player enemy in Game1.Players)
                 {
 
+
                     if (enemy != this)
                     {
-                        int enemydistance = (int)(enemy.PhysicsBody.Position - PhysicsBody.Position
-                            ).Length();
+                        int enemydistance = (int)(enemy.PhysicsBody.Position - PhysicsBody.Position).Length();
                         if (enemydistance < distance)
                         {
                             distance = enemydistance;
@@ -223,6 +224,7 @@ namespace GameyMickGameFace.GameObjects
                         }
                     }
                 }
+
 
                 //needs to match weapon distance
                 if (distance > 50)
@@ -251,7 +253,7 @@ namespace GameyMickGameFace.GameObjects
                 //find the closest player
                 foreach (Weapon weapon in Game1.Level.Weapons)
                 {
-                    int Weapondistance = (int)((weapon.PhysicsBody.Position - new Vector2(50,50)) - PhysicsBody.Position).Length();
+                    int Weapondistance = (int)((weapon.PhysicsBody.Position - new Vector2(50, 50)) - PhysicsBody.Position).Length();
                     if (Weapondistance < distance)
                     {
                         distance = Weapondistance;
