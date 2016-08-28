@@ -316,7 +316,7 @@ namespace GameyMickGameFace.GameObjects
                                 Left = true;
                             }
 
-                            if (point.Up &&  (this.PhysicsBody.Position.X > point.Location.X - 1 && this.PhysicsBody.Position.X > point.Location.X + 1))
+                            if (point.Up && (this.PhysicsBody.Position.X > point.Location.X - 1 && this.PhysicsBody.Position.X > point.Location.X + 1))
                             {
                                 jump();
                             }
@@ -499,7 +499,6 @@ namespace GameyMickGameFace.GameObjects
 
         public void Draw(GameTime time, SpriteBatch batch)
         {
-            //WalkingWithSwordLeft, WalkingWithSwordRight, WalkingWithTridentLeft, WalkingWithTridentRight,
             if (AnimationState == PlayerAnimationState.WalkingRight)
             {
                 Animations.PlayerWalk.NextFrame(time);
