@@ -17,6 +17,8 @@ namespace GameyMickGameFace.GameObjects
         public string Name { get; set; }
         // public Vector2 Position { get; set; }
 
+        float scale = 0.5f;
+
         public Body PhysicsBody { get; set; }
 
         public int PlayerNumber { get; set; }
@@ -37,23 +39,23 @@ namespace GameyMickGameFace.GameObjects
 
             DetectionPhysicsBodies = new List<Body>();
 
-            Body leftDetectionBody = new Body(new Point(0, 0), 25, 235, 0, 100, .85f, this);
-            leftDetectionBody.parentOffset = new Vector2(145, 0);
+            Body leftDetectionBody = new Body(new Point(0, 0), (int)(25*scale), (int)(235 * scale), (int)(0 * scale), (int)(100 * scale), .85f, this);
+            leftDetectionBody.parentOffset = new Vector2(145, 0) * scale;
             leftDetectionBody.bodyType = BodyDetectionType.Left;
             DetectionPhysicsBodies.Add(leftDetectionBody);
 
-            Body rightDetectionBody = new Body(new Point(0, 0), 25, 235, 0, 100, .85f, this);
-            rightDetectionBody.parentOffset = new Vector2(170, 0);
+            Body rightDetectionBody = new Body(new Point(0, 0), (int)(25 * scale), (int)(235 * scale), (int)(0 * scale), (int)(100 * scale), .85f, this);
+            rightDetectionBody.parentOffset = new Vector2(170, 0) * scale;
             DetectionPhysicsBodies.Add(rightDetectionBody);
             rightDetectionBody.bodyType = BodyDetectionType.Right;
 
-            Body topDetectionBody = new Body(new Point(0, 0), 50, 20, 0, 100, .85f, this);
-            topDetectionBody.parentOffset = new Vector2(145, 0);
+            Body topDetectionBody = new Body(new Point(0, 0), (int)(50 * scale), (int)(20 * scale), (int)(0 * scale), (int)(100 * scale), .85f, this);
+            topDetectionBody.parentOffset = new Vector2(145, 0) * scale;
             topDetectionBody.bodyType = BodyDetectionType.Top;
             DetectionPhysicsBodies.Add(topDetectionBody);
 
-            Body bottomDetectionBody = new Body(new Point(0, 0), 50, 20, 0, 100, .85f, this);
-            bottomDetectionBody.parentOffset = new Vector2(145, 215);
+            Body bottomDetectionBody = new Body(new Point(0, 0), (int)(50 * scale), (int)(20 * scale), (int)(0 * scale), (int)(100 * scale), .85f, this);
+            bottomDetectionBody.parentOffset = new Vector2(145, 215) * scale;
             bottomDetectionBody.bodyType = BodyDetectionType.Bottom;
             DetectionPhysicsBodies.Add(bottomDetectionBody);
         }
@@ -140,23 +142,23 @@ namespace GameyMickGameFace.GameObjects
             if (AnimationState == PlayerAnimationState.WalkingRight)
             {
                 Media.Animations.PlayerWalk.NextFrame(time);
-                batch.Draw(Media.Animations.PlayerWalk.Frame, PhysicsBody.Position, null, Color.White, 0.0f, PhysicsBody.Position, 0.5f, SpriteEffects.None, 0);
+                batch.Draw(Media.Animations.PlayerWalk.Frame, PhysicsBody.Position, null, Color.White, 0.0f, Vector2.Zero, 0.5f, SpriteEffects.None, 0);
             }
             else if (AnimationState == PlayerAnimationState.WalkingLeft)
             {
                 Media.Animations.PlayerWalk.NextFrame(time);
-                batch.Draw(Media.Animations.PlayerWalk.Frame, PhysicsBody.Position, null, Color.White, 0.0f, PhysicsBody.Position, 0.5f, SpriteEffects.FlipHorizontally, 0);
+                batch.Draw(Media.Animations.PlayerWalk.Frame, PhysicsBody.Position + new Vector2(35,0), null, Color.White, 0.0f, Vector2.Zero, 0.5f, SpriteEffects.FlipHorizontally, 0);
             }
             else if (PreviousAnimationState == PlayerAnimationState.WalkingLeft || PreviousAnimationState == PlayerAnimationState.StandingLeft)
             {
                 Media.Animations.PlayerIdel.NextFrame(time);
-                batch.Draw(Media.Animations.PlayerIdel.Frame, PhysicsBody.Position, null, Color.White, 0.0f, PhysicsBody.Position, 0.5f, SpriteEffects.FlipHorizontally, 0);
+                batch.Draw(Media.Animations.PlayerIdel.Frame, PhysicsBody.Position + new Vector2(35, 0), null, Color.White, 0.0f, Vector2.Zero, 0.5f, SpriteEffects.FlipHorizontally, 0);
                 AnimationState = PlayerAnimationState.StandingLeft;
             }
             else
             {
                 Media.Animations.PlayerIdel.NextFrame(time);
-                batch.Draw(Media.Animations.PlayerIdel.Frame, PhysicsBody.Position, null, Color.White, 0.0f, PhysicsBody.Position, 0.5f, SpriteEffects.None, 0);
+                batch.Draw(Media.Animations.PlayerIdel.Frame, PhysicsBody.Position, null, Color.White, 0.0f, Vector2.Zero, 0.5f, SpriteEffects.None, 0);
             }
 
             PreviousAnimationState = AnimationState;
