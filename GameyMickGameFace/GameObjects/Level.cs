@@ -219,15 +219,13 @@ namespace GameyMickGameFace.GameObjects
                 str = str + (int)(TimeLeft % 60);
             }
 
-            foreach(Waypoint waypoint in Waypoints)
+            Vector2 strSize = Media.Fonts.GUI.MeasureString(str);
+            spriteBatch.DrawString(Media.Fonts.GUI, str, new Vector2(((spriteBatch.GraphicsDevice.Viewport.Width / 2) - strSize.X), 10), Color.White, 0f, Vector2.Zero, 2f, SpriteEffects.None, 0);
+
+            foreach (Waypoint waypoint in Waypoints)
             {
                 waypoint.Draw(spriteBatch);
             }
-
-            str = "OST Games: Ludum Dare 36";
-
-            Vector2 strSize = Media.Fonts.GUI.MeasureString(str);
-            spriteBatch.DrawString(Media.Fonts.GUI, str, new Vector2(((spriteBatch.GraphicsDevice.Viewport.Width / 2) - strSize.X), 10), Color.White, 0f, Vector2.Zero, 2f, SpriteEffects.None, 0);
 
             if (TimeLeft <= 0)
             {
@@ -249,8 +247,8 @@ namespace GameyMickGameFace.GameObjects
                 PowerUp.Draw(gameTime, spriteBatch);
             }
 
-            //string str = "OST Games: Ludum Dare 36";
-            //Vector2 strSize = Media.Fonts.GUI.MeasureString(str);
+            str = "OST Games: Ludum Dare 36";
+            strSize = Media.Fonts.GUI.MeasureString(str);
             spriteBatch.DrawString(Media.Fonts.GUI, str, new Vector2(((spriteBatch.GraphicsDevice.Viewport.Width / 2) - strSize.X), spriteBatch.GraphicsDevice.Viewport.Height - 50), Color.White, 0f, Vector2.Zero, 2f, SpriteEffects.None, 0);
 
             str = "Player 1: " + Player1.Health.ToString();
@@ -312,7 +310,7 @@ namespace GameyMickGameFace.GameObjects
                 foreach (Body body in Player4.DetectionPhysicsBodies)
                 {
                     spriteBatch.Draw(Media.Textures.PhysicsBox, new Rectangle((int)(Player4.PhysicsBody.Position.X + body.parentOffset.X),
-                        (int)(  Player4.PhysicsBody.Position.Y + body.parentOffset.Y), body.width, body.height), Color.White);
+                        (int)(Player4.PhysicsBody.Position.Y + body.parentOffset.Y), body.width, body.height), Color.White);
                 }
             }
 
