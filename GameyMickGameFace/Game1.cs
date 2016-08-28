@@ -7,6 +7,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
+using System.Collections.Generic;
 
 namespace GameyMickGameFace
 {
@@ -21,6 +22,7 @@ namespace GameyMickGameFace
     public class Game1 : Game
     {
         public static GameStates GameState;
+        public static List<Player> Players = new List<Player>();
 
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
@@ -95,18 +97,22 @@ namespace GameyMickGameFace
             Player1 = new Player(new Point(100, 130));
             Player1.PlayerNumber = 1;
             Player1.Health = 100;
+            Players.Add(Player1);
             physicsManager.AddBody(Player1.PhysicsBody);
             Player2 = new Player(new Point(800, 130));
             Player2.PlayerNumber = 2;
             Player2.Health = 100;
+            Players.Add(Player2);
             physicsManager.AddBody(Player2.PhysicsBody);
             Player3 = new Player(new Point(100, 560));
             Player3.PlayerNumber = 3;
             Player3.Health = 100;
+            Players.Add(Player3);
             physicsManager.AddBody(Player3.PhysicsBody);
             Player4 = new Player(new Point(800, 560));
             Player4.PlayerNumber = 4;
             Player4.Health = 100;
+            Players.Add(Player4);
             physicsManager.AddBody(Player4.PhysicsBody);
 
             Floor = new Tile(new Point(-100, 650), 1800, 30, 0, 0);

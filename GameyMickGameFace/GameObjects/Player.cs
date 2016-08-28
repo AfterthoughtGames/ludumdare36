@@ -71,7 +71,14 @@ namespace GameyMickGameFace.GameObjects
 
             if (PlayerNumber == 1)
             {
-                if (currentState.IsKeyDown(Keys.Right) || currentState.IsKeyDown(Keys.D))
+                if(currentState.IsKeyDown(Keys.Space) || currentState.IsKeyDown(Keys.Space))
+                {
+                    //TODO: attack animation state
+                    AnimationState = PlayerAnimationState.WalkingRight;
+                    keyboardControlled = true;
+                    Attack();
+                }
+                else if (currentState.IsKeyDown(Keys.Right) || currentState.IsKeyDown(Keys.D))
                 {
                     AnimationState = PlayerAnimationState.WalkingRight;
                     PhysicsBody.AddVelocity(new Vector2(100, 0));
@@ -97,14 +104,21 @@ namespace GameyMickGameFace.GameObjects
                 else if (currentState.IsKeyDown(Keys.Up) || currentState.IsKeyDown(Keys.W))
                 {
                     AnimationState = PlayerAnimationState.Standing;
-                    PhysicsBody.AddVelocity(new Vector2(0, -100));
+                    PhysicsBody.AddVelocity(new Vector2(0, -600));
                     keyboardControlled = true;
                 }
+                
             }
 
             if (!keyboardControlled)
             {
-                if (currentPadState.DPad.Right == ButtonState.Pressed)
+                if (currentPadState.Buttons.A == ButtonState.Pressed)
+                {
+                    //TODO: attack animation state
+                    AnimationState = PlayerAnimationState.WalkingRight;
+                    Attack();
+                }
+                else if (currentPadState.DPad.Right == ButtonState.Pressed)
                 {
                     AnimationState = PlayerAnimationState.WalkingRight;
                     PhysicsBody.AddVelocity(new Vector2(100, 0));
@@ -129,6 +143,8 @@ namespace GameyMickGameFace.GameObjects
                     AnimationState = PlayerAnimationState.Standing;
                 }
             }
+
+            PhysicsBody.AddVelocity(new Vector2(0, 200));
 
             keyboardControlled = false;
 
@@ -164,6 +180,18 @@ namespace GameyMickGameFace.GameObjects
             }
 
             PreviousAnimationState = AnimationState;
+        }
+
+        public void Attack()
+        {
+            foreach(Player player in Game1.Players)
+            {
+                if(player != this && (this.PhysicsBody.Position - player.PhysicsBody.Position).Length() < 50)
+                {
+                    //hit
+                    player.Health--;
+                }
+            }
         }
 
         public void UpdateBodyPhysicsDetection()
