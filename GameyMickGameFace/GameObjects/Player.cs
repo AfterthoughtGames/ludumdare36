@@ -281,7 +281,7 @@ namespace GameyMickGameFace.GameObjects
                 else
                 {
                     //needs to match weapon distance
-                    if (distance > 50)
+                    if (distance > 70)
                     {
                         bool Left = false;
                         //find enemy direction
@@ -299,6 +299,10 @@ namespace GameyMickGameFace.GameObjects
                         {
                             moveLeft();
                         }
+                    }
+                    else
+                    {
+                        Attack();
                     }
                 }
             }
