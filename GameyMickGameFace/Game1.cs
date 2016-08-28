@@ -44,6 +44,9 @@ namespace GameyMickGameFace
         Tile Platform3;
         Title TitleScreen;
 
+        int levelOne = 420;
+        int levelTwo = 220;
+
         HealthPowerUp Health;
 
         public Game1()
@@ -109,15 +112,15 @@ namespace GameyMickGameFace
             TitleScreen = new Title();
 
             Platform1Texture = Content.Load<Texture2D>("Images/longshelf");
-            Platform1 = new Tile(new Point(150, 200), Platform1Texture.Width, Platform1Texture.Height - 30, 0, 0);
+            Platform1 = new Tile(new Point(150, levelTwo), Platform1Texture.Width, Platform1Texture.Height - 30, 0, 0);
             physicsManager.AddBody(Platform1.Body);
 
             Platform2Texture = Content.Load<Texture2D>("Images/mediumshelf");
-            Platform2 = new Tile(new Point(50, 400), Platform2Texture.Width, Platform2Texture.Height - 30, 0, 0);
+            Platform2 = new Tile(new Point(50, levelOne), Platform2Texture.Width, Platform2Texture.Height - 30, 0, 0);
             physicsManager.AddBody(Platform2.Body);
 
             Platform3Texture = Content.Load<Texture2D>("Images/shortshelf");
-            Platform3 = new Tile(new Point(750, 400), Platform3Texture.Width, Platform3Texture.Height - 30, 0, 0);
+            Platform3 = new Tile(new Point(750, levelOne), Platform3Texture.Width, Platform3Texture.Height - 30, 0, 0);
             physicsManager.AddBody(Platform3.Body);
 
             Health = new HealthPowerUp(Media.Textures.healthTexture, Media.Animations.PotionSmoke);
@@ -209,9 +212,9 @@ namespace GameyMickGameFace
             else
             {
                 spriteBatch.Draw(BackGround, Vector2.Zero, Color.White);
-                spriteBatch.Draw(Platform1Texture, new Vector2(150, 200), Color.White);
-                spriteBatch.Draw(Platform2Texture, new Vector2(50, 400), Color.White);
-                spriteBatch.Draw(Platform3Texture, new Vector2(750, 400), Color.White);
+                spriteBatch.Draw(Platform1Texture, new Vector2(150, levelTwo), Color.White);
+                spriteBatch.Draw(Platform2Texture, new Vector2(50, levelOne), Color.White);
+                spriteBatch.Draw(Platform3Texture, new Vector2(750, levelOne), Color.White);
 
                 string str = "OST Games: Ludum Dare 36";
                 Vector2 strSize = Media.Fonts.GUI.MeasureString(str);

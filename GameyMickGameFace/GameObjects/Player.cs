@@ -39,8 +39,8 @@ namespace GameyMickGameFace.GameObjects
 
             DetectionPhysicsBodies = new List<Body>();
 
-            Body leftDetectionBody = new Body(new Point(0,0), (int)(25*scale), (int)(180 * scale), (int)(0 * scale), (int)(100 * scale), .85f, this);
-            leftDetectionBody.parentOffset = new Vector2(145,35) * scale;
+            Body leftDetectionBody = new Body(new Point(0, 0), (int)(25 * scale), (int)(180 * scale), (int)(0 * scale), (int)(100 * scale), .85f, this);
+            leftDetectionBody.parentOffset = new Vector2(145, 35) * scale;
             leftDetectionBody.bodyType = BodyDetectionType.Left;
             DetectionPhysicsBodies.Add(leftDetectionBody);
 
