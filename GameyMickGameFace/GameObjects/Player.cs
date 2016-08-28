@@ -185,7 +185,44 @@ namespace GameyMickGameFace.GameObjects
 
         private void processAI(GameTime time)
         {
-            
+            //get AI to move toward player walking
+
+            int distance = 999999;
+            Player target = null;
+            //find the closest player
+            foreach (Player enemy in Game1.Players)
+            {
+                
+                if (enemy != this)
+                {
+                    int enemydistance = (int)(enemy.PhysicsBody.Position - PhysicsBody.Position).Length();
+                    if(enemydistance < distance)
+                    {
+                        distance = enemydistance;
+                        target = enemy;
+                    }
+                }
+            }
+
+            bool Left = false;
+            //find enemy direction
+            if(target.PhysicsBody.Position.X < PhysicsBody.Position.X)
+            {
+                Left = true;
+            }
+
+
+            //we have the enemy that is closest so walk to him
+            if (!Left)
+            {
+                AnimationState = PlayerAnimationState.WalkingRight;
+                PhysicsBody.AddVelocity(new Vector2(100, 0));
+            }
+            else if (Left)
+            {
+                AnimationState = PlayerAnimationState.WalkingLeft;
+                PhysicsBody.AddVelocity(new Vector2(-100, 0));
+            }
         }
 
         public void Draw(GameTime time, SpriteBatch batch)
